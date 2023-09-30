@@ -1,0 +1,26 @@
+<template>
+    <lightning-card title="Sign In" icon-name="custom:custom1">
+        <div class="slds-p-around_medium">
+            <lightning-input
+              type="text"
+              name="pincodeNumber"
+              label="Name:"
+              onkeyup={changeHandler}
+              value={pincodeNumber}
+            ></lightning-input>
+            </div>
+            <div class="slds-p-around_medium">
+                <lightning-input
+                  type="text"
+                  name="pincodeNumber"
+                  label="Password:"
+                  onkeyup={changeHandler}
+                  value={pincodeNumber}
+                ></lightning-input>
+                </div>
+        <lightning-button variant="success" label="Sign Up" title="Sign Up" onclick={handleDemo} class="slds-m-left_x-small"></lightning-button>
+
+        <lightning-button variant="success" label="Back" title="Back" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+        
+    </lightning-card>
+</template>

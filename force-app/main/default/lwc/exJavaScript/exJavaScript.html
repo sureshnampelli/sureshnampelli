@@ -1,0 +1,55 @@
+<template>
+   <lightning-card title="JSON JavaS Script" icon-name="custom:custom1">
+   <div>
+   <lightning-button onclick={getter} variant="brand" label="Base"></lightning-button>
+   
+   <template if:true={showText} >
+
+      <ul class="slds-m-around_medium">
+        
+          <template for:each={persons} for:item="num">
+            <a
+              href="#"
+              class="list-group-item list-group-item-action"
+              key={num.id}
+              >{num.name}</a
+            >
+          </template>
+        </ul>
+   </template>
+</div>
+
+</lightning-card>
+<lightning-card title="Maths Operations :" icon-name="custom:custom2">
+  <hr />
+
+  <!--First input box-->
+  <div class="slds-p-around_medium">
+    <lightning-input
+      type="number"
+      name="fullname"
+      label="First Number:"
+      onkeyup={changeHandler}
+      value={fullname}
+    ></lightning-input>
+  </div>
+  <!--Second input box-->
+  <div class="slds-p-around_medium">
+    <lightning-input
+      type="number"
+      name="title"
+      label="Second Number:"
+      onkeyup={changeHandler}
+      value={title}
+    ></lightning-input>
+  </div>
+  <!--Result of binding-->
+  <div class="slds-p-around_medium">
+    <lightning-card title="Result"> 
+      <lightning-button onclick={floting} variant="brand" label="Reuslt"></lightning-button>
+    </lightning-card>
+    <h5>My First Number is {fullname} and Second Number is {title} and Result : {addTwo}</h5>
+  </div>
+</lightning-card>
+
+</template>

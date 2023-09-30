@@ -1,0 +1,25 @@
+<template>
+    <lightning-card>
+        <div>
+            <div class="slds-card slds-has-bottom-magnet">
+            <lightning-input
+            type="date" label="Birthday"
+                onchange={handleChange}
+              ></lightning-input>
+            </div>
+
+                <div class="slds-var-m-around_medium"> <lightning-input
+                    type="datetime" label="Created date" value={datetime}
+                      onchange={handleChange}
+                      ></lightning-input>
+                    
+                      
+
+                    </div>
+        
+                    <p class="slds-var-m-top_medium">Date: {onlydate}</p>
+                    <p class="slds-var-m-top_medium">DateTime: {datetime}</p>
+
+            </div>
+    </lightning-card>
+</template>

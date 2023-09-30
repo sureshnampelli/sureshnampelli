@@ -1,0 +1,47 @@
+<template>
+    <lightning-card title="Record-form" icon-name="standard:contact">
+  <lightning-record-view-form  
+  record-id= {recordId}
+  object-api-name=  {objectName}
+ fields= {fields}
+  mode="readOnly"
+  >
+ </lightning-record-view-form>  
+</lightning-card>
+<lightning-card title="Record-form :View" icon-name="standard:contact">
+    <lightning-record-view-form  
+    record-id= {recordId}
+    object-api-name= {objectName}
+    fields= {fields}
+    mode="View"
+    >
+   </lightning-record-view-form>  
+  </lightning-card>
+  <lightning-card title="Record-form :Edit" icon-name="standard:contact">
+    <lightning-record-view-form  
+    record-id= {recordId}
+    object-api-name= {objectName}
+    fields= {fields}
+    mode="Edit"
+    >
+   </lightning-record-view-form>  
+  </lightning-card>
+  <lightning-card title="Record View Form" icon-name="standard:icon">
+    <lightning-record-view-form  
+    record-id= {recordId}
+    object-api-name= {objectName}
+    >
+    <lightning-output-field field-name="MONTH_HOLIDAY__C"></lightning-output-field>
+   </lightning-record-view-form>  
+  </lightning-card>
+  <lightning-card title="Record-form :Edit" icon-name="standard:icon">
+    <lightning-record-Edit-form  
+    record-id= {recordId}
+    object-api-name= {objectName}
+    fields="fields"
+    >
+    <lightning-input-field field-name="DATE__C">date</lightning-input-field>
+    <lightning-button label="submit" variant="brand" type="submit"></lightning-button>
+   </lightning-record-Edit-form>  
+  </lightning-card>
+</template>

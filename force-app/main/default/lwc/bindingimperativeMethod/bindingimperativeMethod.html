@@ -1,0 +1,20 @@
+<template>
+    <lightning-card title="wired using imperative Method" icon-name="utility:user">
+        <div class="slds-var-m-around_medium">
+            <lightning-button 
+            label="Get" 
+            onclick={handleClick} >
+        </lightning-button>
+        </div>
+        <template if:true={accounts}></template>
+        <div class="slds-var-m-around_medium">
+            <template for:each={accounts} for:item="acc">
+                <lightning-layout key={acc.Id} class="slds-var-m-vertical_xx-small">
+                <lightning-layout-item>{acc.Name}</lightning-layout-item>
+                </lightning-layout>
+            </template>
+        </div>
+        <div class="slds-var-m-around_medium">{error}</div>
+    </lightning-card>
+    
+</template>

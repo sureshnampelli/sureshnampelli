@@ -1,0 +1,12 @@
+<template>
+ <lightning-card title="getPicklistValueRecordType m ">
+    <div class="slds-m-around_medium">
+        <template if:true={shippingGeocodeAccuracy}>
+        <lightning-combobox 
+        name="shipping Geocode" label="Shipping Geocode"
+        value={picklistValue} placeholder="select" options={shippingGeocodeAccuracy.values}
+        onchange={handleChange}></lightning-combobox>
+    </template>
+</div>
+ </lightning-card>   
+</template>

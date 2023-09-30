@@ -1,0 +1,68 @@
+<template>
+    <lightning-card title="scroll show demo opp " icon-name="custom:custom23">
+        
+        <lightning-icon icon-name='utility:knowledge_base' alternative-text='knowledge_base' size='large' onclick={handleicon} variant={status} title='knowledge_base'></lightning-icon>
+       
+        
+            <div class=" slds-size_1-of-3 slds-p-top_x-large ">  
+                <div class={classStyle} style="padding:10px" tabindex="0" >            
+                <img src={scrollOne} style="width:50% ;height:60%" alt={imageStatus} id="1"  class="imageSow"  onclick={handleImage} />              
+                <img src={scrollTwo} style="width:50% ;height:60%" alt={imageStatus} id="2" class="imageSow" />               
+                <img src={scrollThree} style="width:50% ;height:60%" alt={imageStatus} id="3" class="imageSow" />               
+                <img src={scrollFour} style="width:50% ;height:60%" alt={imageStatus}  id="4" class="imageSow" />               
+                <img src={scrollFive} style="width:50% ;height:60%" alt={imageStatus}  id="5" class="imageSow" />  
+                <img src={scrollSix} style="width:50% ;height:60%" alt={imageStatus}  id="6" class="imageSow" />
+                <img src={scrollSeven} style="width:50% ;height:60%" alt={imageStatus}  id="7" class="imageSow" />
+                <img src={scrollEight} style="width:50% ;height:60%" alt={imageStatus}  id="8" class="imageSow" />
+                <img src={scrollNine} style="width:50% ;height:60%" alt={imageStatus}  id="9" class="imageSow" />
+                <lightning-icon icon-name='action:more' alternative-text='more' size='large' title='more'></lightning-icon>
+               </div>
+        </div> <template if:false={place}> 
+        <div class="slds-progress-bar slds-progress-bar_x-small" aria-valuemin="0" aria-valuemax="100" aria-valuenow={persentRing} role="progressbar">
+            <span class="slds-progress-bar__value" style="width:30%">
+            <span class="slds-assistive-text">Progress: {persentRing}</span>
+            </span>
+            </div>
+        </template>
+        <template if:true={placekill}> 
+            <div class="slds-progress-bar slds-progress-bar_x-small" aria-valuemin="0" aria-valuemax="100" aria-valuenow={persentRing} role="progressbar">
+                <span class="slds-progress-bar__value" style="width:80%">
+                <span class="slds-assistive-text">Progress: {persentRing}</span>
+                </span>
+                </div>
+            </template>
+            <div>
+                <div dir="rtl">
+                    <div class="slds-form-element">
+                    <label class="slds-checkbox_toggle slds-grid">
+                    <span class="slds-form-element__label slds-m-bottom_none">Toggle Label</span>
+                    <input type="checkbox" name="checkbox-toggle-15" class="slds-checkbox_on" onclick={handleCheck} value="checkbox-toggle-15"  aria-describedby="checkbox-toggle-15" checked="" />
+                    <span id="checkbox-toggle-15" class="slds-checkbox_faux_container">
+                    <span class="slds-checkbox_faux"></span>
+                    
+                    </span>
+                    </label>
+                    </div>
+                    <lightning-input data-id="toggle2" type="toggle" label="TOGGLE2" checked={checked} message-toggle-active="" message-toggle-inactive=""></lightning-input> <br/>
+<lightning-input data-id="toggle1" type="toggle" label="Click Me" onchange={changeToggle} message-toggle-active="" message-toggle-inactive="" ></lightning-input> <br/>
+                    </div>
+            </div>
+        <div >
+            <img src={selectedImage} class="imageClass"/>
+            <a>number :{selectedId}</a>
+           </div>
+        <div   class="slds-list_horizontal slds-scrollable_x" >
+            <template for:each={imageUrlArray} for:item="car"  >
+                <a  key={car}
+                  ><img src={car.image}  ></a>
+            </template>
+        </div>
+        <div>
+            <lightning-button variant="base" label="click me" onclick={handleClick}></lightning-button>
+            <lightning-button variant="base" label="click grid" onclick={handleClicked}></lightning-button>
+        </div>
+        <div class=" slds-list_horizontal slds-scrollable_x " style="padding:10px" tabindex="0" >   
+        <img src={selectedImageurl}  >
+        </div>
+        </lightning-card>  
+</template>

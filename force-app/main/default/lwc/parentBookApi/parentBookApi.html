@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title="parent Book Api">
+
+        <div class="slds-p-around_medium">
+            <lightning-input type="search" onchange={fetchBookHandler} 
+            label="Search Books" value={query}></lightning-input>
+        </div>
+        <div>
+        <c-child-book-api info-table={infoTable}></c-child-book-api>
+    </div>
+        
+    </lightning-card>
+    
+    
+</template>

@@ -1,0 +1,12 @@
+<template>
+    <lightning-card title="Create Record Demo apiui"  icon-name="standard:account">
+        <div class="slds-m-around--xx-large">
+            <lightning-input label="ENTER ACCOUNT NAME" name="Name" type="text" value={formFields.Name} onchange={changeHandler}></lightning-input>
+            <lightning-input label="ENTER PHONE NUMBER" name="Phone" type="text" value={formFields.Phone} onchange={changeHandler}></lightning-input>
+            <lightning-input label="ENTER INDUSTRY " name="Industry" type="text" value={formFields.Industry} onchange={changeHandler}></lightning-input>
+            <lightning-input label="ENTER TYPE" name="Type" type="text" value={formFields.Type} onchange={changeHandler}></lightning-input>
+      <lightning-button label="Submit" onclick={handleSave} variant="brand"></lightning-button>
+        </div>
+
+    </lightning-card>
+</template>

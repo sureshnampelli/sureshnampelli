@@ -1,0 +1,13 @@
+<template>
+    <lightning-card  variant="Narrow"  title="Hello" icon-name="standard:account">
+        <lightning-button-icon  icon-name="utility:down" variant="border-filled" alternative-text="Show More" slot="actions"></lightning-button-icon>
+        <p class="slds-var-p-horizontal_small">Card Body Narrow (custom component)</p>
+        <button class="slds-button slds-button_success" onclick={showHandler}>
+            Click me to show the text
+          </button>
+          <template if:true={showText}>
+            <h3>Hurray!! You able to see the hidden text</h3>
+          </template>
+        <p slot="footer">Card Footer</p>
+    </lightning-card>
+</template>

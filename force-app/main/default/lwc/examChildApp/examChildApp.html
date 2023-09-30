@@ -1,0 +1,28 @@
+<template>
+   <lightning-card title="Exam Child pi " icon-name="custom:custom40">
+    
+    <div>
+    <template if:true={userNumber}>
+
+      <div class="slds-box slds-var-p-top_x-large">
+        <a class="slds-align_absolute-center">{counter}</a>
+        <a class="slds-align_absolute-center">{enCounter}</a>
+  
+        
+        <lightning-icon class=" slds-align_absolute-center" icon-name='utility:clock' alternative-text='clock' variant={status}  onclick={handleicon} size='large' title='clock'></lightning-icon>
+        <lightning-button variant="success" label="Success"  onclick={handleClick} class="slds-m-right_x-small "></lightning-button>
+      </div>
+        <template for:each={userNumber} for:item="car">
+            <a href="#" key={car.name}
+          >{car.name}</a
+        >
+        <a href="#" key={car.name}
+        >{car.id}</a
+      > 
+        
+        </template>
+       
+      </template>
+    </div>
+   </lightning-card> 
+</template>

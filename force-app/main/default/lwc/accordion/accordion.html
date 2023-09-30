@@ -1,0 +1,24 @@
+<template>
+    <lightning-card>
+        <p>{activeSectionsMessage}</p>
+
+    <lightning-accordion
+        allow-multiple-sections-open
+        onsectiontoggle={handleSectionToggle}
+        active-section-name="B"
+    >
+        <lightning-accordion-section name="A" label="Accordion Title A">
+            <p>This is the content area for section A.</p>
+        </lightning-accordion-section>
+
+        <lightning-accordion-section name="B" label="Accordion Title B">
+            <p>This is the content area for section B.</p>
+        </lightning-accordion-section>
+
+        <lightning-accordion-section name="C" label="Accordion Title C">
+            <p>This is the content area for section C.</p>
+        </lightning-accordion-section>
+    </lightning-accordion>
+    </lightning-card>
+    
+</template>

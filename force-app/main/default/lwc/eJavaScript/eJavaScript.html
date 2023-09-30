@@ -1,0 +1,25 @@
+<template>
+    <lightning-card>
+    <lightning-combobox
+            name="progress"
+            label="Status"
+            value=""
+        
+            options={options}
+            onchange={handleChange}
+            required
+    ></lightning-combobox>
+    <p>Selected value is: {value}</p>
+    <p>multiple :{twoMultiple}</p>
+    <p>same :{isEqual}</p>
+    </lightning-card>
+<lightning-card>
+    <div style="height: 300px;">
+        <lightning-datatable
+                key-field="id"
+                data={data}
+                columns={columns}>
+        </lightning-datatable>
+    </div>
+</lightning-card>
+</template>

@@ -1,0 +1,12 @@
+<template>
+    <lightning-card title="New Candidate" icon-name="standard:account">
+        <h2>New Candidate</h2>
+        <lightning-input type="text" label="Candidate Name" onchange={FNameChangeHandler}></lightning-input>
+               <lightning-input type="email" label="Email address" onchange={EmailChangeHandler}></lightning-input>
+        <lightning-input type="tel" label="Phone Number" onchange={PhoneChangeHandler} name="phone2" placeholder="areacode-phone"></lightning-input>
+        <lightning-button variant="brand" label="Save Record" title="Create New Candidate" onclick={handleClick} ></lightning-button>
+
+    </lightning-card>
+
+
+</template>

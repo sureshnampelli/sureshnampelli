@@ -1,0 +1,133 @@
+<template>
+    
+    
+  
+    <div class="slds-tabs_card">
+        <div class="slds-page-header">
+            <div class="slds-page-header__row">
+                <div class="slds-page-header__col-title">
+                    <div class="slds-media">
+                        <div class="slds-media__figure">
+                            <span class="slds-icon_container slds-icon-standard-opportunity">
+                                 <lightning-icon icon-name="standard:recipe" alternative-text="recipe" title="recipe"></lightning-icon>
+                            </span>
+                        </div>
+                        <div class="slds-media__body">
+                            <div class="slds-page-header__name">
+                                <div class="slds-page-header__name-title">
+                                    <h1>
+                                        <span>Call Parent Method From Child Component LWC</span>
+                                        <span class="slds-page-header__title slds-truncate" title="Recently Viewed">TechDicer</span>
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <br/>
+  
+    <lightning-card title="City Info to Fetch Weather" icon-name="standard:address">
+        <div class="slds-var-p-around_small">
+            <lightning-layout multiple-rows>
+                <lightning-layout-item padding="around-small" size="12" medium-device-size="12" large-device-size="12">
+                    <lightning-combobox name="country" class="fieldvalidate"
+                                        label="Country Code" options={countryOptions} required>
+                    </lightning-combobox>
+                    <lightning-input name="pincode" class="fieldvalidate" type="number"
+                                     label="Pin/Zip Code" min="1000" max="999999"
+                                     message-when-range-overflow="Please enter a correct pincode"
+                                     message-when-range-underflow="Please enter a correct pincode/Zipcode" required>
+                    </lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="12" class="slds-var-p-top_small">
+                    <lightning-button class="slds-align_absolute-center" variant="brand" label="Submit"
+                        onclick={handleValidation}></lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+    </lightning-card><br/>
+    <lightning-card title="City Weather Info" icon-name="utility:salesforce1">
+        <div class="slds-var-p-around_small">
+            <div class="slds-p-horizontal_small">
+                <div class="slds-form" role="list">
+                    <div class="slds-form__row">
+                        <div class="slds-form__item" role="listitem">
+                            <div
+                                class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                                <span class="slds-form-element__label">City Name</span>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-form-element__static">
+                                        {result.name}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-form__item" role="listitem">
+                            <div
+                                class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                                <span class="slds-form-element__label">City Temperature</span>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-form-element__static">
+                                        {result.temp} celsius
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+  
+                    <div class="slds-form__row">
+                        <div class="slds-form__item" role="listitem">
+                            <div
+                                class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                                <span class="slds-form-element__label">Sunrise</span>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-form-element__static">
+                                        {result.sunrise}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-form__item" role="listitem">
+                            <div
+                                class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                                <span class="slds-form-element__label">Sunset</span>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-form-element__static">
+                                        {result.sunset}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+  
+                    <div class="slds-form__row">
+                        <div class="slds-form__item" role="listitem">
+                            <div
+                                class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                                <span class="slds-form-element__label">Pressure</span>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-form-element__static">
+                                        {result.pressure}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-form__item" role="listitem">
+                            <div
+                                class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                                <span class="slds-form-element__label">Humidity</span>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-form-element__static">
+                                        {result.humidity}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,37 @@
+<template>
+  <lightning-card title="for:each demo with array" icon-name="custom:custom14">
+  <ul class="slds-var-m-around_medium">
+ <template for:each={company} for:item="co">
+  <a href="#" key={co} class="list-group-item list-group-item-action" >{co.name} </a>
+ </template> 
+  </ul>
+
+  
+</lightning-card>
+<lightning-card title="for:each demo with array" icon-name="custom:custom34">
+  <ul class="slds-var-m-around_medium">
+ <template for:each={bank} for:item="ba">
+  <a href="#" key={ba} class="list-group-item list-group-item-action" >{ba.name} </a>
+ </template> 
+  </ul>
+  <a >{forEach} </a>
+  <a>{SquaredNumbers}</a>
+  <a>{ageMessage}</a>
+  
+</lightning-card>
+<lightning-card
+  title="for:each demo with array of objects"
+  icon-name="custom:custom13"
+>
+  <ul class="slds-var-m-around_medium">
+    <template for:each={persons} for:item="per">
+      <a
+        href="#"
+        class="list-group-item list-group-item-action"
+        key={per.id}
+        >{per.name}</a
+      >
+    </template>
+  </ul>
+</lightning-card>
+</template>

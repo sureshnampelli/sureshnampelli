@@ -1,0 +1,81 @@
+<template>
+    <lightning-card title="Java Script" icon-name="custom:custom1">
+        <div >
+            <lightning-card title="if:true show me" icon-name="custom:custom2">
+        <lightning-button variant="brand" label="Show" title="Looks like a link"  class="slds-m-left_x-small" onclick={showHandler}> </lightning-button>
+        <template if:true={showText}>
+            <h2> Hello</h2>
+            <h3>show me </h3>
+        </template>
+    </lightning-card>
+        </div>
+        <div>
+            <lightning-card title="Hide Me if:false" icon-name="custom:custom3">
+                <lightning-button variant="brand-outline" label="Brand Outline" title="Primary action with lighter look" onclick={hideHandler} class="slds-var-m-left_x-small"></lightning-button>
+                <template if:false={hideText}>
+                    <h2>Hide Me</h2>
+                </template>
+
+            </lightning-card>
+        </div>
+        <div>
+            <lightning-card title="for:each"  icon-name="custom:custom4">
+<template for:each={persons} for:item="per">
+    <a key={per}>{per.name} </a>
+</template>
+            </lightning-card>
+        </div>
+        <div>
+            <lightning-card title="Iterator loop demo" icon-name="custom:custom14">
+                <ul class="slds-m-around_medium">
+                  <div class="list-group-inline">
+                    <template iterator:pers={persons}>
+                      <div key={pers.value.id}>
+                        <a
+                          href="#"
+                          if:true={pers.first}
+                          class="list-group-item list-group-item-action header"
+                        >
+                          <strong>List of top companies and there CEO's : </strong>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">
+                          <strong>{pers.value.company} : </strong>{pers.value.name}
+                        </a>
+                        <a
+                          href="#"
+                          if:true={pers.last}
+                          class="list-group-item list-group-item-action footer"
+                        >
+                          <strong>&copy; 2019 Lightning school salesforce </strong>
+                        </a>
+                      </div>
+                    </template>
+                  </div>
+                </ul>
+              </lightning-card>
+            
+        </div>
+        <div>
+          <lightning-card>
+          
+              <lightning-combobox
+                      name="progress"
+                      label="Status"
+                      value={value}
+                      placeholder="Select Progress"
+                      options={options}
+                      onchange={handleChange} ></lightning-combobox>
+          
+              <p>Selected value is: {value}</p>
+            
+          
+          </lightning-card>
+
+        </div>
+    <div>
+      
+    </div>
+    </lightning-card>
+
+    
+</template>

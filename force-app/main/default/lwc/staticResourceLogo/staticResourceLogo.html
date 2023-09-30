@@ -1,0 +1,50 @@
+<template>
+    
+    <lightning-card title="resource static Demo view " icon-name="custom:custom23">
+        <lightning-icon icon-name='utility:knowledge_base' alternative-text='knowledge_base' size='large' onclick={handleicon} variant={status} title='knowledge_base'></lightning-icon>
+        <div class="slds-var-m-around_medium">
+            <div style="padding:10px">
+                
+                <img src={selected}/>
+              
+            </div>
+            <a href="https://developer.mozilla.org">
+                <img src="favicon144.png" alt="Visit the MDN site" />
+              </a>
+        </div>
+        <div class="slds-var-m-around_medium">
+            <div style="padding:10px">
+                
+                
+              <img src={salesforcestaticurl} style="width:25% ;height:30%" alt={imageStatus} class="imageSmall" onclick={handleImage} />
+            </div>
+
+        </div>
+        <div class="slds-var-m-around_medium">
+            <div style="padding:10px">
+                
+                <img src={selectedImage}/>
+              
+            </div>
+        </div>        
+    </lightning-card>
+
+    <lightning-card>
+<div>
+    
+    <lightning-button variant="base"  onclick={handleClick} label="Show File"></lightning-button>
+    <b></b>
+    <lightning-button variant="base"  onclick={handleCan} label="Hide File"></lightning-button>
+
+        <template if:true={resistanceUrl}>
+            <div class="slds-var-m-around_medium">
+                <div style="padding:10px">
+                    
+                    <img src={resistanceUrl}/>
+                </div>
+            </div>
+        </template>
+    </div>
+</lightning-card>
+
+</template>

@@ -1,0 +1,44 @@
+<template>
+    <lightning-card title="Iterator loop demo" icon-name="custom:custom14">
+        <ul class="slds-m-around_medium">
+          <div class="list-group-inline">
+            <template iterator:post={PostOffice}>
+              <div key={post.value.Name}>
+                <a
+                  href="#"
+                  if:true={post.first}
+                  class="list-group-item list-group-item-action header"
+                >
+                  <strong>List of top companies and there CEO's : </strong>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                  <strong>{post.value.Name}  </strong>
+                </a>
+                <a
+                  href="#"
+                  if:true={post.last}
+                  class="list-group-item list-group-item-action footer"
+                >
+                  <strong>&copy; 2019 Lightning school salesforce </strong>
+                </a>
+              </div>
+            </template>
+          </div>
+        </ul>
+      </lightning-card> 
+      <lightning-card
+    title="for:each demo with array of objects"
+    icon-name="custom:custom14"
+  >
+    <ul class="slds-var-m-around_medium">
+      <template for:each={PostOffice} for:item="post">
+        <a
+          href="#"
+          class="list-group-item list-group-item-action"
+          key={post.id}
+          >{post.name}</a
+        >
+      </template>
+    </ul>
+  </lightning-card>   
+</template>

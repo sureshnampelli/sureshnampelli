@@ -1,0 +1,24 @@
+<template>
+    <lightning-card>
+        <lightning-input
+        type="checkbox"
+        label="Red"
+        onchange={handleCheckboxChange}
+    >
+    </lightning-input>
+    <lightning-input
+        type="checkbox"
+        label="Blue"
+        onchange={handleCheckboxChange}
+    >
+    </lightning-input>
+    <lightning-input
+        type="checkbox"
+        label="Green"
+        onchange={handleCheckboxChange}
+    >
+    </lightning-input>
+
+    <p>Checked items: {selection}</p>
+    </lightning-card>
+</template>

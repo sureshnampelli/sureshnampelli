@@ -1,0 +1,21 @@
+<template>
+    <lightning-card title="child Book Api" icon-name="custom:custom12">
+        <div class="slds-p-around_medium">
+            <lightning-layout multiple-rows>
+                <template if:true={infoTable}>
+                    <template for:each={infoTable.items} for:item="book">
+                        <lightning-layout-item size="3" padding="around-small" key={book.id}>
+                            <div class="slds-box slds-p-around_medium" slds-text-align_center>
+                                <img src={book.volumeInfo.imageLinks.smallThumbnail} height="200px"/>
+                                <div class="slds-text-heading_small"><strong>{book.volumeInfo.title}</strong></div>
+                                <div><strong>Published Date-</strong>{book.volumeInfo.publishedDate}</div>
+                                <div><strong>Average Rating-</strong>{book.volumeInfo.averageRating}</div>
+                            </div>
+                        </lightning-layout-item>
+                    </template>
+                </template>
+            </lightning-layout>
+        </div>
+    </lightning-card>
+    
+</template>

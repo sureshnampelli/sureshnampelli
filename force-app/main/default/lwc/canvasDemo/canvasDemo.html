@@ -1,0 +1,23 @@
+<template>
+  <lightning-card title="canvas Demo 22">
+    <div class="slds-box slds-box_small">
+    <canvas   class="myCanvas" id="sPanel" style="border:1px solid black;">
+        <p>Description of the canvas for those unable to view it.</p>
+      </canvas>
+    </div>
+    <br/>
+    <div class="slds-box slds-box_small">
+      <canvas   class="myOneCanvas" id="onesPanel" style="border:1px solid black;">
+          <p>Description of the canvas for those unable to view it.</p>
+        </canvas>
+      </div>
+      <br/>
+      <div class="slds-box slds-box_small">
+        <canvas   class="myTwoCanvas" id="twosPanel" >
+            <p>Description of the canvas for those unable to view it.</p>
+          </canvas>
+
+          <lightning-button type="Base" label="clear" onclick={handleClear}></lightning-button>
+        </div>
+  </lightning-card>  
+</template>

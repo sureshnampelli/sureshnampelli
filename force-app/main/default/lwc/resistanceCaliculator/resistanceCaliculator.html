@@ -1,0 +1,63 @@
+<template>
+    <lightning-card  title="Resistance Caliculator " icon-name="custom:custom1">
+        
+        <lightning-icon icon-name='utility:activity' onclick={handleicon} alternative-text='activity'  variant={status} size='large' title='activity'></lightning-icon>
+    <lightning-combobox
+            name="progress"
+            label="Band One:"
+            value=""
+            placeholder={valueone}
+            options={Band1}
+            onchange={handleChange1}
+            required
+    ></lightning-combobox>
+    <p>Selected value is: {valueone}</p>
+    
+    <lightning-combobox
+            name="progress"
+            label="Band Two :"
+            value=""
+            placeholder={valuetwo}
+            options={Band2}
+            onchange={handleChange2}
+            required
+    ></lightning-combobox>
+    <p>Selected value is: {valuetwo}</p>
+    <lightning-combobox
+            name="progress"
+            label="Band Three"
+            value=""
+            placeholder={valuethree}
+            options={Band3}
+            onchange={handleChange3}
+            required
+    ></lightning-combobox>
+    <p>Selected value is: {valuethree}</p>
+
+
+    <lightning-card>
+        
+        <lightning-button variant="base" label="Base" title="Looks like a link" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+<p>Resistance : {resistance}  kohm</p>
+<p>resista : {Resistancevalue}</p>
+<p>{message}</p>
+<p>memo2: {storeTwo}</p>
+<p>memo1: {storeone}</p>
+<p>output: {outmap}</p>
+<p>qweqwq: {ramu}</p>
+<p>gh:{somu}</p>
+<p>icon out :{clean}</p>
+<div>
+        <lightning-button variant="base" label="Base" title="Looks like a link" onclick={handleClean} class="slds-m-left_x-small"></lightning-button>
+</div>
+
+<div style="height: 250px;">
+        <lightning-datatable
+            key-field="Name"
+            data={ramu}
+            columns={postalColumns}>
+        </lightning-datatable>
+    </div>
+    </lightning-card>
+</lightning-card>
+</template>
