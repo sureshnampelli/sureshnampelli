@@ -1,0 +1,144 @@
+
+.darkModeMain {
+  
+  background-color: white;
+  color: black;
+
+}
+
+.dark-mode {
+  background-color: black;
+  color: white;
+}
+.h2{
+  font-size: 48px;
+  text-align: center;
+  font-weight: 500;
+  color: var(--white);
+  margin: 30px auto;
+}
+    /*.uni{
+    display: flex;
+    align-items: stretch;
+    background-color: aqua;
+   
+    width: 70%;
+    margin: 0;
+    padding: 0;  
+}*/
+/*ul{
+    display: flex;
+    align-items: stretch;
+    justify-content:space-between;
+   
+    width: 80%;
+    margin: 0;
+    padding: 0;
+}*/
+    li {
+    display: block;
+    flex:0 1 auto ;
+    list-style-type: none;
+   /* background: #fafafa;*/
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+   /* background-color: aqua;*/
+}
+ul:after{
+    content: "";
+    display: table;
+    clear: both;
+   
+}
+ul li{
+    display: block;
+    width: 16.6666%;
+   /* background-color: aqua;
+    background-color:aliceblue;*/
+    background-repeat:inherit;
+   background-clip: border-box;
+   
+    background-blend-mode: difference;
+    padding: 0;
+    float: left;
+    text-align: center;
+}
+hr.lineOne{
+    border-top: 1px solid red;
+}
+
+/*.div.totalCl{
+    
+    padding-inline-start:51.5%;
+}
+.div.gstCl{
+  padding-inline-start:10%;
+}*/
+
+.relative {
+  position: relative;
+}
+
+.div1 {
+  position: absolute;
+  left: 5%;
+}
+
+.div2 {
+  position: absolute;
+  left: 54.5%;
+  transform: translateX(-54.5%);
+}
+
+.div3 {
+  position: absolute;
+  left: 80%;
+}
+
+.flip-card {
+    background-color: transparent;
+    width: 330px;
+    height: 309px;
+    border: 1px solid #f1f1f1;
+    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+  }
+  
+  /* This container is needed to position the front and back side */
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+  
+  /* Do an horizontal flip when you move the mouse over the flip box container */
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  /* Position the front and back side */
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+  }
+  
+  /* Style the front side (fallback if image is missing) */
+  .flip-card-front {
+    background-color: #bbb;
+    color: black;
+  }
+  
+  /* Style the back side */
+  .flip-card-back {
+    background-color: dodgerblue;
+    color: white;
+    transform: rotateY(180deg);
+  }

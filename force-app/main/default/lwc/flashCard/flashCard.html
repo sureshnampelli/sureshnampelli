@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="flashCard " >
+        <div class="slds-m-around_medium">
+<div class="randomClass "  >
+    <div class="slds-float_left  slds-m-right_x-large"><strong>{randomcards.atomicNumber}</strong></div>
+        <div class="slds-align_absolute-center slds-m-bottom_large  slds-m-top_x-large"><strong>{randomcards.symbal}</strong></div>
+<div class="slds-float_right"><strong>{randomcards.element}</strong></div>
+   
+</div>
+        </div>
+        <lightning-button label="Random" variant="success" onclick={handleClick}></lightning-button>
+        <lightning-button label="Auto Play" variant="success" onclick={handleClicked}></lightning-button>
+
+        <hr/>
+        <div>{uniquechar}</div>
+    </lightning-card>
+</template>

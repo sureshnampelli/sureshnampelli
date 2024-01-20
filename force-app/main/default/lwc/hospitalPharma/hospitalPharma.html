@@ -1,0 +1,440 @@
+<template>
+    <div class="mainBlock">
+        <div class="slds-grid slds-wrap">
+
+            <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-12">
+                <div  >
+                    
+    
+                        
+                        <div style="padding-left:1rem;padding-top:2rem;position:relative" class="ImageStaff " name={toggleIconName}
+                        onclick={handleToggleClick}>
+                            <span class="slds-avatar slds-avatar_circle">
+                                <span class="slds-icon_container " title="Description of icon when needed">
+                                
+                                    <img src={staffImage} alt="staff img" class="ImageStafflo "  />
+                            
+                                <span class="slds-assistive-text">Description of icon when needed</span>
+                                </span>
+                                </span>
+                                <div class={popvover}>
+                            <div class={toggleButtonLabel} role="tooltip"  style="position:absolute;top: -5px;left:20px">
+                            <div class="slds-popover__body">{staffUserName} </div>
+                            </div>
+                        </div>
+                            </div>
+                </div>
+                <div class="slds-box slds-box_xx-small slds-list_horizontal">
+                    <lightning-input
+                    type="checkbox"
+                    label="Lipid "
+                    value="2"
+                    name={boxOne}
+                    onchange={handleCheckboxOne}
+                >
+                </lightning-input>
+                <p><strong>Cost:</strong>{onedata}</p>  
+                  </div>
+
+                  <div class="slds-box slds-box_xx-small slds-list_horizontal">
+                    <lightning-input
+                    type="checkbox"
+                    label="Blood"
+                    value="4"
+                    name={boxTwo}
+                    onchange={handleCheckboxTwo}
+                >
+                </lightning-input>
+                <div class="slds-p-right_none"> <p><strong>Cost:</strong>{twodata}</p> </div>
+                 </div> 
+
+                 <div class="slds-box slds-box_xx-small slds-list_horizontal">
+                    <lightning-input
+                    value="3"
+                        type="checkbox"
+                        label="Flu"
+                        name={boxThree}
+                        onchange={handleCheckboxThree}
+                    >
+                    </lightning-input>
+                    <div class="slds-p-right_none"> <p><strong>Cost:</strong>{threedata}</p> </div>
+                </div> 
+                <br/>
+
+                <div class="slds-box slds-box_xx-small slds-list_horizontal">
+                    <lightning-button label="Total" variant="brand" onclick={filterHandler}></lightning-button>
+                    <p><strong>:</strong>{amountTotal}</p>
+                </div>
+                <br/>
+                <div class="slds-box slds-box_xx-small slds-list_horizontal">
+                    <lightning-button label="Reset" variant="brand" onclick={resetTestHandler}></lightning-button>
+                    
+                </div>
+
+                <lightning-button onclick={handleEditAccount} variant="success" class="slds-m-around_xx-small" label="Edit"></lightning-button>
+               
+            </div>
+
+
+ <div class="slds-col slds-size_1-of-1 slds-large-size_8-of-12 slds-box ">
+    
+    <lightning-layout>
+        <lightning-layout-item>
+            &nbsp; <div class="dateTime">{DateAN} </div> &nbsp;
+        </lightning-layout-item>
+    
+        <lightning-layout-item>
+            <lightning-button variant="brand" label="Zero" onclick={intialHandler}></lightning-button>
+        </lightning-layout-item>
+    </lightning-layout>
+
+
+    
+        <div class="slds-box   container" style="background-color: white;">
+            
+            <ul class="slds-grid_align-spread uni">
+                <li> Medicine Name</li>
+           <li> Expiry Date </li>
+           <li>No Of Medicine</li>
+           <li>Each Medicine</li>
+           <li> Amount</li>
+           
+            </ul>
+            <hr class="lineOne">
+            <template for:each={objOne} for:item="med" for:index="index">
+                <div key={med.Id}>
+                    
+                    <ul>
+                        <li> {med.Medicine_Name__c}</li>
+                   <li> {med.Expiry_Date__c}</li>
+                   <li> {med.No_Of_Medicine__c}</li>
+                   <li> {med.Each_Medicine__c}</li>
+                   <li>{med.Amount__c}</li>
+                  <li> <lightning-button  access-keyone={med} id={index}  alternative-text='delete' 
+                    title='delete'  onclick={deleteTableHandler} label="Del"></lightning-button></li>
+                    
+                  <li> <lightning-button  access-key={med.Id} id={index} alternative-text='edit' 
+                    title='edit'  onclick={editHandler} label="Edit"></lightning-button> </li> 
+                   </ul>
+                </div>
+            </template>
+            <hr>
+            <p class="totalCl"><strong>Total:</strong>{totalAmount}</p>
+        </div>
+        
+
+            <template if:true={objOne}>
+            
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered" aria-label="Example default base table of Opportunities">
+                <thead>
+                <tr class="slds-line-height_reset">
+                <th class="" scope="col">
+                <div class="slds-truncate" title="Medicine Name">Medicine Name</div>
+                </th>
+                <th class="" scope="col">
+                <div class="slds-truncate" title="Expiry Date">Expiry Date</div>
+                </th>
+                <th class="" scope="col" edit=true>
+                <div class="slds-truncate"  title="No Of Medicine ">No Of Medicine</div>
+                </th>
+                <th class="" scope="col">
+                <div class="slds-truncate" title="Each">Each</div>
+                </th>
+                <th class="" scope="col">
+                <div class="slds-truncate" title="Amount">Amount</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Action">Action</div>
+                    </th>
+                </tr>
+                </thead>
+    
+                    <template for:each={objOne} for:item="lit" for:index="index">
+                        <tbody key={lit.Id}>
+                            <tr class="slds-hint-parent">
+                            <th data-label="Medicine Name" scope="row">
+                            <div class="slds-truncate" id={index} >{lit.Medicine_Name__c} </div>
+                            </th>
+                            <td data-label="Expiry Date">
+                            <div class="slds-truncate" >{lit.Expiry_Date__c}</div>
+                            </td>
+                            <td data-label="No Of Medicine" >
+                            <div class="slds-truncate" >{lit.No_Of_Medicine__c}</div>
+                            </td>
+                            <td data-label="Each">
+                            <div class="slds-truncate" >{lit.Each_Medicine__c}</div>
+                            </td>
+                            <td data-label="Amount">
+                            <div class="slds-truncate" >{lit.Amount__c}</div>
+                            </td>
+                            <td role="gridcell">
+
+                            <lightning-button  access-keyone={lit.Id} id={index}  alternative-text='delete' 
+             title='delete'  onclick={deleteTableHandler} label="Del"></lightning-button>
+             &nbsp;
+            <lightning-button  access-key={lit.Id} id={index} alternative-text='edit' 
+             title='edit'  onclick={editHandler} label="Edit"></lightning-button>
+          </td>
+                            </tr>
+                           
+                            </tbody>
+                    </template>
+                </table>
+            </template>
+    
+        
+       
+        </div>
+
+            <div class="slds-col slds-size_1-of-1 slds-large-size_3-of-12">
+                <template if:true={editAccountShow} >
+                    <lightning-card title="Edit Record">
+                    <div class="slds-p-around_medium createFormOne">
+                        <lightning-record-edit-form object-api-name={objectName}
+                        record-id={recordId} >
+                        <lightning-input-field field-name={fieldsO.lipidField}></lightning-input-field>
+                        <lightning-input-field field-name={fieldsO.bloodField}></lightning-input-field>
+                        <lightning-input-field field-name={fieldsO.fluField}></lightning-input-field>
+                        <lightning-button onclick={handleResetAccount}  class="slds-m-around_xx-small" label="cancel"></lightning-button>
+                        <lightning-button type="submit" onclick={editAccountSubmit} variant="brand"  class="slds-m-around_xx-small" label="Save"></lightning-button>
+                    </lightning-record-edit-form>
+                    </div>
+                </lightning-card>
+                </template>
+
+                <template if:true={editShow} >
+                    <lightning-card title="Edit Record">
+                    <div class="slds-p-around_medium createFormOne">
+                        <lightning-record-edit-form object-api-name={objectApiName}
+                        record-id={editrecordId}>
+                        <lightning-input-field field-name={fields.nomedicineField}></lightning-input-field>
+                        <lightning-input-field field-name={fields.costField}></lightning-input-field>
+                        <lightning-button onclick={handleReset}  class="slds-m-around_xx-small" label="cancel"></lightning-button>
+                        <lightning-button type="submit" onclick={editSubmit} variant="brand"  class="slds-m-around_xx-small" label="Save"></lightning-button>
+                    </lightning-record-edit-form>
+                    </div>
+                </lightning-card>
+                </template>
+                <lightning-card title="Create Record">
+                <div class="slds-p-around_medium createFormOne">
+                    <form class="createForm">
+                    <lightning-input label="Medicine Name" name="Medicine_Name__c" placeholder="Medicine Name" onchange={changeHandler} class="slds-m-bottom_x-small">    
+                    </lightning-input>
+                    <lightning-input label="ExpiryDate" type="Date" name="Expiry_Date__c"  placeholder="Expiry Date" onchange={changeHandler} class="slds-m-bottom_x-small">    
+                    </lightning-input>
+                    <lightning-input label="Cost" name="Cost__c"  placeholder="Cost" onchange={changeHandler} class="slds-m-bottom_x-small">    
+                    </lightning-input>
+                    <lightning-input label="No Of Medicine" name="No_Of_Medicine__c"  placeholder="No Of Medicine" onchange={changeHandler} class="slds-m-bottom_x-small">    
+                    </lightning-input>
+                    <lightning-button label="Create Record" variant="brand" onclick={createMedical}></lightning-button>
+                </form>
+                </div>
+            </lightning-card>  
+            </div>
+            </div>
+        
+        </div>
+
+
+<lightning-card>
+    
+    <h3 slot="title">
+                    <lightning-icon icon-name="standard:timesheet" alternative-text="Event" size="small"></lightning-icon>
+                    &nbsp;Bulk 
+                </h3>
+                <lightning-layout>
+
+            
+                    <div class="slds-align_absolute-center">
+                        <lightning-button variant="brand" onclick={addnumber} name="submit" label="ADD ">
+                        </lightning-button>
+                        <lightning-button variant="success" onclick={pdfHandler} name="submit" label="PDF ">
+                        </lightning-button>
+                        <lightning-button variant="success" onclick={resetHandler} name="submit" label="Reset ">
+                        </lightning-button>
+                    </div>
+                </lightning-layout>
+                <template for:each={itemList} for:item="item" for:index="index">
+                    <div key={item.id}  >
+
+                                <lightning-messages> </lightning-messages>
+                                
+                                <lightning-layout multiple-rows class="slds-scrollable_y">
+                                    
+                                    <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2"
+                                        padding="around-small">
+                                       <p >{item.Medicine_Name__c}</p>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2"
+                                        padding="around-small">
+                                       <p>{item.Expiry_Date__c}</p>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2"
+                                        padding="around-small">
+                                       <p>{item.No_Of_Medicine__c}</p>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2"
+                                        padding="around-small">
+                                       <p>{item.Each_Medicine__c}</p>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2"
+                                    padding="around-small">
+                                   <p>{item.Amount__c}</p>
+                                </lightning-layout-item>
+                                    
+                                <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2"
+                                padding="around-small">
+                                <div class="slds-p-top_medium">
+                                    <lightning-button icon-name="action:new" access-key={item.id} id={index}
+                                        alternative-text="Add Row" size="xx-small" title="Add Row" onclick={addRow}>
+                                    </lightning-button>
+                                    <lightning-icon icon-name="action:delete" access-key={item.id} name={keysmall} id={index}
+                                        alternative-text="Delete Row" size="xx-small" title="Delete Row" onclick={removeRow}>
+                                    </lightning-icon>
+                                    <lightning-icon icon-name='action:edit'  access-key={item.id} id={index} alternative-text='edit' 
+                                    size='xx-small' title='edit'  onclick={editHandler}></lightning-icon>
+                                    <lightning-icon icon-name="action:delete" access-key={item.id} id={index}
+                                    alternative-text="Delete Row" size="xx-small" title="Delete Row" onclick={removeR}>
+                                </lightning-icon>
+                                </div>
+                            </lightning-layout-item>
+                                </lightning-layout> 
+                    </div> 
+                    
+                </template> 
+              
+                 
+</lightning-card>
+
+<footer class="slds-utility-bar_container" aria-label="Utility Bar">
+    <h2 class="slds-assistive-text">Utility Bar</h2>
+    <ul class="slds-utility-bar">
+    <li class={utilityVarOne}>
+    <button class="slds-button slds-utility-bar__action  btnU" name={status} aria-pressed="true" onclick={utilityHandler}>
+    <svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
+    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#call"></use>
+    </svg>
+    <span class="slds-utility-bar__text">Medicine Stock</span>
+    </button>
+    </li>
+    <li class="slds-utility-bar__item">
+        <button class="slds-button slds-utility-bar__action  btnUTwo" name={statusOne} aria-pressed="true" onclick={utilityHandlerOne} >
+        <svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
+        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#call"></use>
+        </svg>
+        <span class="slds-utility-bar__text">Medicine Total</span>
+        </button>
+        </li>
+    
+    </ul>
+    <template if:true={utilityVar}>
+    <div class="slds-utility-panel slds-grid slds-grid_vertical slds-is-open" role="dialog" aria-labelledby="panel-heading-01">
+    <div class="slds-utility-panel__header slds-grid slds-shrink-none">
+    <div class="slds-media slds-media_center">
+    <div class="slds-media__figure slds-m-right_x-small">
+    <span class="slds-icon_container">
+    <svg class="slds-icon slds-icon_small slds-icon-text-default" aria-hidden="true">
+    <use xlink:href="/assets/icons/standard-sprite/svg/symbols.svg#call"></use>
+    </svg>
+    </span>
+    </div>
+    
+    <div class="slds-media__body">
+    <h2 id="panel-heading-01">Medicine</h2>
+    </div>
+    </div>
+    <div class="slds-col_bump-left slds-shrink-none">
+    <button class="slds-button slds-button_icon slds-button_icon" title="Close Panel">
+    <svg class="slds-button__icon" aria-hidden="true">
+    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#minimize_window"></use>
+    </svg>
+    <span class="slds-assistive-text">Close Panel</span>
+    </button>
+    </div>
+    </div>
+    <div class="slds-utility-panel__body">
+    <div class="slds-align_absolute-center">
+        <template if:false={utilityMasterData}>
+            
+                <h>NO DATA Available</h>
+            
+             </template>
+        
+        <template if:true={utilityMasterData}>
+        <template for:each={utilityMasterData} for:item="uti">
+<div key={uti.Id}>
+    {uti.Name}
+   {uti.Medicine_Left__c}
+   {uti.Med_Left__c}
+   {uti.Cost__c}
+   {uti.Expiry_Date__c}
+   {uti.Total__c}
+   {uti.Each_Medicine__c}
+</div>
+        </template>
+        </template>
+    </div>
+    </div>
+    </div>
+</template>
+<template if:true={utilityVarTwo}>
+<div class="slds-utility-panel slds-grid slds-grid_vertical slds-is-open" role="dialog" aria-labelledby="panel-heading-02">
+    <div class="slds-utility-panel__header slds-grid slds-shrink-none">
+      <div class="slds-media slds-media_center">
+        <div class="slds-media__figure slds-m-right_x-small">
+          <span class="slds-icon_container">
+            <svg class="slds-icon slds-icon_small slds-icon-text-default" aria-hidden="true">
+              <use xlink:href="/assets/icons/standard-sprite/svg/symbols.svg#call"></use>
+            </svg>
+          </span>
+        </div>
+        <div class="slds-media__body">
+          <h2 id="panel-heading-02">Call</h2>
+        </div>
+      </div>
+      <div class="slds-col_bump-left slds-shrink-none">
+        <button class="slds-button slds-button_icon slds-button_icon" title="Close Panel">
+          <svg class="slds-button__icon" aria-hidden="true">
+            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#minimize_window"></use>
+          </svg>
+          <span class="slds-assistive-text">Close Panel</span>
+        </button>
+      </div>
+    </div>
+    <div class="slds-utility-panel__body">
+      
+        <div class="slds-var-p-around_medium">
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                      <th>Cost</th>
+                      <th>Med Left</th>
+                      <th>Alloted</th>
+                     <th> Expiry Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={medicalMaster} for:item="con">
+                        <tr key={con.Id}>
+                            <td>{con.Name}</td>
+                            <td>{con.Cost__c}</td>
+                            <td>{con.Medicine_Left__c}</td>
+                            <td>{con.Med_Left__c}</td>
+                            <td>{con.Expiry_Date__c}</td>
+                    
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+       
+
+      </div>
+      
+      </div>
+    </template>
+    
+    </footer>
+
+</template>

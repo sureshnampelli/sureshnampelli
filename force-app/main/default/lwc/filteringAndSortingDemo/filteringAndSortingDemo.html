@@ -1,0 +1,44 @@
+<template>
+  <lightning-card title="filtering And Sorting Demo">
+    <div class="slds-p-around_medium">
+        <lightning-layout>
+    <lightning-layout-item size="2" padding="around-small">
+        <lightning-combobox name="filterBy" value={filterBy} label="Filter By"
+        options={FilterByOptions} onchange={filterbyHandler}></lightning-combobox>
+    </lightning-layout-item>
+    <lightning-layout-item size="4" padding="around-small">
+        <lightning-input type="text" label="Filter" onkeyup={filterHandler}></lightning-input>
+    </lightning-layout-item>
+    <lightning-layout-item size="2"  alightning-bump="left" padding="around-small">
+        <lightning-combobox name="sortedBy" value={sortedBy} label="sort By"
+        options={sortByOptions} onchange={sortHandler}></lightning-combobox>
+    </lightning-layout-item>
+    </lightning-layout>
+
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered" >
+        <thead>
+            <tr class="slds-line-height_reset">
+
+<template for:each={heading} for:item="heading">
+    <th class="" scope="col" key={heading}> {heading}</th>
+
+</template>
+</tr>  
+ </thead>
+ <tbody>
+
+        <template for:each={filteredData} for:item="filter">
+            <tr class="slds-hint-parent" key={filter.Id}>
+               <td>{filter.Id}</td> 
+               <td>{filter.Name}</td> 
+               <td>{filter.Title}</td> 
+               <td>{filter.Email}</td>
+                </tr>
+        </template>
+    
+</tbody>
+    </table>
+</div>
+
+  </lightning-card>  
+</template>

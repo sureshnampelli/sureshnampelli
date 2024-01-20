@@ -25,6 +25,7 @@ export default class PostalApi extends LightningElement {
     fetch('https://api.postalpincode.in/pincode/'+this.pincodeNumber, { method: "GET" })
     .then((response) => response.json())
     .then((data) => {
+      console.log(" ##!!! data", data[0].PostOffice[0])
       console.log(" ####### data", data[0].PostOffice[0].Name);    
      this.postalcode=data[0].PostOffice
      
@@ -33,10 +34,27 @@ export default class PostalApi extends LightningElement {
 
     
   }
- 
+  branchName
+  changeBranchHandler(event){
+this.branchName=event.target.value
+  }
+  handleClickName(){
+    fetch('https://api.postalpincode.in/postoffice/'+this.branchName, { method: "GET" })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(" ##!!! data name", data[0])
+      console.log(" ##!!! data", data[0].PostOffice[0])
+      console.log(" ####### data", data[0].PostOffice[0].Name);    
+     this.postalcode=data[0].PostOffice
+     
+      
+    });
+
+    
+  }
 
 
-    connectedCallback() {      
+   /* connectedCallback() {      
 this.handleClick();
 
   }
@@ -49,6 +67,6 @@ this.pinCodeTin=this.postalcode[i].Name;
       }
 
     }
-  }
+  }*/
   
 }

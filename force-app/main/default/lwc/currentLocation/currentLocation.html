@@ -1,0 +1,22 @@
+<template>
+    <lightning-card title="Get Current Location in Lightning Web Component">
+        <div class="slds-p-around_small">
+            <lightning-button variant="brand" 
+                    label=" Location"
+                    onclick={handleClickOne}>
+                </lightning-button> <br/>
+              <h1>Di:</h1>  {DistanceBetween}<br/>
+            <lightning-map map-markers={lstMarkersOne}
+            onmarkerselect={handleMarkerSelect}
+            selected-marker-value={selectedMarkerValue} zoom-level={zoomlevel} ></lightning-map>
+        </div>
+        <div class="slds-p-around_small">
+            <lightning-button variant="brand" 
+                    label="Get Current Location"
+                    onclick={handleClick}>
+                </lightning-button> <br/>
+              <h1>Di:</h1>  {DistanceBetween}<br/>
+            <lightning-map map-markers={lstMarkers} zoom-level={zoomlevel} ></lightning-map>
+        </div>
+    </lightning-card  >
+</template>

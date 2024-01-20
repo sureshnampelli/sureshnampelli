@@ -1,0 +1,230 @@
+<template>
+    <div class="slds-builder-header_container" style="background-color: white;">
+        <div class="slds-builder-toolbar" role="toolbar">
+      <div class="slds-builder-toolbar__item-group"  aria-label="Canvas Actions">
+     <img src={hospitalRemovebg} class="Removebg" alt="logo" />
+      <div class="slds-button-group" style="padding-top:2rem;">
+     <h1 class="hospitalName">Apex Hospital</h1>
+      </div>
+      </div>
+      <div class="slds-builder-toolbar__item-group" aria-label="Edit actions">
+                   <div style="padding-right:0.9rem;padding-top:0.2rem;position:relative" >
+                   
+                  </div>
+        </div>
+        <div class="slds-builder-toolbar__actions" aria-label="Document actions">
+            <div style="padding-right:8rem;padding-top:2rem;position:relative" class={rowTwoClass}>
+               
+            </div>
+                <div style="padding-right:6rem;padding-top:2rem;position:relative" class={rowTwoClass}>
+               
+            </div> 
+            <div style="padding-right:5rem;padding-top:2rem;position:relative" class={rowThreeClass} >
+                
+            </div>
+            <div style="padding-right:4rem;padding-top:2rem;position:relative" class={rowThreeClass} >
+               
+            </div>
+            <div style="padding-right:2rem;padding-top:2rem;position:relative" class={rowThreeClass}>
+               
+            </div>           
+              <div style="padding-right:1rem;padding-top:2rem;position:relative" >
+                <ul class="slds-global-actions">
+           
+                    <li class="slds-global-actions__item">
+                    <div class={toggledropdownlabel}>
+                        <div style="padding-left:0.5rem;padding-top:0.5rem;position:relative" >
+                            <span class="slds-avatar slds-avatar_circle">
+                                <span class="slds-icon_container " title={staffUserName}>
+                                
+                                    <img src={staffImage} alt="staff img" class="ImageStaff  " name={toggleIconName}
+                                    onclick={handleToggleClick} />
+                            
+                                <span class="slds-assistive-text">Description of icon when needed</span>
+                                </span>
+                                </span>
+                               
+                        
+                            </div>
+                            <div class={dropDown}>     
+                                <div class="slds-dropdown slds-dropdown_right slds-nubbin_top-right" style="right:-1rem">
+                                    
+                                <ul  role="menu">
+                                <li class="slds-dropdown__item" role="presentation">
+                                
+                                <span class="slds-truncate" title={staffUserName}>
+                                <span class="slds-icon_container slds-icon-standard-event slds-m-right_x-small" title="Sreeleela">
+                                
+                                <span class="slds-assistive-text">Description of icon when needed</span>
+                                </span>{staffUserName}</span>
+                            
+                                </li>
+                                <li class="slds-dropdown__item" role="presentation">
+                                
+                                <span class="slds-truncate" title={staffJobRole}>
+                                <span class="slds-icon_container slds-icon-standard-note slds-m-right_x-small" title="Receptionist">
+                               
+                                <span class="slds-assistive-text">Description of icon when needed</span>
+                                </span>{staffJobRole}</span>
+                                
+                                </li>
+                                <li class="slds-dropdown__item" role="presentation">
+                                    <a href="#" role="menuitem" tabindex="0" onclick={navigateToLwcLogin}>
+                                    <span class="slds-truncate" title="Back to login page">
+                                    <span class="slds-icon_container slds-icon-standard-email slds-m-right_x-small" title="Back to login page">
+                                   
+                                    <span class="slds-assistive-text">Description of icon when needed</span>
+                                    </span>Sign Out</span>
+                                    </a>
+                                    </li>
+                                    </ul>
+                                    </div>
+                                    </div>
+                                </div>
+                                    </li>
+                                    
+                                    </ul>
+                                  </div>
+                              </div>
+                                  </div>
+                                  
+                              </div>
+   <lightning-card><h1></h1>
+    <lightning-layout>
+        <lightning-layout-item size="6" style="background-color:#ACF3E4;padding:0.7%; height:22.70rem">
+            <div class="container">
+                <ul class="slds-grid_align-spread uni">
+                    <li> Medicine Name</li>
+               <li> Expiry Date </li>
+               <li>No Of Items</li>
+               <li> Amount</li>
+               <li><lightning-icon icon-name='doctype:pdf' onclick={pdfHandler} alternative-text='pdf' size='small' title='pdf'></lightning-icon>
+               </li>
+               <li><lightning-icon icon-name='utility:toggle_panel_left' alternative-text='toggle_panel_left'
+                variant={darkShow}  size='x-small' onclick={handleToggleDarkMode} title='toggle_panel_left'></lightning-icon>
+         </li>
+                </ul>
+                
+                <div class="darkModeMain">
+                <div class="  slds-scrollable_y  " style=" height:18.3rem;" tabindex="0">
+                <template for:each={arrMedPush} for:item="med" for:index="index">
+                    <div key={med.id} >
+                        
+                        <ul>
+                            <li> {med.MedName}</li>
+                       <li> {med.ExpiryDate}</li>
+                       <li> {med.No}</li>
+                       <li> {med.Amount}</li>
+                      <li> <lightning-icon name={med} onclick={deleteHandler} icon-name='action:delete' alternative-text='delete' size='xx-small' title='delete'></lightning-icon>
+                         </li>
+                      <li> <lightning-icon name={med} onclick={EditOutHandler} icon-name='action:edit' alternative-text='edit' size='xx-small' title='edit'></lightning-icon>
+                         </li>  
+                       
+                    </ul>
+                    </div>
+                </template></div>
+                </div >
+                <div class="wrapper relative">
+                    <div class=" div1"><p class="gstCl"><strong>GST:</strong>12.5%</p></div>
+                    
+                    <div class=" div2"><p class="totalCl"><strong>Total:</strong>{totalAmount}</p></div>
+                    <div class=" div3"><p><strong>Total+GST :</strong>{totalGst}</p></div>
+                </div>
+            
+                
+            
+            </div>
+          </lightning-layout-item>
+        <lightning-layout-item size="3">
+            <div  style=" height:22.7rem;" tabindex="0">
+                
+            <template lwc:if={showEdit}>
+                <div style="background-color: #04E1CB;height:22.7rem;">
+            <template if:true={editRecordId}>
+            <lightning-record-edit-form 
+            object-api-name={objectName}
+            record-id={editRecordId}
+            >
+            <lightning-messages></lightning-messages>
+        <lightning-input-field field-name={fields.nameField} ></lightning-input-field>
+        <lightning-input-field field-name={fields.noMedField} onchange={medNoChageHandler} value={medvalue} ></lightning-input-field>
+        <lightning-button onclick={handleReset} class="slds-m-around_xx-small" label="cancel"></lightning-button>
+        <lightning-button variant="brand" type="submit" class="slds-m-around_xx-small" onclick={editSubmitHandler} label="Save"></lightning-button>
+        </lightning-record-edit-form>
+    </template>
+    <img src={hospitalGifCompressor} alt="gif" style="height:200px;width:340px;padding:10px;"/>
+</div>
+</template>
+<template lwc:else>
+ <div class="slds-p-around_medium"  style="background-color: #D17DFE;">
+                <span  title="Please Enter Medicine Name">        
+                    <lightning-input label="Medicine" name="Medicine"  value={valueName} onchange={inputPharmaHandlerOne}></lightning-input>
+                <span class="slds-assistive-text">Please Enter Medicine Name</span>
+                </span>
+                <lightning-input label="No Of" name="No Of" value={valueNo}  onchange={inputPharmaHandlerFour}></lightning-input>
+        
+                <lightning-input label="Cost" name="Cost"  value={valueCost} disabled={allotedMedineData.length} onchange={inputPharmaHandlerTwo}></lightning-input>
+                <lightning-input label="Expiry" name="Expiry" type="Date" disabled={allotedMedineData.length} value={valueExpiry} onchange={inputPharmaHandlerThree}></lightning-input>
+                <lightning-input label="Allot Medicine" name=""  disabled={allotedMedineData.length} onchange={inputPharmaHandlerFive}></lightning-input>
+        <br/>
+            <template if:true={allotedMedineData.length}>
+                <lightning-button  label="Daily" variant="brand"    onclick={createDailyRecord}></lightning-button>
+            </template>
+            <template if:false={allotedMedineData.length} >
+                <lightning-button  label="Alloted" variant="brand" onclick={createAllotedRecord}></lightning-button> 
+            </template>
+            </div> 
+        </template> 
+        </div>
+    
+        </lightning-layout-item>
+        <lightning-layout-item size="3" style="background-color:#ACF3E4;">
+            <template lwc:if={medShow}>
+               <div class="  slds-scrollable_y  " style=" height:19rem; padding:10px;" tabindex="0">
+                   <template if:true={dailyMedData}>
+                           <lightning-datatable
+                                   data={dailyMedData}
+                                   columns={columns}
+                                   
+                                   key-field="id">
+                           </lightning-datatable>
+                   </template>
+               </div>
+<h1 class="amountDaily" style="padding-left: 180px;"><strong>Total Amount:</strong>{totalAmountToday}</h1>
+<lightning-icon icon-name='action:back' style="padding-left: 15px;" onclick={getBackHandler} alternative-text='back' size='xx-small' title='back'></lightning-icon>
+</template>
+               <template lwc:elseif={allotedMedineData.length}>           
+                      
+                               <template for:each={allotedMedineData} for:item="data" for:index="index" >
+                                   <div key={data.Id} id={index} style="padding: 10px;">
+                                       <h1><strong>Name:</strong>{data.Name}</h1>
+                                       <br/>
+                                       <h1><strong>Cost:</strong>{data.Cost__c}</h1>
+                                       <br/>
+                                       <h1><strong>Each</strong>{data.Each_Med_Cost__c}</h1>
+                                       <br/>
+                                       <h1><strong>Ex.Date:</strong>{data.Ex_Date__c}</h1>
+                                       <br/>
+                                       <h1><strong>Allot:</strong>{data.Alloted_Medicine__c}</h1>
+                                       <br/>
+                                       <h1><strong>Med Left:</strong>{data.Medicine_Left__c}</h1>
+                                       <br/>
+                                       <h1><strong>Total:</strong>{data.AMOUNT__c}</h1>    
+                                       
+                                   </div>
+                               </template>
+               </template>
+       <template lwc:else >
+        <img src={hospitalGifCompressor} alt="gif" name={hospitalGifDaily} onclick={todayMedicineHandler} style="height:200px;width:340px;padding:10px;"/>
+          <img src={doctoronegif} alt="doc" style="padding: 10px; width:340px;height:160px;" />      
+    </template>
+                
+       </lightning-layout-item>
+       
+             </lightning-layout> 
+             <br/>
+          <div>
+             <img src={apexlow} alt="apex low" />
+          </div>
+       </lightning-card>
+       </template>

@@ -3,22 +3,62 @@
         <lightning-input
         type="checkbox"
         label="Red"
+        value="2"
+        name={boxOne}
+        class="checkedOnce"
         onchange={handleCheckboxChange}
     >
     </lightning-input>
     <lightning-input
         type="checkbox"
         label="Blue"
+        value="4"
+        name={boxTwo}
+        class="checkedOnce"
         onchange={handleCheckboxChange}
     >
     </lightning-input>
     <lightning-input
+    value="5"
         type="checkbox"
         label="Green"
+        class="checkedOnce"
+        name={boxThree}
         onchange={handleCheckboxChange}
     >
     </lightning-input>
 
     <p>Checked items: {selection}</p>
+    <p>add:{numberAdd}</p>
+    </lightning-card>
+
+
+    <lightning-card>
+        <lightning-input
+        type="checkbox"
+        label="Red"
+        value="2"
+        name={boxOne}
+        onchange={handleCheckboxOne}
+    >
+    </lightning-input>
+    <lightning-input
+        type="checkbox"
+        label="Blue"
+        value="4"
+        name={boxTwo}
+        onchange={handleCheckboxTwo}
+    >
+    </lightning-input>
+    <lightning-input
+    value="3"
+        type="checkbox"
+        label="Green"
+        name={boxThree}
+        onchange={handleCheckboxThree}
+    >
+    </lightning-input>
+<p>{checkedThreeOne}</p>
+    <p>add:{addNumber}</p>
     </lightning-card>
 </template>

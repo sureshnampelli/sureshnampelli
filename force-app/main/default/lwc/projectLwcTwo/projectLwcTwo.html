@@ -1,0 +1,83 @@
+<template>
+    <lightning-card title="Project Two LWC1">
+        <div class='slds-grid slds-wrap' >
+            <div class='slds-col slds-size_1-of-6' >
+                <div class="slds-m-left_xx-large slds-m-right_xx-large slds-m-top_xx-large">
+                    <h2 style="font-size: large;color:rgba(24, 37, 69, 0.732)"><b>Project Two</b></h2>
+                </div>
+                <span
+                style="border-top-left-radius: 12px;border-bottom-right-radius: 12px; border-top-right-radius: 12px;border-bottom-left-radius: 12px; height:30px;display: block;background-color:#0176d3;border-bottom: 1px black;">
+    <h1>Hello World</h1></span>
+            </div>
+           
+            <div class='slds-col slds-size_1-of-6' >
+                <div class="slds-cell-wrap">
+                    <img src={work} height="40px" width="40px" style="border-radius: 50%;"/>
+                </div>
+                <lightning-button label="navigateToPostalApi" onclick={navigateToPostalApi}></lightning-button>
+            </div>
+            <div class='slds-col slds-size_1-of-6' >
+                <div class={selectedClass} style="height:110px;width:80%">
+                <span class="geeks slds-m-around_large">
+                    <img class="slds-m-around_large" style="max-height: 95px; max-width: 95px"
+                        title="No Work" alt="Valut" name="Valut" src={nowork}  />
+                </span></div>
+            </div>
+            <div class='slds-col slds-size_1-of-6' >
+                <template if:true={pickTypeEnquiry}>
+                        <lightning-combobox name="Industry" label="Industry"
+                         placeholder="-Select-" value={value}
+                            options={pickTypeEnquiry}
+                            onchange={handleChangeIndustryPicklistValues}></lightning-combobox></template>
+                <lightning-record-view-form  object-api-name="AZ_Admin__c"  record-id="a0U5j000008gxCvEAI"  mode="view"  >
+                    <div class="slds-m-right_medium slds-m-bottom_medium slds-m-left_medium">
+                        <lightning-icon icon-name="utility:call" variant="error" size="x-small"
+                            class="btnIconOverlay"></lightning-icon>
+                        <lightning-output-field field-name="Phone__c"></lightning-output-field>
+                    </div>
+        
+                </lightning-record-view-form>
+            </div>
+            <div class='slds-col slds-size_1-of-6' >
+               
+                   <!-- <div class="slds-m-right_medium slds-m-bottom_medium slds-m-left_medium">
+                        -->
+                       <div> <lightning-icon icon-name={toggleIconName} onclick={handleToggleClick} size="small"
+                            class="btnIconOverlayinput"></lightning-icon>
+                        <lightning-input style="width: 165px;" type={textPassword} onchange={changePasswordHandler} ></lightning-input>
+                    </div>
+        
+                
+            </div>
+            <div class='slds-col slds-size_1-of-6' >
+                <lightning-record-form  object-api-name="AZ_Admin__c"  record-id="a0U5j000008gxCvEAI" fields={fields}
+                columns="2" mode="view" onsubmit={handleSubmit}>
+            </lightning-record-form>
+
+            </div>
+        </div>
+        
+    </lightning-card>
+    <lightning-card title="Project Two LWC2">
+        <div class='slds-grid slds-wrap' >
+            <div class='slds-col slds-size_1-of-6' >
+               <!-- <lightning-button onclick={handlePostalApi} label="postalApi"></lightning-button>
+               
+                <div class="slds-m-left_x-large slds-m-right_xx-large" style="margin-left:4%">
+                    <c-postal-api></c-postal-api>
+                </div>-->
+
+            </div>
+            <div class='slds-col slds-size_1-of-6' ></div>
+            <div class='slds-col slds-size_1-of-6' ></div>
+            <div class='slds-col slds-size_1-of-6' ></div>
+            <div class='slds-col slds-size_1-of-6' ></div>
+            <div class='slds-col slds-size_1-of-6' ></div>
+        </div>
+        <lightning-button onclick={handlePostalApi} label="postalApi"></lightning-button>
+               
+                <div class="slds-m-left_x-large slds-m-right_xx-large" style="margin-left:4%">
+                    <c-postal-api></c-postal-api>
+                </div>
+        </lightning-card>
+</template>

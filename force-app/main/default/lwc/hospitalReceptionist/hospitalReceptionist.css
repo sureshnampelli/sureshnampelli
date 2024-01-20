@@ -1,0 +1,27 @@
+.Removebg{
+    width: 60px;
+    height: 60px;   
+   }
+   .hospitalName{
+       font-size: 20px;
+       color: blue;
+   }
+   /*.attendanceFinder{
+    width: 60px;
+    height: 60px;   
+   }*/
+   .clockTin{
+    font-size: 9.4px;
+   }
+table{
+    border-collapse:collapse;
+    width: 100%;
+}
+td, th{
+    border:1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+}
+tr:nth-child(even){
+    background-color: #ddd;
+}

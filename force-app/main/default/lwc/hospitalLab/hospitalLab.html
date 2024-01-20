@@ -1,0 +1,79 @@
+<template>
+    <div class="slds-builder-header_container" style="background-color: white;">
+        <div class="slds-builder-toolbar" role="toolbar">
+      <div class="slds-builder-toolbar__item-group"  aria-label="Canvas Actions">
+     <img src={hospitalRemovebg} class="Removebg" alt="logo" />
+      <div class="slds-button-group" style="padding-top:2rem;">
+     <h1 class="hospitalName">Apex Hospital</h1>
+      </div>
+      </div>
+      <div class="slds-builder-toolbar__item-group" aria-label="Edit actions">
+      <div class="slds-button-group">
+      
+      </div>
+
+      </div>
+      
+      <div class="slds-builder-toolbar__actions" aria-label="Document actions">            
+          <div style="padding-right:3rem;padding-top:2.5rem;position:relative" >
+              <span class="slds-avatar slds-avatar_circle">
+                  <span class="slds-icon_container " title={staffUserName} >
+                  
+                      <img src={staffImage} alt="staff img" class="ImageStaff  " name={toggleIconName}
+                      onclick={handleToggleClick} />
+              
+                  <span class="slds-assistive-text">Description of icon when needed</span>
+                  </span>
+                  </span>
+                  <div class={popvover}>
+              <div class={toggleButtonLabel} role="tooltip"  style="position:absolute;top: -3px;left:10px">
+              <div class="slds-popover__body">{staffUserName} 
+                 {staffJobRole}
+              </div>
+              </div>
+          </div>
+              </div>
+              <div style="padding-right:1rem;padding-top:2rem;position:relative" >
+                  <a href="#" class="slds-button" onclick={navigateToLwcLogin}>Sign Out</a>
+              </div>
+          </div>
+              
+      </div>
+      </div>
+    <lightning-card > 
+         <template if:true={labShow}>
+           
+            <template  if:true={admin}>
+                <div class="slds-scrollable_y" style="height:25rem;" tabindex="0">
+                    <lightning-datatable
+                            key-field="Id"
+                            data={admin}
+                            columns={columns}
+                            hide-checkbox-column="true"
+                            show-row-number-column="true"
+                            onrowaction={handleRowActions}>
+                    </lightning-datatable>
+                </div>
+               
+            </template> 
+         </template>
+         <div>
+            <template if:true={pdfShow}>
+                <c-hospital-lab-pdf onclose={closeHandler} labedpdf={labedPdf} ></c-hospital-lab-pdf>
+            </template>
+    
+         </div> 
+         <div>
+           
+        <template if:true={pdfShowOne}>
+                <c-hospital-lab-pdf onclose={closeHandler} bloodedpdf={bloodedPdf} ></c-hospital-lab-pdf>
+            </template>
+            
+         </div>  
+         <br/>
+         <div>
+            <img src={apexlow} alt="apex low" />
+         </div>
+    </lightning-card>
+    
+</template>

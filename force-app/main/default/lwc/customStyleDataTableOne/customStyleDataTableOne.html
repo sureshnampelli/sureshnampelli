@@ -1,0 +1,15 @@
+<template>
+    <lightning-card>
+        <template lwc:if={displayData}>
+        <c-custom-style-data-type
+        key-field="Id"
+        data={logins}
+        columns={columns}
+        onsave={saveHandler}
+        draft-values={draftValues}
+        onheaderaction={headerActionHandler}>
+
+    </c-custom-style-data-type>
+</template>
+    </lightning-card>
+</template>

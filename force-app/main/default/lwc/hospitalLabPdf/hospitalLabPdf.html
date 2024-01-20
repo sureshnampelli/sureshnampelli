@@ -1,0 +1,106 @@
+<template>
+    <lightning-card>
+        <lightning-layout>
+            <lightning-layout-item size="6">
+                <div class="slds-box" style="background-color: rgb(125, 221, 149);">
+                    <div class="slds-box" style="background-color: white;">
+                <template if:true={labedpdf}>
+                    <div class="container" style="background: white; padding: 13px;">
+                    
+                        <template for:each={labedpdf} for:item="lab">
+                            <div key={lab.Id}  class="boxOne">
+                                    <div class="wrapper relative">
+                                        <div class=" div1">
+                                            <div><strong>Patient Name :</strong>   {lab.Full_Name__c}</div> 
+                                            <div><strong>Gender:</strong> {lab.Gender__c}</div> 
+                                            <div><strong>Age:</strong>  {lab.Age__c}</div> 
+                                            <div><strong>Sample Id:</strong>  {lab.Sample_ID__c}</div> 
+                                        </div>
+                                        
+                                        <div class=" div2">
+                                            <div><strong>Ref Doctor:</strong>{lab.Ref_Doctor__c }</div> 
+                            <div><strong>Sample Drawn Date: </strong>{lab.Sample_Drawn_Date__c}</div>
+                            <div><strong>Sample Regd Date :</strong>{lab.Sample_Regd_Date__c}</div>
+                            <div><strong>Sample Auth Date:</strong>{lab.Sample_Auth_Date__c}</div> 
+                                        </div>
+                                       
+                            </div>  
+                             
+                            <div class="div3" style="padding-top:6rem;position:relative">
+                                <div><strong>S.Total Cholesterol :</strong>{lab.S_Total_Cholesterol__c}</div>
+                                <div><strong>S.Triglycerides :</strong>{lab.S_Triglycerides__c}</div>
+                                <div><strong>S.HDL :</strong>{lab.S_Hdl__c}</div>
+                                <div><strong>V.LDL:</strong>{lab.VLDL__c}</div>    
+                                <div><strong>S.LDL:</strong>{lab.SLDL__c}</div>
+                                <div><strong>T.Chol:</strong>{lab.TChol__c}</div>
+                                <div><strong>LDL/HDL:</strong>{lab.LDL_HDL__c}</div>
+                            </div>
+            
+                        </div>
+                            
+                        </template>
+                    
+                </div>
+                
+            </template>
+            <template if:true={bloodedpdf}>
+                <div class="container" style="background: white; padding: 16px;">
+                        <template for:each={bloodedpdf} for:item="lab">
+                            <div key={lab.Id} class="boxOne">
+                               
+                                <div class="wrapper relative">
+                                    <div class=" div1">
+                                        <div><strong>Patient Name :</strong>   {lab.Full_Name__c}</div> 
+                                        <div><strong>Gender:</strong> {lab.Gender__c}</div> 
+                                        <div><strong>Age:</strong>  {lab.Age__c}</div> 
+                                        <div><strong>Sample Id:</strong>  {lab.Sample_ID__c}</div> 
+                                    </div>
+                                    
+                                    <div class=" div2">
+                                        <div><strong>Ref Doctor:</strong>{lab.Ref_Doctor__c }</div> 
+                        <div><strong>Sample Drawn Date: </strong>{lab.Sample_Drawn_Date__c}</div>
+                        <div><strong>Sample Regd Date :</strong>{lab.Sample_Regd_Date__c}</div>
+                        <div><strong>Sample Auth Date:</strong>{lab.Sample_Auth_Date__c}</div> 
+                                    </div>
+                                   
+                                </div>
+                                 
+                                <div  class="div3" style="padding-top: 6rem;position:relative">
+                                    <div><strong>Erythrocyte:</strong>{lab.Erythrocyte_Count__c}</div>
+                                    <div><strong>Hemoglobin:</strong>{lab.Hemoglobin__c}</div>
+                                    <div><strong>Packed Cell Vol:</strong>{lab.Packed_Cell_Volume__c}</div>
+                                    <div><strong>Platelet Count:</strong>{lab.Platelet_Count__c}</div>   
+                                </div>
+                            
+                            </div>
+                        </template>
+                    
+                </div>
+                
+            </template>
+        </div>
+        <br/>
+        <div class="bottomrelative">
+            <div class="bottomrelative1">
+                <lightning-button variant="brand" label="PDF" onclick={pdfHandler}></lightning-button>
+            </div>
+            <div class="bottomrelative2">
+                <lightning-button variant="brand" label="Email" onclick={emailHandler}></lightning-button>
+            </div>
+            <div class="bottomrelative3">
+                <lightning-button variant="brand" label="close" onclick={closeHandler}></lightning-button>
+            </div>
+        
+        
+        
+    </div>
+</div>
+            </lightning-layout-item>
+            <lightning-layout-item size="6"></lightning-layout-item>
+        </lightning-layout>
+       
+    
+       
+       
+    </lightning-card>
+</template>

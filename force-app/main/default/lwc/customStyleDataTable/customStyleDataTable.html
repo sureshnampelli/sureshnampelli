@@ -1,0 +1,18 @@
+<template>
+    <lightning-card>
+        <template if:true={showLoading}>
+            <lightning-spinner alternative-text="Loading" size="medium" class="spinnerClass"></lightning-spinner>
+        </template>
+        <div class="slds-scrollable_y" style="height:22rem;" tabindex="0">
+            <div>
+        <c-custom-style-data-type
+        data={logins}
+        key-field="Id" onclick={tableClick} id={logins} 
+        onrowselection={getSelectedName} 
+        columns={columns}
+        onsave={handleUpdate}
+        draft-values={saveDraftValues} ></c-custom-style-data-type>
+    </div>
+</div>
+    </lightning-card>
+</template>

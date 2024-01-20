@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="Navigate to Home Two">
+        <div class="slds-grid slds-gutters"> 
+            <lightning-button variant="brand" label="recordEditMode" onclick={recordEditMode}></lightning-button> 
+            <lightning-button variant="brand" label="navigateToTab" onclick={navigateToTab}></lightning-button> 
+            <lightning-button variant="brand" label="navigateToRelatedList" onclick={navigateToRelatedList}></lightning-button> 
+            <lightning-button variant="brand" label="navigateToWeb" onclick={navigateToWeb}></lightning-button>   
+            <lightning-button variant="brand" label="navigateToLwc" onclick={clicknavigateToLwc}></lightning-button> 
+            <lightning-button variant="brand" label="navigateToVFPage" onclick={navigateToVFPage}></lightning-button>   
+            <lightning-button variant="brand" label="recordEditMode" onclick={recoEditMode}></lightning-button> 
+             <div>
+                {pageReference}
+             </div>    
+        </div>
+        
+    </lightning-card>
+</template>

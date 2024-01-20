@@ -1,0 +1,18 @@
+<template>
+    <div class="slds-p-around_x-small">
+        <lightning-button onclick={toogleHandler} value={typeAttributes.toogleLink} label="Toogle" ></lightning-button>
+        <template if:true={toogleData}>
+        <lightning-formatted-text value={value} class="slds-float_right"></lightning-formatted-text>
+       
+<lightning-record-edit-form
+object-api-name="AZ_Admin__c"
+record-id={toogleData}
+>
+<lightning-output-field
+field-name="Name"
+></lightning-output-field>
+
+</lightning-record-edit-form> 
+</template>
+     </div>
+</template>

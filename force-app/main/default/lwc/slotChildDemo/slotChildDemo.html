@@ -1,0 +1,11 @@
+<template>
+    <lightning-card>
+        <div>What is your Name</div>
+        <div><slot name="first"></slot></div>
+        <div>What is your Age?</div>
+        <div><slot name="second"></slot></div>
+        <footer class="slds-card__footer slds-hide">
+        <slot name="footer" onslotchange={handleFooterChange}></slot>
+    </footer>
+    </lightning-card>
+</template>

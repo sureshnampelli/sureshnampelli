@@ -1,0 +1,80 @@
+<template>
+    <lightning-card>
+        <template if:true={showLoading}>
+            <lightning-spinner alternative-text="Loading" size="medium" class="spinnerClass"></lightning-spinner>
+        </template>
+        <lightning-button variant="brand" label="Del bv Row"  onclick={selectCheckBoxHandler}></lightning-button>
+        <template if:true={NosplitData}>
+            <div style="background-color:#7F8CED; height:29rem;" class="slds-scrollable_y"  tabindex="0">
+                <lightning-datatable
+                
+                        key-field="Id"
+                        data={NosplitData}
+                        columns={columns}
+                        
+                        onrowaction={handleRowAction}>
+                </lightning-datatable>
+            </div>
+           
+        </template>
+    </lightning-card>
+    <lightning-card>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <thead>
+                <tr>
+                    <th>Full Name</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={NosplitData} for:item="con">
+                <tr key={con.Id}>
+                    <td>{con.Full_Name__c}</td>
+                    <td>{con.Status_Pro__c}</td>
+                   
+                   
+                </tr>
+            </template></tbody>
+        </table>
+        <div class="slds-grid">
+            <div class="slds-m-around_medium">
+                <lightning-button label="Previous One" disabled={disablePrevious} onclick={handlePreviousPageOne}></lightning-button>
+            </div>
+            <div>{countOne}</div>
+            <div class="slds-m-around_medium">
+                <lightning-button label="Next None" disabled={disableNext} onclick={handleNextPgeNone}></lightning-button>
+            </div>
+        </div>
+    </lightning-card>
+    <lightning-card title="List Ui Login">
+        <div class="slds-var-p-around_medium">
+
+
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={logins} for:item="con">
+                    <tr key={con.fields.Id.value}>
+                        <td>{con.fields.Id.value}</td>
+                        <td>{con.fields.Name.value}</td>
+                       
+                       
+                    </tr>
+                </template></tbody>
+            </table>
+        </div>
+        <div class="slds-grid">
+            <div class="slds-m-around_medium">
+                <lightning-button label="Previous" onclick={handlePreviousPage}></lightning-button>
+            </div>
+            <div class="slds-m-around_medium">
+                <lightning-button label="Next" onclick={handleNextPge}></lightning-button>
+            </div>
+        </div>
+    </lightning-card>
+</template>

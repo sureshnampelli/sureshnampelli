@@ -1,0 +1,164 @@
+<template>
+  <div style="height:31rem;background-color:rgb(161, 240, 197);"><h1></h1>
+  <div class='slds-grid slds-wrap' >
+    <div class='slds-col slds-size_3-of-12' >
+      <div style="padding: 12px;">
+      <article class="slds-card">
+        <div class="slds-card__header slds-grid">
+        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+        <div class="slds-media__figure">
+        <span class="slds-icon_container" title="account">
+          <lightning-input label="" type="date"  value={selectedToday} disabled="true"
+          onchange={changeDateHandler} style="width: 160px; padding-left:30px" ></lightning-input> 
+        <span class="slds-assistive-text">account</span>
+        </span>
+        </div>
+        <div class="slds-media__body">
+        <h2 class="slds-card__header-title">
+        
+        <span>  <lightning-button label="set" onclick={onClickHandler}></lightning-button></span>
+      
+        </h2>
+        </div>
+        </header>
+        </div>
+        <div class="slds-card__body slds-card__body_inner">
+        <article class="slds-card slds-card_boundary">
+        <div class="slds-card__header slds-grid">
+        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+        <div class="slds-media__figure">
+        <span class="slds-icon_container " title="account">
+         
+        <span class="slds-assistive-text">account</span>
+        </span>
+        </div>
+        <div class="slds-media__body">
+        <h2 class="slds-card__header-title">
+        <a href="#" class="slds-card__header-link slds-truncate" title="Card Header">
+        <span></span>
+        </a>
+        </h2>
+        </div>
+        </header>
+        </div>
+        <div class="slds-card__body slds-card__body_inner" style="height:218px">
+          <template lwc:if={selectCheck.length}>
+            <template for:each={selectCheck} for:item="cawd">
+              <div class="card"  key={cawd.Id}>
+                <img src={cawd.Image__c} alt="img"  style="width:120px;height:135px;"/>
+                <h1>{cawd.Name}</h1>
+                <h1> {cawd.Email__c}</h1>
+                <h1>{cawd.Phone__c}</h1>
+             <p class="title">Admin</p>
+            </div> 
+            </template>
+          </template>
+          <template lwc:else> 
+          <img src={ThreeDPainterRemovebg}  style="height:200px ;padding-left:40px"/>
+        </template>  
+        </div>
+        <footer class="slds-card__footer">
+          <span>
+            <lightning-button-icon icon-name="utility:left" onclick={navigateToPrevious}
+              class="slds-m-left_x-small"></lightning-button-icon></span>
+          <span>
+            <lightning-button label="Today" onclick={navigateToToday}></lightning-button></span>
+          <span>
+            <lightning-button-icon icon-name="utility:right" onclick={navigateToNext}></lightning-button-icon>
+          </span>
+        </footer>
+        </article>
+        </div>
+        <footer class="slds-card__footer">
+          <span>
+            <lightning-button-icon icon-name="utility:left" onclick={navigateToPreviousShift}
+              class="slds-m-left_x-small"></lightning-button-icon></span>
+          <span>
+            <strong>SHIFT:</strong>{shiftVariableName}</span>
+          <span>
+            <lightning-button-icon icon-name="utility:right" onclick={navigateToNextShft}></lightning-button-icon>
+          </span>
+        </footer>
+        </article>
+
+      </div>
+    
+      
+    </div>
+    <div class='slds-col slds-size_9-of-12' >
+      <div style="padding: 12px;"><article class="slds-card">
+        <div class="slds-card__header slds-grid">
+        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+        <div class="slds-media__figure">
+        <span class="slds-icon_container" title="account">
+          <img src={AZLogo} alt="AZLogo" style="width: 25px;height:25px;" />
+        <span class="slds-assistive-text">
+          </span>
+        </span>
+        </div>
+        <div class="slds-media__body">
+        <h2 class="slds-card__header-title">
+        <a href="#" class="slds-card__header-link slds-truncate" title="Accounts">
+        <span>Admin Details </span>
+        </a>
+        </h2>
+        </div>
+        </header>
+        <div class="slds-einstein-header__actions">
+          <div class="slds-button-group" role="group">
+            <div class="adminShiftDelete">
+              <section>
+                <template lwc:if={adminOTPbool}>
+              <button class="slds-button slds-button_icon  slds-button_icon-inverse" title="Close" type="reset" onclick={closeShiftOTPHandler}>
+                <lightning-icon icon-name="utility:close"
+                   alternative-text="close"
+                   variant="inverse"
+                   size="xx-small" ></lightning-icon>
+                <span class="slds-assistive-text">Close</span>
+             </button>
+              <footer class="slds-card__footer" style="background-color: rgb(170, 152, 241);">
+               
+                
+                      <div class='slds-grid slds-wrap'  >
+                        <div class='slds-col slds-size_2-of-5' style="width:40px;height:50px;" >
+                          <img src={adminOTPDataImage} alt="img"  style="width:40px;height:50px;"/>
+                        </div>
+                        <div class='slds-col slds-size_2-of-5'  style="width:90px;height:50px;" >
+                          <h1 style="text-align: center;color:white; padding:2px">{adminOTPDataName}</h1>
+                        </div>
+                        <div class='slds-col slds-size_1-of-5'  style="width:40px;height:50px;">
+                          <lightning-icon onclick={deleteShiftHandlerOTP} icon-name='action:delete' style="padding: 3px;" alternative-text='delete' size='small' title='delete'></lightning-icon>
+                        </div>
+                  </div>
+              </footer>
+            </template>
+            </section>
+            </div>
+            
+            <lightning-input data-name="otp" placeholder="Admin OTP" style="width: 160px;" onchange={adminToogleChangeHandler}></lightning-input>
+          </div>
+          </div>
+        </div>
+        
+        <div class="slds-card__body slds-card__body_inner" style="height:24rem;"><h1></h1>
+          
+          <template lwc:if={adminDailyData.length}>
+            <lightning-datatable
+            key-field="Id"
+            columns={columns}
+            data={adminDailyData}
+            onclick={getSelectedRow}
+            onrowaction={callRowAction}></lightning-datatable>
+          </template>
+          <template lwc:else>
+      
+            <img src={MutliWorkRemovebg}  style="padding-top:60px;padding-left:250px"/>
+          </template>
+        </div>
+        <footer class="slds-card__footer"></footer>
+        </article></div>
+     
+    </div>
+  </div>
+</div>
+</template>

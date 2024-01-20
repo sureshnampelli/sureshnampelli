@@ -1,0 +1,55 @@
+.Removebg{
+ width: 60px;
+ height: 60px;   
+}
+.hospitalName{
+    font-size: 20px;
+    color: blue;
+}
+.imageONE{
+    padding-inline-start:90%;
+}
+table{
+    border-collapse:collapse;
+    width: 100%;
+}
+td, th{
+    border:1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+}
+tr:nth-child(even){
+    background-color: #ddd;
+}
+.tableRow.red{
+    background-color: red;
+}
+.tableLeft.green{
+    background-color: aqua;
+}
+
+.tableLeft.more{
+    background-color: rgb(170, 152, 177);
+}
+.tableName.tabName{
+    background-color: rgb(166, 177, 152);
+
+}
+.temprogress{
+    background-color:black;
+}
+.oneName{
+    
+   color: white;
+}
+/*.progressClass.h.one{
+    padding-inline-start:5%;
+}
+.progressClass.h.two{
+    padding-inline-start:30%;
+}*/
+
+.proGro.pro{
+
+color:white;
+}

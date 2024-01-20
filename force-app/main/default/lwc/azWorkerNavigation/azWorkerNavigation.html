@@ -1,0 +1,142 @@
+<template>
+    <div style="height:31rem;background-color:#3BA755">
+        <div class='slds-grid slds-wrap'  >
+           
+           <div class='slds-col slds-size_4-of-12'  >
+            <div style="padding-top:20px; padding-left:20px ;">
+            <div style="background-color: rgb(255,255,255);">
+            <template if:true={adminTodayShiftwise.length} >
+                <c-az-custom-data-table
+                key-field="Id"
+                data={adminTodayShiftwise} columns={columns}
+                onclick={getSelectedRow} 
+                onrowaction={callRowAction}></c-az-custom-data-table>
+    </template>
+   
+    <div  style="height:9rem;" >
+    <div class="slds-scrollable_y" style="height:9rem;" tabindex="0">
+        <template if:true={azWorkerShiftwiseRatingData.length}>
+            <table>
+        <tbody>
+            <template for:each={azWorkerShiftwiseRatingData} for:item="azwr">
+            <tr key={azwr.Id}>
+                <td>{azwr.Admin_Name__c}</td>
+                <td>{azwr.Customer_Name__c}<img src={azwr.workerRatingIconItem}  style="width:60px;height:40px;"  /></td>
+            </tr>
+        </template>
+        </tbody></table>
+    </template>
+        </div>
+    </div>
+    <div style="height: 100px;">
+        <lightning-map map-markers={lstMarkers} zoom-level={zoomlevel}  ></lightning-map>
+    </div>
+           </div>
+            </div>
+           </div>
+           <div class='slds-col slds-size_8-of-12' >
+            <div style="padding: 20px;">
+            <article class="slds-card">
+                <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                <span class="slds-icon_container " title="account">
+               <img src={workerImage} alt="workerImage" style="width: 40px;height:40px" />
+                <span class="slds-assistive-text">account</span>
+                </span>
+                </div>
+                <div class="slds-media__body">
+                <h2 class="slds-card__header-title">
+                <a href="#" class="slds-card__header-link slds-truncate" title="Outer Card Header">
+                <span>{workerName}</span>
+                </a>
+                </h2>
+                </div>
+                </header>
+                <div class="slds-einstein-header__actions">
+                <lightning-input label="" type="date"  value={today} 
+                onchange={changeDateHandler} style="width: 140px; padding-left:20px" ></lightning-input>
+            </div>    
+            </div>
+                <div class="slds-card__body slds-card__body_inner">
+                <article class="slds-card slds-card_boundary">
+                <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                <span class="slds-icon_container " title="account">
+                    <img src={AZLogo} alt="AZLogo" style="width: 32px;height:32px;" />
+                <span class="slds-assistive-text">account</span>
+                </span>
+                </div>
+                <div class="slds-media__body">
+                <h2 class="slds-card__header-title">
+                <a href="#" class="slds-card__header-link slds-truncate" title="Card Header">
+                <span>{innerCardHeader}</span>
+                </a>
+                </h2>
+                </div>
+                </header>
+                </div>
+                <div class="slds-card__body slds-card__body_inner" style="height:240px">
+                    <template lwc:if={isDailyWorker}>
+                        <div class="slds-scrollable_y" style="height:14rem;" tabindex="0">
+                            <template if:true={azWorkerShiftwiseWithIdData.length}>
+                    <table class="slds-table slds-border_left slds-border_right  slds-table_cell-buffer slds-table_bordered slds-table_col-bordered"
+                    style="table-layout:fixed"  ><thead><tr>
+                        <th>Customer Name</th>
+                    <th>Date</th>
+                <th>Shift</th><th>Assign</th><th>Address</th></tr></thead>
+                    <tbody>
+                        <template for:each={azWorkerShiftwiseWithIdData} for:item="az">
+                        <tr key={az.Id}>
+                            <td onclick={customerInformationHandler} data-id={az.Id} 
+                            data-long={az.Longitude__c} data-loti={az.Latitude__c}
+                            data-name={az.Customer_Name__c}>{az.Customer_Name__c}</td>
+                            <td>{az.Shift_Date__c}</td>
+                            <td>{az.Shift_Name__c}</td>
+                            <td><img src={az.workToogle}  style="width:60px;height:60px;"  /></td>
+                            <td>{az.Street_Long__c}
+                                {az.City__c}
+                               <!--<img src={az.workerRatingIcon}  style="width:60px;height:60px;"  />--> </td>
+                        </tr>
+                    </template>
+                    </tbody></table>
+                </template>
+                        </div>
+                </template>
+                <template lwc:else>
+                    <div class="slds-scrollable_y" style="height:14rem;" tabindex="0">
+                    <template if:true={azWorkerShiftwiseRatingData.length}>
+                        <table class="slds-table slds-border_left slds-border_right  slds-table_cell-buffer slds-table_bordered slds-table_col-bordered"
+                    style="table-layout:fixed"  ><thead><tr>  <th>Customer Name</th>
+                        <th>Date</th>
+                    <th>Shift</th><th>Assign</th><th>Rating</th></tr></thead>
+                    <tbody>
+                        <template for:each={azWorkerShiftwiseRatingData} for:item="azw">
+                        <tr key={azw.Id}>
+                            <td onclick={customerInformationHandler} data-id={azw.Id} 
+                            data-long={azw.Longitude__c} data-loti={azw.Latitude__c}
+                            data-name={azw.Customer_Name__c}>{azw.Customer_Name__c}</td>
+                            <td>{azw.Shift_Date__c}</td>
+                            <td>{azw.Shift_Name__c}</td>
+                            <td><img src={azw.workToogleTotal}  style="width:60px;height:60px;"  /></td>
+                            <td><img src={azw.workerRatingIconItem}  style="width:60px;height:60px;"  /></td>
+                        </tr>
+                    </template>
+                    </tbody></table>
+                </template>
+                    </div>
+                </template>
+                    </div>
+                </article>
+                </div>
+                <footer class="slds-card__footer">
+                <img src={monthDayImageToogle} alt={isDateMonthToogle} onclick={workToogleDateMonthHandler} style="width:40px;height:40px;"/>
+                </footer>
+                </article>
+            </div>
+
+        </div>
+        </div></div>
+       
+</template>

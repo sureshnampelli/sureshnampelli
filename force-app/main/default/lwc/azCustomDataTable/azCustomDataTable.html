@@ -1,0 +1,43 @@
+<template>
+    <div class="slds-p-around_x-small">
+      <h1 style="font-size: large;">
+        <lightning-formatted-text value={value} ></lightning-formatted-text></h1>
+        <template if:true={typeAttributes.toogleLink}>
+          <div class="slds-box" style=" background-color:blueviolet;" >
+            <div class='slds-grid' style="padding:4px; background-color:white;">
+                <div class='slds-col slds-size_1-of-2' style="width:100px" >
+                    <img  src={typeAttributes.toogleImage} alt="img" style="width:80px;height:100px"/> 
+                 
+                </div>
+                <div class='slds-col slds-size_1-of-2' >
+                    <h1 style="font-size: large;">
+                      {typeAttributes.toogleLink} </h1>
+                    <p style="font-size:medium;"> Admin</p>
+                    <p style="font-size:medium;">Email:{typeAttributes.toogleEmail}</p>
+                    <p style="font-size:medium;">Phone: {typeAttributes.tooglePhone}</p>
+                </div>
+            </div> 
+          </div>  
+           <!--
+            <div class="id-card-wrapper">
+              <div class="id-card">
+                <div class="profile-row">
+                  <div class="dp">
+                    <div class="dp-arc-outer"></div>
+                    <div class="dp-arc-inner"></div>
+                    <img  src={typeAttributes.toogleImage} alt="img" class="slds-avatar slds-avatar_circle slds-avatar_large"/> 
+                 
+                </div>
+                  <div class="desc">
+                    <h1><lightning-formatted-text value={value} ></lightning-formatted-text></h1>
+                        <p> Admin</p>
+                        <p>Email:{typeAttributes.toogleEmail}</p>
+                        <p>Phone: {typeAttributes.tooglePhone}</p>
+                  </div>
+                </div>
+              </div>
+            </div>-->
+
+</template>
+     </div>
+</template>

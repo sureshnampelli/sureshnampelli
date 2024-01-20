@@ -1,0 +1,96 @@
+<template>
+    <lightning-card>
+      <div style="height:28rem;">
+      <div class='slds-grid slds-wrap' >
+         <div class='slds-col slds-size_1-of-1' style="text-align: center;" >
+          <div class="textSizeClass">Welcome {doctorProfile.Name}</div> 
+         </div></div>
+       <div class='slds-grid slds-wrap' style="padding-top: 3rem;">
+         <div class='slds-col slds-size_1-of-12' >
+            
+         </div>
+         <div class='slds-col slds-size_2-of-12' >
+            <div class="dashboardbtn " style="text-align: center;"  onclick={dashboardHandler}>
+            Dashboard
+         </div>
+         <div class="apphistorybtn" style="text-align: center;"  onclick={appHistoryHandler}>
+            Appointment History
+         </div>
+         <template if:true={editShow}>
+            <lightning-record-edit-form record-id={recordId} object-api-name="Hospital_Patient__c" >
+               <lightning-button type="submit" label="submit"></lightning-button>
+               <lightning-button label="close" onclick={closeHandler} ></lightning-button>
+               <lightning-input-field style="width:70px;" field-name={fields.testField}></lightning-input-field>
+               
+            </lightning-record-edit-form>
+         </template>
+         </div>
+         <div class='slds-col slds-size_7-of-12' >  
+            <template if:true={showAppHistory}>
+               <div  >
+                <div class="slds-scrollable_y" style="height:16rem;" tabindex="0">
+                  <template if:true = {doctorAppoinment}>                    
+                     <div >    
+                         <lightning-datatable key-field="Id"  
+                                              data={doctorAppoinment}  
+                                              columns={columns}  
+                                              hide-checkbox-column="true"  
+                                              show-row-number-column="true"  
+                                              onrowaction={callRowAction}>  
+                         </lightning-datatable>    
+                     </div>  
+                 </template>   
+                  </div> 
+               </div>
+               <template if:true={pdfFileShow}>
+                  <template for:each={filesList} for:item="file">
+                     <div key={file.value} class="slds-box">
+                         <div class="slds-grid slds-wrap">
+                             <div class="slds-col slds-large-size_4-of-12 slds-medium-size_4-of-12 slds-size_12-of-12">
+                               <p><strong>FileName - </strong>{file.label}</p>
+                             </div>
+                             <div class="slds-col slds-large-size_3-of-12 slds-medium-size_4-of-12 slds-size_12-of-12">
+                               <a href={file.url} download>Download</a>
+                             </div>
+                             <div class="slds-col slds-large-size_3-of-12 slds-medium-size_4-of-12 slds-size_12-of-12">
+                               <lightning-button label="Preview" 
+                               variant="brand"
+                              data-id={file.value}
+                              onclick={previewHandler}
+                               ></lightning-button>
+                             </div>
+                             <div class="slds-col slds-large-size_2-of-12 slds-medium-size_4-of-12 slds-size_12-of-12">
+                              <lightning-icon icon-name='action:close' onclick={closePreviewHandler} alternative-text='close' size='x-small' title='close'></lightning-icon>
+                            </div>
+                           </div>
+                     </div>
+                 </template>
+                 </template>
+           
+</template>
+        <template if:true={showDashboard}>
+         <div class='slds-grid slds-wrap' >
+            <div class='slds-col slds-size_1-of-1' style="text-align: center;" >
+         
+         <img src={doctorappointmentlogo} alt="apppp" />
+         <h1 onclick={appHistoryHandler} class="textClass">View Appointment History</h1>
+            </div>
+            </div>
+        </template>
+         </div>
+         
+         <div class='slds-col slds-size_2-of-12' >
+            <div class="card">
+               <img src={doctorProfile.Image__c} alt="John" style="width:100%">
+               <h1>{doctorProfile.Name}</h1>
+               <p class="title">{doctorProfile.Doctor_Type__c}</p>
+             </div>  
+         </div>                          
+         </div>
+      </div></div>
+      <template if:true={showLoading}>
+         <lightning-spinner alternative-text="Loading" size="medium" class="spinnerClass"></lightning-spinner>
+     </template>
+        
+    </lightning-card>   
+   </template>

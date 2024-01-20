@@ -1,0 +1,44 @@
+.boxOne{
+    width: auto;
+    height: auto;
+    border: 1px solid rgb(14, 13, 13);
+}
+.relative {
+    
+    position: relative;
+  }
+  
+  .div1 {
+    position: absolute;
+    left: 2%;
+  }
+  
+  .div2 {
+    position: absolute;
+    left: 40%;
+    /*transform: translateX(-54.5%);*/
+  }
+  .bottomrelative { position: relative;
+}
+
+.bottomrelative1 {
+  position: absolute;
+  left: 10%;
+}
+
+.bottomrelative2 {
+  position: absolute;
+  left: 45%;
+  /*transform: translateX(-54.5%);*/
+}
+.bottomrelative3{
+    position: absolute;
+    left: 80%;
+    /*transform: translateX(-54.5%);*/
+  }
+  
+ 
+  .div3 {
+    position: absolute;
+    left: 2%;
+  }

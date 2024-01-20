@@ -1,0 +1,12 @@
+<design:component label="One Row Three columns layout:1 4 4 4">
+    <flexipage:template>
+        <flexipage:region name="fullOne" defaultWidth="SMALL"/>
+        <flexipage:region name="leftOne" defaultWidth="SMALL"/>
+        <flexipage:region name="rightOne" defaultWidth="SMALL"/>
+        <flexipage:region name="full" defaultWidth="LARGE"/>
+        <flexipage:region name="left" defaultWidth="LARGE"/>
+        <flexipage:region name="center" defaultWidth="LARGE"/>
+        <flexipage:region name="right" defaultWidth="LARGE"/>
+    </flexipage:template>
+
+</design:component>

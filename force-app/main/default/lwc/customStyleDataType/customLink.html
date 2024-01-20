@@ -1,0 +1,18 @@
+<template>
+    <div class="slds-p-around_x-small">
+       
+
+<img src={typeAttributes.toogleIcon} alt="pic" class="slds-avatar slds-avatar_circle slds-avatar_large slds-float_left"/>
+<lightning-formatted-text value={value} class="slds-float_right"></lightning-formatted-text>
+       
+<lightning-record-edit-form
+object-api-name="Login__c"
+record-id={typeAttributes.toogleLink}
+>
+<lightning-output-field
+field-name="Status__c"
+></lightning-output-field>
+
+</lightning-record-edit-form> 
+     </div>
+</template>

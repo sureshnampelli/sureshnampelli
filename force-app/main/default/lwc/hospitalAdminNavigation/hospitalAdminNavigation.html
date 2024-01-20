@@ -1,0 +1,396 @@
+<template>
+    <lightning-card>
+      <div style="height:28rem;">
+      <div class='slds-grid slds-wrap' >
+         <div class='slds-col slds-size_1-of-1' style="text-align: center;" >
+            <div class="textSizeClass">Wellcome Admin</div>
+         </div></div>
+      
+         <div class='slds-grid slds-wrap' >
+      
+            <div class='slds-col slds-size_3-of-12'>
+               <div  style="padding-top:7rem">
+                  <img src={doctorgif} alt="docgif" style="position: absolute; top:100 pt; left: 56pt; z-index: 20;"  />
+               </div>
+               <div>
+                  <img src={doctorappointmentlogo} alt="doc" onclick={doctorDataHandler} class="zoom doctorbtn" style="position: absolute; top: 10pt; left: 72pt; z-index: 20;"/>
+               </div>
+               <div>
+                  <img src={PatientLoginRemovebg} alt="doc" onclick={patientDataHandler} class="zoom patientbtn" style="position: absolute; top: 43pt; left: 11pt; z-index: 20;"/>
+               </div>
+               <div>
+                  <img src={medicineLogoRemovebg} alt="doc" onclick={medicineDataAllotHandler} class="zoom medicinebtn" style="position: absolute; top: 100pt; left: -3pt; z-index: 20;"/>
+               </div>
+               <div>
+                  <img src={AppointmentHistoryRemovebg} alt="doc" onclick={appointmentDataHandler} class="zoom apphistorybtn" style="position: absolute; top: 160pt; left: 11pt; z-index: 20;"/>
+               </div>
+               <div>
+                  <img src={doctorPostionLogo} alt="doc" onclick={createDoctorRecordHandler} class="zoom createDocbtn" style="position: absolute; top: 210pt; left: 84pt; z-index: 20;"/>
+               </div>
+            </div>
+            <div class='slds-col slds-size_8-of-12'>
+               <template if:true={imgHide}>
+               <div>
+                  <img src={hospitalremovebg} alt="doc"  style="position: absolute; top: 10pt; left: 320pt; z-index: 20;"/>
+             
+               </div>
+            </template>
+               <template if:true={patientDataShow}>
+               <div class="slds-scrollable_y" style="height:20rem; padding-top:20px" tabindex="0">
+                  <table   class="slds-table slds-border_left slds-border_right  slds-table_cell-buffer slds-table_bordered slds-table_col-bordered"
+                  style="table-layout:fixed">
+                     <thead>
+                        <tr>
+                        <th style="width: 150px;">Patient Name</th>
+                        <th style="width: 150px;">Contact</th>
+                        <th style="width: 200px;">Email</th>
+                        <th style="width: 200px;">Password</th>
+                     </tr>
+                     </thead>
+                     <tbody>
+                       <template for:each={patientEnquiryData} for:item="app" >
+               <tr key={app.Id}>
+                        
+                        <td class="slds-cell-wrap" style="width: 150px;">{app.Full_Name__c}</td>
+                        <td class="slds-cell-wrap" style="width: 150px;">{app.Phone__c}</td>
+                        <td class="slds-cell-wrap" style="width: 200px;">{app.Email__c}</td>
+                        <td class="slds-cell-wrap" style="width: 200px;">{app.Password__c}</td>  
+                  </tr>
+               </template>
+            </tbody>
+                  </table>  
+            </div> 
+         </template>
+         <template if:true={doctorsDataShow}>
+            <div style="padding-top:20px;">
+            <div class="slds-scrollable_y" style="height:18rem;" tabindex="0">
+               <table   class="slds-table slds-border_left slds-border_right  slds-table_cell-buffer slds-table_bordered slds-table_col-bordered"
+               style="table-layout:fixed">
+                  <thead>
+                     <tr>
+                     <th class="slds-cell-wrap" >Doctor Name</th>
+                     <th class="slds-cell-wrap" >Type</th>
+                     <th class="slds-cell-wrap" >Fee</th>
+                     <th class="slds-cell-wrap" >Password</th>
+                     <th class="slds-cell-wrap" >Image</th>
+                     <th class="slds-cell-wrap" style="font-size: medium;"><b>Actions</b></th>  
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <template for:each={doctorsData.data} for:item="appD" >
+            <tr key={appD.Id}>
+                     
+                     <td>{appD.Name}</td>
+                     <td >{appD.Doctor_Type__c}</td>
+                     <td >{appD.Fee__c}</td>
+                     <td >{appD.Patient_Name__c}</td> 
+                     <td ><img src={appD.Image__c} alt="doctor"  class="slds-avatar slds-avatar_circle slds-avatar_medium"/></td> 
+                     <td>
+                      <div>
+                         <a href="javascript:void(0)" data-id={appD.Id} target="_blank"
+                              onclick={hanldeEdit} title="View Repository">Edit</a></div>
+                         |
+                         <a href="javascript:void(0)" data-id={appD.Id} target="_blank"
+                              onclick={handleDelete} title="View Repository">Delete</a></div>
+                  </td>
+                   </tr>
+            </template>
+         </tbody>
+               </table>  
+         </div> 
+      </div>
+         </template>
+         <template if:true={appointmentDataShow}>
+            <div style="padding-top:20px;">
+       <div class="slds-scrollable_y" style="height:20rem; " tabindex="0">
+         <table   class="slds-table slds-border_left slds-border_right  slds-table_cell-buffer slds-table_bordered slds-table_col-bordered"
+         style="table-layout:fixed">
+            <thead>
+               <tr>
+                  <th class="slds-cell-wrap" >First Name</th>
+               <th class="slds-cell-wrap" >Last_Name__c</th>
+               <th class="slds-cell-wrap" >Email</th>
+               <th class="slds-cell-wrap" >Contact</th>
+               <th class="slds-cell-wrap" >Doctor Name</th>
+               <th class="slds-cell-wrap" >Fee</th>
+               <th class="slds-cell-wrap" style="font-size: medium;">Appointment</th>  
+            </tr>
+            </thead>
+            <tbody>
+              <template for:each={patientAppointmentData} for:item="appDP" >
+      <tr key={appDP.Id}>
+         <td >{appDP.First_Name__c}</td> 
+         <td >{appDP.Last_Name__c}</td> 
+         <td >{appDP.Email__c}</td>
+         <td >{appDP.Phone__c}</td>
+               <td>{appDP.Doctor_Name__c}</td>
+               <td >{appDP.Fee__c}</td>
+               <td >{appDP.Date_Time__c}</td>
+             </tr>
+      </template>
+   </tbody>
+         </table>  
+   </div> 
+</div>
+         </template>
+         <template if:true={showAddForm}>
+            <div class="slds-m-around_medium">
+                <div class="slds-card">
+                    <div class="slds-card__header">
+                        <div class="container">
+          <div class="vertical-center">
+        
+                        <h2 class="slds-text-heading_small">Add Doctor Record</h2>
+          </div>
+                        </div>
+                    </div>
+                    <div class="slds-card__body">
+                        <lightning-input label="Name" value={newDoctorName} onchange={handleNameChange}></lightning-input>
+                        <lightning-input label="Fee" value={newDoctorFee} onchange={handleFeeChange}></lightning-input>
+                        <lightning-input label="Type" value={newDoctorType} onchange={handleTypeChange}></lightning-input>
+                        <lightning-input label="Password" value={newDoctorPassword} onchange={handlePasswordChange}></lightning-input>
+                     </div>
+                    <div class="slds-card__footer" >
+                        <lightning-button label="Save" onclick={saveNewDoctor}></lightning-button>
+                          <lightning-button label="Cancel" onclick={cancelAddForm}></lightning-button>
+                    </div>
+                </div>
+            </div>
+        </template>
+        <template if:true={allotedMedShow}>
+         <div class='slds-grid slds-wrap' >
+            <div class='slds-col slds-size_2-of-8'></div>
+            <div class='slds-col slds-size_2-of-8'></div>
+            <div class='slds-col slds-size_2-of-8'>
+
+            </div>
+            <div class='slds-col slds-size_2-of-8'>
+               <lightning-icon variant={gogoogo} onclick={dailyMedtoogle} icon-name='utility:chart' alternative-text='chart' size='medium' title='chart'></lightning-icon>
+            </div>
+         </div>
+        <template lwc:if={isAllotHide}>
+         <div style="padding-top:20px;">
+         <lightning-datatable
+         columns={columnsAllot}
+         data={totalAllotedMedicine.data}
+         key-field="id" hide-checkbox-column="true"
+         onrowaction={handleRowActions}></lightning-datatable>
+      </div>
+      </template>
+      <template lwc:else>
+         <div class='slds-grid slds-wrap'>
+         <div class="slds-col slds-size_1-of-3" style="padding-top:20px;" if:true={oppPieconfig}>
+            <c-charts-main-one chart-dataset={oppPieconfig}>
+            </c-charts-main-one>
+            <div style="display: flex;  justify-content: center;">Pie Chart</div>
+        </div>
+        <div class="slds-col slds-size_2-of-3" style="padding-top:20px;">
+         <div class="slds-scrollable_y" style="height:20rem; " tabindex="0">
+            <table   class="slds-table slds-border_left slds-border_right  slds-table_cell-buffer slds-table_bordered slds-table_col-bordered"
+            style="table-layout:fixed">
+               <thead>
+                  <tr>
+                     <th class="slds-cell-wrap" >Med Name</th>
+                  <th class="slds-cell-wrap" >Ex Date</th>
+                  <th class="slds-cell-wrap" >Cost</th>
+                  <th class="slds-cell-wrap" >Each</th>
+                  <th class="slds-cell-wrap" >Total</th>
+               </tr>
+               </thead>
+               <tbody>
+                 <template for:each={dailyMedicineData} for:item="ap" >
+         <tr key={ap.Id}>
+            <td >{ap.Name}</td> 
+            <td >{ap.Ex_Date__c}</td> 
+            <td >{ap.Cost__c}</td>
+            <td >{ap.Each_Medicine_Cost__c}</td>
+                  <td>{ap.Amount__c}</td>
+                </tr>
+         </template>
+      </tbody>
+            </table>  
+      </div> 
+        </div>
+         </div>
+      </template>
+        </template>
+         <div class='slds-col slds-size_1-of-12'> </div>
+         
+            </div>
+         </div></div>
+      
+  <template if:true={isOpenModal}>
+   <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+       <div class="slds-modal__container">
+        <!-- modal header start -->
+          <header class="slds-modal__header">
+             <button class="slds-button slds-button_icon slds-modal__close 
+             slds-button_icon-inverse" title="Close" onclick={hideModalBox}>
+                <lightning-icon icon-name="utility:close"
+                   alternative-text="close"
+                   variant="inverse"
+                   size="small" ></lightning-icon>
+                <span class="slds-assistive-text">Close</span>
+             </button>
+          </header>
+      
+          <!-- modal body start -->
+          <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+            <lightning-record-edit-form object-api-name="Hospital_Doctor__c"
+             onsuccess={handleSuccess} onsubmit={handleSubmit} onerror={handleError} >
+                <lightning-messages></lightning-messages>
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-input-field field-name="Name" required="true"></lightning-input-field>
+                        <lightning-input-field field-name="Doctor_Type__c" required="true"></lightning-input-field>     
+                      </div>
+                      <div class="slds-col slds-size_1-of-2">
+                        <!--<lightning-input-field field-name="Size__c"></lightning-input-field>-->
+                        <lightning-input-field field-name="Fee__c" required="true"></lightning-input-field>
+                        <lightning-input-field field-name="Patient_Name__c" required="true"></lightning-input-field>   
+                      </div>
+                </div> 
+          <!-- modal footer start-->
+          <footer class="slds-modal__footer">
+            <lightning-button type="submit" variant="brand" label="Save"></lightning-button>
+             <button class="slds-button slds-button_neutral" onclick={hideModalBox}>Cancel</button>
+          </footer>
+        </lightning-record-edit-form>  
+    </div>
+       </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+ </template>
+ <template if:true={isEdit}>
+   <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-02" aria-modal="true" aria-describedby="modal-content-id-2" class="slds-modal slds-fade-in-open">
+       <div class="slds-modal__container">
+        <!-- modal header start -->
+          <header class="slds-modal__header">
+             <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={hideModalBox}>
+                <lightning-icon icon-name="utility:close"
+                   alternative-text="close"
+                   variant="inverse"
+                   size="small" ></lightning-icon>
+                <span class="slds-assistive-text">Close</span>
+             </button>
+             <h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate">Update Doctor Details</h2>
+          </header>
+      
+          <!-- modal body start  onsuccess={handleSuccess} onsubmit={handleSubmit}-->
+          <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+            <lightning-record-edit-form object-api-name="Hospital_Doctor__c"
+             record-id={recordId}>
+                <lightning-messages></lightning-messages>
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-input-field field-name="Name" disabled="true"></lightning-input-field>
+                        <lightning-input-field field-name="Doctor_Type__c" disabled="true"></lightning-input-field>
+                              
+                      </div>
+                      <div class="slds-col slds-size_1-of-2"> 
+                        <!-- <lightning-input-field field-name="Size__c"></lightning-input-field> -->
+                        <lightning-input-field field-name="Fee__c" required="true"></lightning-input-field>
+                        <lightning-input-field field-name="Patient_Name__c" ></lightning-input-field>
+                      </div>
+                </div> 
+          <!-- modal footer start-->
+          <footer class="slds-modal__footer">
+            <lightning-button type="submit" variant="brand" label="Update"></lightning-button>
+             <button class="slds-button slds-button_neutral" onclick={hideModalBox}>Cancel</button>
+          </footer>
+        </lightning-record-edit-form>  
+    </div>
+       </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+ </template>
+ <!-- modal end -->
+ <template if:true={isEditAllot}>
+   <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-03" aria-modal="true" aria-describedby="modal-content-id-2" class="slds-modal slds-fade-in-open">
+       <div class="slds-modal__container">
+        <!-- modal header start -->
+          <header class="slds-modal__header">
+             <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={hideModalAllot}>
+                <lightning-icon icon-name="utility:close"
+                   alternative-text="close"
+                   variant="inverse"
+                   size="small" ></lightning-icon>
+                <span class="slds-assistive-text">Close</span>
+             </button>
+             <h2 id="modal-heading-03" class="slds-text-heading_medium slds-hyphenate">Update Medicine Allotment</h2>
+          </header>
+      
+          <!-- modal body start  onsuccess={handleSuccess} onsubmit={handleSubmit}-->
+          <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-3">
+           
+                <lightning-messages></lightning-messages>
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_1-of-3">
+                       <lightning-input placeholder="Medicine Name" onchange={editNameChangeHandler}></lightning-input>
+                       <lightning-input type="date" placeholder="Ex Date" onchange={editExDateChangeHandler}></lightning-input>   
+                      </div>
+                      <div class="slds-col slds-size_1-of-3">
+                        <lightning-input placeholder="Cost" onchange={editCostChangeHandler}></lightning-input>
+                        <lightning-input placeholder="Alloted Medicine" onchange={editAllotedChangeHandler}></lightning-input>   
+                       </div>
+                       <div class="slds-col slds-size_1-of-3">
+                        <lightning-input placeholder="Medicine Left" onchange={editMedLeftChangeHandler}></lightning-input>
+                        <lightning-input placeholder="Amount" onchange={editAmountChangeHandler}></lightning-input>   
+                       </div>
+                </div> 
+          <!-- modal footer start-->
+          <footer class="slds-modal__footer">
+            <lightning-button  variant="brand" label="Update" onclick={updateAllotedMedicineHandler} ></lightning-button>
+             <button class="slds-button slds-button_neutral" onclick={hideModalAllot}>Cancel</button>
+          </footer>
+        
+    </div>
+       </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+ </template>
+ <!-- modal end -->
+ <template if:true={isCreateAllot}>
+   <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-03" aria-modal="true" aria-describedby="modal-content-id-2" class="slds-modal slds-fade-in-open">
+       <div class="slds-modal__container">
+        <!-- modal header start -->
+          <header class="slds-modal__header">
+             <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={hideCreateModel}>
+                <lightning-icon icon-name="utility:close"
+                   alternative-text="close"
+                   variant="inverse"
+                   size="small" ></lightning-icon>
+                <span class="slds-assistive-text">Close</span>
+             </button>
+             <h2 id="modal-heading-04" class="slds-text-heading_medium slds-hyphenate">Create Medicine Allotment</h2>
+          </header>
+      
+          <!-- modal body start  onsuccess={handleSuccess} onsubmit={handleSubmit}-->
+          <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-4">
+           
+                <lightning-messages></lightning-messages>
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_1-of-2">
+                       <lightning-input placeholder="Medicine Name" onchange={editNameChangeHandler}></lightning-input>
+                       <lightning-input type="date" placeholder="Ex Date" onchange={editExDateChangeHandler}></lightning-input>   
+                      </div>
+                      <div class="slds-col slds-size_1-of-2">
+                        <lightning-input placeholder="Cost" onchange={editCostChangeHandler}></lightning-input>
+                        <lightning-input placeholder="Alloted Medicine" onchange={editAllotedChangeHandler}></lightning-input>   
+                       </div>
+                      
+                </div> 
+          <!-- modal footer start-->
+          <footer class="slds-modal__footer">
+            <lightning-button  variant="brand" label="Create" onclick={createAllotedMedicineHandler} ></lightning-button>
+             <button class="slds-button slds-button_neutral" onclick={hideCreateModel}>Cancel</button>
+          </footer>
+        
+    </div>
+       </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+ </template>
+ <!-- modal end -->
+    </lightning-card>
+</template>

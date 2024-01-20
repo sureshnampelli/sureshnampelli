@@ -1,0 +1,186 @@
+<template>
+    <div class="slds-builder-header_container" style="background-color: white;">
+        <div class="slds-builder-toolbar" role="toolbar">
+      <div class="slds-builder-toolbar__item-group"  aria-label="Canvas Actions">
+     <img src={hospitalRemovebg} class="Removebg" alt="logo" />
+      <div class="slds-button-group" style="padding-top:2rem;">
+     <h1 class="hospitalName">Apex Hospital</h1>
+      </div>
+      </div>
+      <div class="slds-builder-toolbar__item-group" aria-label="Edit actions">
+                   <div style="padding-right:0.9rem;padding-top:0.2rem;position:relative" >
+<lightning-input label="" type="date" max={selectedToday} value={todayDate} 
+onchange={changeDateHandler} style="width: 160px; padding-left:30px" ></lightning-input> 
+                   
+                  </div>
+                  <div style="padding-right:4rem;padding-top:1.2rem;position:relative">
+                   
+                    <template if:true={showTime}>
+                        <img src={hospitalRemovebg} class="Removebg" alt="logo" />
+                      </template>
+                      <h1>{attendanceLimitTime}</h1> 
+                      
+                </div>
+        </div>
+        <div class="slds-builder-toolbar__actions" aria-label="Document actions">
+            
+                <div style="padding-right:6rem;padding-top:1rem;position:relative" class={rowTwoClass}>
+                   
+            </div> 
+            <div style="padding-right:7rem;padding-top:1.2rem;position:relative" class={rowThreeClass} >
+                <lightning-combobox
+                name="type"
+                value={selectedType}
+                options={typePatient}
+                onchange={typeHandler} ></lightning-combobox>
+            </div>
+            <div style="padding-right:5rem;padding-top:1.2rem;position:relative" class={rowThreeClass} >
+                <lightning-button  label="Del"  onclick={selectBoxHandler}></lightning-button>
+            </div>
+            <div style="padding-right:3rem;padding-top:1.2rem;position:relative" class={rowThreeClass}>
+                <lightning-button  label="patiantEnquiry"  onclick={clickPatientHandler}></lightning-button>     
+            </div>           
+              <div style="padding-right:1rem;padding-top:1rem;position:relative" >
+                <ul class="slds-global-actions">
+           
+                    <li class="slds-global-actions__item">
+                    <div class={toggledropdownlabel}>
+                        <div style="padding-left:0.5rem;padding-top:0.5rem;position:relative" >
+                            <span class="slds-avatar slds-avatar_circle">
+                                <span class="slds-icon_container " title={staffUserName}>
+                                
+                                    <img src={staffImage} alt="staff img" class="ImageStaff  " name={toggleIconName}
+                                    onclick={handleToggleClick} />
+                            
+                                <span class="slds-assistive-text">Description of icon when needed</span>
+                                </span>
+                                </span>
+                               
+                        
+                            </div>
+                            <div class={dropDown}>     
+                                <div class="slds-dropdown slds-dropdown_right slds-nubbin_top-right" style="right:-1rem">
+                                    
+                                <ul  role="menu">
+                                <li class="slds-dropdown__item" role="presentation">
+                                
+                                <span class="slds-truncate" title={staffUserName}>
+                                <span class="slds-icon_container slds-icon-standard-event slds-m-right_x-small" title="Sreeleela">
+                                
+                                <span class="slds-assistive-text">Description of icon when needed</span>
+                                </span>{staffUserName}</span>
+                            
+                                </li>
+                                <li class="slds-dropdown__item" role="presentation">
+                                
+                                <span class="slds-truncate" title={staffJobRole}>
+                                <span class="slds-icon_container slds-icon-standard-note slds-m-right_x-small" title="Receptionist">
+                               
+                                <span class="slds-assistive-text">Description of icon when needed</span>
+                                </span>{staffJobRole}</span>
+                                
+                                </li>
+                                <li class="slds-dropdown__item" role="presentation">
+                                    <a href="#" role="menuitem" tabindex="0" onclick={navigateToLwcLogin}>
+                                    <span class="slds-truncate" title="Back to login page">
+                                    <span class="slds-icon_container slds-icon-standard-email slds-m-right_x-small" title="Back to login page">
+                                   
+                                    <span class="slds-assistive-text">Description of icon when needed</span>
+                                    </span>Sign Out</span>
+                                    </a>
+                                    </li>
+                                    </ul>
+                                    </div>
+                                    </div>
+                                </div>
+                                    </li>
+                                    
+                                    </ul>
+                                  </div>
+                              </div>
+                                  </div>
+                                  
+                              </div>
+    <lightning-card >
+                <div class="slds-vertical-tabs">
+                    <ul class="slds-vertical-tabs__nav" role="tablist" aria-orientation="vertical">
+                    <li class="slds-vertical-tabs__nav-item RowOne" style="height:130px;" title="Tab 1" role="presentation">
+                        <div style="padding-right:0.9rem;padding-top:0.2rem;position:relative" >
+                            <span class="slds-icon_container " title="Attendance" >
+                              <img src={Loginfingerremovebg} alt="staff img" class="finterAttand attendanceFinder" name={toggleAttName}
+                              onclick={rowOneHandler}  />
+                            <span class="slds-assistive-text">Description of icon when needed</span>
+                            </span>   
+                        <div  role="tooltip"  style="position:absolute;top:7px ;">
+                        <div class="slds-popover__body"> 
+                         <div class="clockTin" style="color:white;" >{currentTime}</div> 
+                        </div>
+                        </div>
+                       
+                        </div>
+                        <template for:each={avatorShowData} for:item="item">
+                            <div key={item.Id}>
+                                <img src={item.Image__c} alt="img"  class="slds-avatar slds-avatar_circle slds-avatar_large" />
+                            </div>
+                        </template>
+                    </li>
+                    <li class="slds-vertical-tabs__nav-item RowTwo" onclick={rowTwoHandler} style="height:150px;" title="Tab 2" role="presentation">
+                   <img class="attendancelist" src={Showattendancelist} alt="Showattendancelist"/>
+                    </li>
+                    <li class="slds-vertical-tabs__nav-item RowThree" onclick={rowThreeHandler} style="height:165px;" title="Tab 3 has a really long label and can wrap or truncate" role="presentation">
+                    <img src={Patientlogo}  class="PatientLogoClass" style="padding: 10px;width:190px;height:150px;"/>
+                    </li>
+                    </ul>
+                    <div class={rowOneClass} id="slds-vertical-tabs-0" role="tabpanel" aria-labelledby="slds-vertical-tabs-0__nav">
+                       <div  class="  slds-scrollable_y  temprogress" style="height:26rem;" tabindex="0">
+                        <template if:true={updateData.data}>
+                            <template if:true={updateData.data.length}>
+                            <lightning-datatable
+                            key-field="Id"
+                           onclick={tableClick}
+                            columns={UPDATECOLUMNS}
+                            data={updateData.data}
+                            onsave={handleSave}
+                            draft-values={saveDraftValues}
+                            onrowaction={handleRowAction}>
+                            </lightning-datatable>
+                        </template>
+                    </template>
+                </div>
+                    </div>
+                    <div class={rowTwoClass} id="slds-vertical-tabs-1" role="tabpanel" aria-labelledby="slds-vertical-tabs-1__nav">
+                       <div  class="  slds-scrollable_y" style="height:26rem;" tabindex="0">
+                        <template if:true={attendanceData}>
+                                <c-custom-style-htr
+                            key-field="Id"
+                            columns={columns}
+                            data={attendanceData}></c-custom-style-htr>
+                        </template>
+                       </div>
+                    </div>
+                    <div class={rowThreeClass} id="slds-vertical-tabs-2" role="tabpanel" aria-labelledby="slds-vertical-tabs-2__nav">
+                        
+
+                        <template if:true={patientData.data}>
+                            <div style="background-color:#7F8CED; height:26rem;"
+                             class="slds-scrollable_y"  tabindex="0">
+                                <lightning-dataTablE 
+                                data-id="datarow"
+                            
+                                        key-field="Id"
+                                        data={patientData.data}
+                                        columns={columnsPatient}
+                                        onsave={handlePatientSave}
+                                                 draft-values={saveDraftValues} 
+                                        onrowaction={handleRowAction}>
+                                </lightning-dataTablE >
+                            </div>
+                           
+                        </template>
+                    </div>
+                    </div>
+        <template if:true={showModal}>
+           <c-hospital-enquiry-form onclose={closeHandler}></c-hospital-enquiry-form> 
+        </template>
+            </lightning-card>
+</template>

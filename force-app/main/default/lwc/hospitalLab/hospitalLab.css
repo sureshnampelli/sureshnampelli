@@ -1,0 +1,17 @@
+.Removebg{
+    width: 60px;
+    height: 60px;   
+   }
+   .hospitalName{
+       font-size: 20px;
+       color: blue;
+   }
+.ImageStaff{
+    height: 60px;
+    width: 50px;
+    
+    }
+
+.staffDetails{
+    padding-inline-start:90%;
+}

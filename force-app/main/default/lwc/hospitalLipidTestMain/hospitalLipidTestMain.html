@@ -1,0 +1,130 @@
+<template>
+    <lightning-card title="lipid test kf">
+        <lightning-button label="cre" onclick={patientAppointmentHandler}></lightning-button>
+        <lightning-button label="pdf" onclick={pdfHandler}></lightning-button>
+         <lightning-layout>
+            <lightning-layout-item size="6">        
+                    <div class='slds-grid slds-wrap' > 
+                        <div class='slds-col slds-size_1-of-4' >
+                            <!--read-only={docRef}-->
+                            <lightning-combobox
+                            name="type"
+                            style="width: 160px;"
+                            value={selectedDoctorType}
+                            options={typeDoctor}
+                            onchange={typeDoctorHandler} read-only={docRef} ></lightning-combobox>
+                        </div>
+                        <div class='slds-col slds-size_1-of-4' >
+                            <lightning-input onchange={sampleDrawnDateHandler} type="datetime" placeholder="sample Drawn Date">
+                            </lightning-input>
+                        </div>
+                        <div class='slds-col slds-size_1-of-4' >
+                            <lightning-input onchange={sampleRegDateHandler} type="datetime" placeholder="sample Reg Date">
+                            </lightning-input>
+                        </div>
+                                <div class='slds-col slds-size_1-of-4' >
+                                    <lightning-input onchange={sampleAuthDateHandler} type="datetime" placeholder="sample Auth Date">
+                                    </lightning-input>
+                                </div>
+                            </div>  
+                            <div class='slds-grid slds-wrap' > 
+                                <div class='slds-col slds-size_1-of-4' >
+                                    <lightning-input onchange={totalCholHandler} placeholder="total Chol">
+                                    </lightning-input>
+                                </div>
+                                <div class='slds-col slds-size_1-of-4' >
+                                    <lightning-input onchange={triglyceridesHandler} placeholder="triglycerides">
+                                    </lightning-input>
+                                </div>
+                                <div class='slds-col slds-size_1-of-4' >
+                                    <lightning-input onchange={sHdlHandler} placeholder="s Hdl">
+                                    </lightning-input>
+                                </div>
+                                        <div class='slds-col slds-size_1-of-4' >
+                                            <lightning-input onchange={vldlHandler} placeholder="vldl">
+                                            </lightning-input>
+                                        </div>
+                                    </div>  
+                                    <div class='slds-grid slds-wrap' > 
+                                        <div class='slds-col slds-size_1-of-4' >
+                                            <lightning-input onchange={sldlHandler} placeholder="sldl">
+                                            </lightning-input>
+                                        </div>
+                                        <div class='slds-col slds-size_1-of-4' >
+                                            <lightning-input onchange={tCholHandler} placeholder="T Chol">
+                                            </lightning-input>
+                                        </div>
+                                        <div class='slds-col slds-size_1-of-4' >
+                                            <lightning-input onchange={ldlHdlHandler} placeholder="LDL HDL">
+                                            </lightning-input>
+                                        </div>
+                                                <div class='slds-col slds-size_1-of-4' >
+                                                    <lightning-input onchange={sampleIdHandler} placeholder="sample Id">
+                                                    </lightning-input>
+                                                </div>
+                                            </div>         
+            </lightning-layout-item>
+                <lightning-layout-item size="6">
+                    <div class="slds-box" style="background-color: rgb(125, 221, 149);">
+                        <div class="slds-box" style="background-color: white;">
+                        <div class="container" style="background: white; padding: 13px;">
+                        
+                                <div class="boxOne">
+                                        <div class="wrapper relative">
+                                            <div class=" div1">
+                                                <div><strong>Patient Name :</strong>   {patientFullName}</div> 
+                                                <div><strong>Gender:</strong> {patientGender}</div> 
+                                                <div><strong>Age:</strong>  {patientAge}</div> 
+                                                <div><strong>Sample Id:</strong>  {inputsampleId}</div> 
+                                            </div>
+                                            
+                                            <div class=" div2">
+                                                <div><strong>Ref Doctor:</strong>{selectDocName}</div> 
+                                <div><strong>Sample Drawn Date: </strong>{inputsampleDrawnDate}</div>
+                                <div><strong>Sample Regd Date :</strong>{inputsampleRegDate}</div>
+                                <div><strong>Sample Auth Date:</strong>{inputsampleAuthDate}</div> 
+                                            </div>      
+                                </div>  
+                                <div class="div3" style="padding-top:6rem;position:relative">
+                                    <div><strong>S.Total Cholesterol :</strong>{inputtotalChol}</div>
+                                    <div><strong>S.Triglycerides :</strong>{inputtriglycerides}</div>
+                                    <div><strong>S.HDL :</strong>{inputsHdl}</div>
+                                    <div><strong>V.LDL:</strong>{inputvldl}</div>    
+                                    <div><strong>S.LDL:</strong>{inputsldl}</div>
+                                    <div><strong>T.Chol:</strong>{inputtChol}</div>
+                                    <div><strong>LDL/HDL:</strong>{inputldldhl}</div>
+                                </div>
+
+                            </div>
+                
+                    </div>
+  
+                    </div>
+                    
+               
+            <br/>
+            <div class="bottomrelative">
+                <div class="bottomrelative1">
+                    <lightning-button variant="brand" label="PDF" onclick={pdfHandler}></lightning-button>
+                </div>
+                <div class="bottomrelative2">
+                    <lightning-button variant="brand" label="Email" onclick={emailHandler}></lightning-button>
+                </div>
+                <div class="bottomrelative3">
+                    <lightning-button variant="brand" label="close" onclick={closeHandler}></lightning-button>
+                </div>
+            
+            
+            
+        </div>
+    </div>
+                </lightning-layout-item>
+               
+            </lightning-layout>
+           
+        
+           
+           
+        </lightning-card>
+
+</template>

@@ -1,0 +1,246 @@
+<template>
+    <div class="slds-builder-header_container" style="background-color: white;">
+        <div class="slds-builder-toolbar" role="toolbar">
+      <div class="slds-builder-toolbar__item-group"  aria-label="Canvas Actions">
+     <img src={hospitalRemovebg} class="Removebg" alt="logo" />
+      <div class="slds-button-group" style="padding-top:2rem;">
+     <h1 class="hospitalName">Apex Hospital</h1>
+      </div>
+      </div>
+      <div class="slds-builder-toolbar__item-group" aria-label="Edit actions">
+                   <div style="padding-right:0.9rem;padding-top:0.2rem;position:relative" >
+                      <span class="slds-icon_container " title="Attendance" >
+                        <img src={Loginfingerremovebg} alt="staff img" class="finterAttand attendanceFinder" name={toggleAttName}
+                        onclick={handleAttClick} />
+                      <span class="slds-assistive-text">Description of icon when needed</span>
+                      </span>   
+                  <div  role="tooltip"  style="position:absolute;top:7px ;">
+                  <div class="slds-popover__body"> 
+                   <div class="clockTin" style="color:white;" >{currentTime}</div> 
+                  </div>
+                  </div>
+                  </div>
+        </div>
+      <div class="slds-builder-toolbar__actions" aria-label="Document actions">
+        <div style="padding-right:8rem;padding-top:2rem;position:relative" >
+            <lightning-combobox
+            name="typed"
+        
+            value={selectedJobType}
+            options={typeJob}
+            onchange={typeJobHandler} ></lightning-combobox>
+        </div>
+            <div style="padding-right:6rem;padding-top:2rem;position:relative" >
+            <lightning-combobox
+            name="statusPro"
+            value={selectedStatusType}
+            options={typeStatus}
+            onchange={typeStatusHandler} ></lightning-combobox>
+        </div> 
+        <div style="padding-right:5rem;padding-top:2rem;position:relative" >
+            <lightning-combobox
+            name="type"
+            value={selectedType}
+            options={typePatient}
+            onchange={typeHandler} ></lightning-combobox>
+        </div>
+        <div style="padding-right:4rem;padding-top:2rem;position:relative" >
+            <lightning-button variant="brand" label="Del Row"  onclick={selectCheckBoxHandler}></lightning-button>
+        </div>
+        <div style="padding-right:2rem;padding-top:2rem;position:relative" >
+            <lightning-button variant="brand" label="patiantEnquiry"  onclick={clickHandler}></lightning-button>     
+        </div>           
+          <div style="padding-right:1rem;padding-top:2rem;position:relative" >
+            <ul class="slds-global-actions">
+       
+                <li class="slds-global-actions__item">
+                <div class={toggledropdownlabel}>
+                    <div style="padding-left:0.5rem;padding-top:0.5rem;position:relative" >
+                        <span class="slds-avatar slds-avatar_circle">
+                            <span class="slds-icon_container " title={staffUserName}>
+                            
+                                <img src={staffImage} alt="staff img" class="ImageStaff  " name={toggleIconName}
+                                onclick={handleToggleClick} />
+                        
+                            <span class="slds-assistive-text">Description of icon when needed</span>
+                            </span>
+                            </span>
+                           
+                    
+                        </div>
+                        <div class={dropDown}>     
+                <div class="slds-dropdown slds-dropdown_right slds-nubbin_top-right" style="right:-1rem">
+                    
+                <ul  role="menu">
+                <li class="slds-dropdown__item" role="presentation">
+                
+                <span class="slds-truncate" title={staffUserName}>
+                <span class="slds-icon_container slds-icon-standard-event slds-m-right_x-small" title="Sreeleela">
+                
+                <span class="slds-assistive-text">Description of icon when needed</span>
+                </span>{staffUserName}</span>
+            
+                </li>
+                <li class="slds-dropdown__item" role="presentation">
+                
+                <span class="slds-truncate" title={staffJobRole}>
+                <span class="slds-icon_container slds-icon-standard-note slds-m-right_x-small" title="Receptionist">
+               
+                <span class="slds-assistive-text">Description of icon when needed</span>
+                </span>{staffJobRole}</span>
+                
+                </li>
+                <li class="slds-dropdown__item" role="presentation">
+                <a href="#" role="menuitem" tabindex="0" onclick={navigateToLwcLogin}>
+                <span class="slds-truncate" title="Back to login page">
+                <span class="slds-icon_container slds-icon-standard-email slds-m-right_x-small" title="Back to login page">
+               
+                <span class="slds-assistive-text">Description of icon when needed</span>
+                </span>Sign Out</span>
+                </a>
+                </li>
+                </ul>
+                </div>
+                </div>
+            </div>
+                </li>
+                
+                </ul>
+              </div>
+          </div>
+              </div>
+              
+          </div>
+
+   <lightning-card >
+<lightning-layout>
+    <lightning-layout-item size="2">
+        <template if:true={showLoading}>
+            <lightning-spinner alternative-text="Loading" size="medium" class="spinnerClass"></lightning-spinner>
+        </template>
+                   
+                    <template if:true={loginRecordsDataOneTwo.data}>
+                        <div style="background-color:#49f149; height:29rem;" class="slds-scrollable_y"  tabindex="0">
+                            <lightning-datatable
+                            class="dataModTable"
+                                    key-field="Id"
+                                    data={loginRecordsDataOneTwo.data}
+                                    columns={columnsTable}
+                                    
+                                    onrowaction={handleRowAction}>
+                            </lightning-datatable>
+                        </div>
+                       
+                    </template>
+        
+        
+    </lightning-layout-item>
+<lightning-layout-item size="5">
+   
+    <div class="slds-scrollable_y" style="height:29rem;" tabindex="0">
+        <template lwc:if={loginRecordsTwo.length}>
+            <table  >
+                <thead>
+                    <tr>
+                        <template for:each={headings} for:item="heading">
+                            <th key={heading}>{heading}</th>
+                        </template>
+                    </tr>
+                </thead>
+            
+               
+        
+                <tbody >
+                   
+                    <template for:each={loginRecordsTwo} for:item="login" >
+                        <tr key={login.Id} >
+                           
+                            <td>{login.Full_Name__c}</td>
+                            <td>{login.Type__c}</td>
+                            <td>{login.Status_Pro__c}</td>
+                            
+                            <td> <span class="slds-avatar slds-avatar_circle">
+                                <span class="slds-icon_container " title={login.Full_Name__c}>
+                                    <img src={login.Picture_Url_c__c}  class="imageLogin" />
+                            
+                                <span class="slds-assistive-text">Description of icon when needed</span>
+                                </span>
+                                </span></td>    
+                            
+                        </tr>
+                    </template>
+                
+                </tbody>
+            </table>
+        </template>
+        <template lwc:else>
+            <table  >
+                <thead>
+                    <tr>
+                        <template for:each={headings} for:item="heading">
+                            <th key={heading}>{heading}</th>
+                        </template>
+                    </tr>
+                </thead>
+            
+               
+        
+                <tbody >
+                   
+                    <template for:each={loginRecordsDataOneTwo.data} for:item="login" >
+                        <tr key={login.Id} >
+                           
+                            <td>{login.Full_Name__c}</td>
+                            <td>{login.Type__c}</td>
+                            <td>{login.Status_Pro__c}</td>
+                            
+                            <td> <span class="slds-avatar slds-avatar_circle">
+                                <span class="slds-icon_container " title={login.Full_Name__c}>
+                                    <img src={login.Picture_Url_c__c}  class="imageLogin" />
+                            
+                                <span class="slds-assistive-text">Description of icon when needed</span>
+                                </span>
+                                </span></td>    
+                            
+                        </tr>
+                    </template>
+                
+                </tbody>
+            </table>
+        </template>
+   
+
+</div>
+</lightning-layout-item>
+<lightning-layout-item size="5">
+ <div>
+        <template if:true={patientData.data}>
+            <div style="background-color:#7F8CED; height:29rem;" class="slds-scrollable_y"  tabindex="0">
+                <lightning-datatable
+                
+                        key-field="Id"
+                        data={patientData.data}
+                        columns={columns}
+                        onsave={handleSave}
+                                 draft-values={saveDraftValues} 
+                        onrowaction={handleRowAction}>
+                </lightning-datatable>
+            </div>
+           
+        </template>
+    </div>
+    <div>
+        <template if:true={showModal}>
+           <c-hospital-enquiry-form onclose={closeHandler}></c-hospital-enquiry-form> 
+        </template>
+        
+    </div>
+</lightning-layout-item>
+
+</lightning-layout>
+   
+    
+   
+
+   </lightning-card> 
+</template>

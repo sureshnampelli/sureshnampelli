@@ -1,0 +1,45 @@
+/*.zoom {
+    padding: 50px;
+    background-color: green;
+    transition: transform .2s; 
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+  }*/
+  
+  /*.zoom:hover {
+    transform: scale(1.5);
+    
+     (150% zoom - Note: if the zoom is too large, it will go outside of the viewport)
+   } */
+  
+  .chatSendBtn{
+    position: absolute;
+    z-index: 10;
+    margin: 6% 0 0 24%;
+   
+  }
+  .myAppHistory {
+    /* transform: scale(1.5);*/
+     width: 190px;
+     height: 190px;
+     margin: 0 auto; /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+   }
+   .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 340px;
+    margin: auto;
+    text-align: center;
+  }
+  
+  .title {
+    color: grey;
+    font-size: 18px;
+  }
+  .container{
+background: rgba(255, 255, 255, 0.2);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(255, 255, 255, 0.3);}

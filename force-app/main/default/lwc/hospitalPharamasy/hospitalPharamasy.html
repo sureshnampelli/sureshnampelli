@@ -1,0 +1,276 @@
+<template>
+    <div class="slds-builder-header_container">
+        <header class="slds-builder-header">
+        <div class="slds-builder-header__item" style="padding-left:0.5rem;padding-right:0.5rem;">
+            <lightning-icon icon-name='utility:back' onclick={navigateToLwcLogin} alternative-text='back' variant='inverse'
+             size='x-small' title='back'></lightning-icon>
+     
+        </div>
+        <div class="slds-builder-header__item">
+        <div class="slds-builder-header__item-label slds-media slds-media_center">
+        <div class="slds-media__figure">
+        <span class="slds-icon_container slds-icon-utility-builder slds-current-color">
+        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#builder"></use>
+        </svg>
+        </span>
+        </div>
+        <div class="slds-media__body">App Name</div>
+        </div>
+        </div>
+        <nav class="slds-builder-header__item slds-builder-header__nav">
+        <ul class="slds-builder-header__nav-list">
+        <li class="slds-builder-header__nav-item slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open">
+        <button class="slds-button slds-builder-header__item-action slds-media slds-media_center" aria-haspopup="true" aria-expanded="false" title="Click to open menu">
+        <span class="slds-media__figure">
+        <span class="slds-icon_container slds-icon-utility-page slds-current-color">
+        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#page"></use>
+        </svg>
+        </span>
+        </span>
+        <span class="slds-media__body">
+        <span class="slds-truncate" title="Dropdown">Dropdown</span>
+        <span class="slds-icon_container slds-icon-utility-chevrondown slds-current-color slds-m-left_small">
+        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#chevrondown"></use>
+        </svg>
+        </span>
+        </span>
+        </button>
+        </li>
+        </ul>
+        </nav>
+        <div class="slds-builder-header__item slds-has-flexi-truncate">
+        <h1 class="slds-builder-header__item-label">
+        <span class="slds-truncate" title="Page Type">Page Type</span>
+        </h1>
+        </div>
+        <div class="slds-builder-header__item slds-builder-header__utilities">
+            <div class="slds-builder-header__utilities-item">
+                <div class="slds-box" ><h2>{currentTime}</h2></div></div>
+        <div class="slds-builder-header__utilities-item" style="background-color: #FFFFFF;">
+            <div style="padding-left:0.5rem;padding-right:0.5rem;padding-top:0.8rem;position:relative" >
+                <span class="slds-avatar slds-avatar_circle">
+                    <span class="slds-icon_container " title={staffUserName}>
+                    
+                        <img src={staffImage} alt="staff img" class="ImageStaff  " name={toggleIconName}
+                        onclick={handleToggleClick} />
+                
+                    <span class="slds-assistive-text">Description of icon when needed</span>
+                    </span>
+                    </span>
+                    <div class={popvover}>
+                <div class={toggleButtonLabel} role="tooltip"  style="position:absolute;top: -5px;left:20px; background-color:#EAF5FE; ">
+                <div class="slds-popover__body" style="color:#070607">{staffUserName} 
+                   {staffJobRole}
+                </div>
+                </div>
+            </div>
+                </div>
+        </div>
+        <div class="slds-builder-header__utilities-item">
+        <a href="#" class="slds-builder-header__item-action slds-media slds-media_center">
+        <div class="slds-media__figure">
+        <span class="slds-icon_container slds-icon-utility-help slds-current-color">
+        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#help"></use>
+        </svg>
+        </span>
+        </div>
+        <div class="slds-media__body">Help</div>
+        </a>
+        </div>
+        </div>
+        </header>
+        <div class="slds-builder-toolbar" role="toolbar">
+        <div class="slds-builder-toolbar__item-group" aria-label="Canvas Actions">
+        <button class="slds-button slds-button_icon slds-button_icon-border" title="Canvas Settings">
+        <svg class="slds-button__icon" aria-hidden="true">
+        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#settings"></use>
+        </svg>
+        <span class="slds-assistive-text">Canvas Settings</span>
+        </button>
+        <div class="slds-button-group">
+        <button class="slds-button slds-button_icon slds-button_icon-border" title="Undo" tabindex="0">
+        <svg class="slds-button__icon" aria-hidden="true">
+        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#undo"></use>
+        </svg>
+        <span class="slds-assistive-text">Undo</span>
+        </button>
+        <button class="slds-button slds-button_icon slds-button_icon-border" title="Redo" tabindex="-1">
+        <svg class="slds-button__icon" aria-hidden="true">
+        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#redo"></use>
+        </svg>
+        <span class="slds-assistive-text">Redo</span>
+        </button>
+        </div>
+        </div>
+        <div class="slds-builder-toolbar__item-group" aria-label="Edit actions">
+        <div class="slds-button-group">
+        <button class="slds-button slds-button_icon slds-button_icon-border" title="Cut" tabindex="-1">
+        <svg class="slds-button__icon" aria-hidden="true">
+        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#cut"></use>
+        </svg>
+        <span class="slds-assistive-text">Cut</span>
+        </button>
+        <button class="slds-button slds-button_icon slds-button_icon-border" title="Copy" tabindex="-1">
+        <svg class="slds-button__icon" aria-hidden="true">
+        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#copy"></use>
+        </svg>
+        <span class="slds-assistive-text">Copy</span>
+        </button>
+        <button class="slds-button slds-button_icon slds-button_icon-border" title="Paste" tabindex="-1">
+        <svg class="slds-button__icon" aria-hidden="true">
+        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#paste"></use>
+        </svg>
+        <span class="slds-assistive-text">Paste</span>
+        </button>
+        </div>
+        <div class='slds-box slds-box_xx-small' >
+         <lightning-icon icon-name='utility:toggle_panel_left' alternative-text='toggle_panel_left'
+          variant={darkShow}  size='x-small' onclick={handleToggleDarkMode} title='toggle_panel_left'></lightning-icon>
+       
+        </div>
+        {modeShow}
+        </div>
+        <div class="slds-builder-toolbar__actions" aria-label="Document actions">
+            
+        <button class="slds-button slds-button_neutral">
+        <svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
+        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#right"></use>
+        </svg> Run</button>
+        <button class="slds-button slds-button_neutral">Save As</button>
+        <button class="slds-button slds-button_brand">Save</button>
+        </div>
+        </div>
+        </div> 
+    <lightning-card>
+        
+<lightning-layout>
+<lightning-layout-item size="6" style="background-color:#ACF3E4;padding:0.5%; height:19.30rem">
+        <div class="container">
+            <ul class="slds-grid_align-spread uni">
+                <li> Medicine Name</li>
+           <li> Expiry Date </li>
+           <li>No Of Items</li>
+           <li> Amount</li>
+           <li><lightning-button  label="PDF" variant="Success" onclick={pdfHandler}></lightning-button></li>
+           <li><lightning-button  label="Record Save" variant="Success" onclick={handleRecord} ></lightning-button></li>
+            </ul>
+            
+            <div class="darkModeMain">
+            <div class="  slds-scrollable_y  " style=" height:15rem;" tabindex="0">
+            <template for:each={MedField} for:item="med" for:index="index">
+                <div key={med.MedName} >
+                    
+                    <ul>
+                        <li> {med.MedName}</li>
+                   <li> {med.ExpiryDate}</li>
+                   <li> {med.No}</li>
+                   <li> {med.Amount}</li>
+                  <li>  <lightning-button  label="Delete" variant="brand" name={med} onclick={DeleteOutHandler}></lightning-button></li>
+                  <li>  <lightning-button  label="Edit" variant="brand" name={med} onclick={EditOutHandler}></lightning-button></li>  
+                   </ul>
+                </div>
+            </template></div>
+            </div >
+            <div class="wrapper relative">
+                <div class=" div1"><p class="gstCl"><strong>GST:</strong>12.5%</p></div>
+                
+                <div class=" div2"><p class="totalCl"><strong>Total:</strong>{totalAmount}</p></div>
+                <div class=" div3"><p><strong>Total+GST :</strong>{totalGst}</p></div>
+            </div>
+        
+            
+        
+        </div>
+      </lightning-layout-item>
+    <lightning-layout-item size="3">
+        
+            <div class="slds-p-around_medium" style="background-color: #070607;">
+                <span  title="Please Enter Medicine Name">        
+                    <lightning-input label="Medicine" name="Medicine"  value={valueName} onchange={inputPharmaHandlerOne}></lightning-input>
+                <span class="slds-assistive-text">Please Enter Medicine Name</span>
+                </span>
+                <lightning-input label="Cost" name="Cost"  value={valueCost} onchange={inputPharmaHandlerTwo}></lightning-input>
+                <lightning-input label="Expiry" name="Expiry" type="Date" value={valueExpiry} onchange={inputPharmaHandlerThree}></lightning-input>
+                <lightning-input label="No Of" name="No Of"  value={valueNo} onchange={inputPharmaHandlerFour}></lightning-input>
+                
+        <br/>
+                
+           
+            <template lwc:if={editShow}>
+                <lightning-button  label="Save" variant="brand" onclick={pharmaEditSaveHandlered}></lightning-button>
+            </template>
+            <template lwc:else >
+                <lightning-button  label="Save" variant="brand" onclick={pharmaOutHandlered}></lightning-button>
+            </template>
+                
+                
+            </div>  
+           
+        
+      </lightning-layout-item>
+    <lightning-layout-item size="3">
+     <template lwc:if={data}>
+        <div class="  slds-scrollable_y  " style=" height:18rem;" tabindex="0">
+            <template if:true={data}>
+                    <lightning-datatable
+                            data={data}
+                            columns={columns}
+                            value={data.Id}
+                            id={index}
+                            onclick={tableHandler}
+                            key-field="id">
+                    </lightning-datatable>
+            </template>
+        </div>
+        </template>
+        <template lwc:elseif={medData.length}>           
+               
+                        <template for:each={medData} for:item="data" for:index="index" >
+                            <div key={data.Id} id={index}>
+                               
+                                <h1><strong>Name:</strong>{data.Name}</h1>
+                                <br/>
+                                <h1><strong>Cost:</strong>{data.Cost__c}</h1>
+                                <br/>
+                                <h1><strong>Each</strong>{data.Each_Medicine__c}</h1>
+                                <br/>
+                                <h1><strong>Ex.Date:</strong>{data.Ex_Date__c}</h1>
+                                <br/>
+                                <h1><strong>Allot:</strong>{data.Med_Left__c}</h1>
+                                <br/>
+                                <h1><strong>Med Left:</strong>{data.Medicine_Left__c}</h1>
+                                <br/>
+                                <h1><strong>Total:</strong>{data.Total__c}</h1>    
+                                
+                            </div>
+                        </template>
+        </template>
+<template lwc:else >
+        <div class="flip-card">
+
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src={staffImage}  alt="Avatar" style="width:300px;height:300px;">
+              </div>
+              <div class="flip-card-back">
+                <h1>{staffUserName}</h1>
+                <p>{staffJobRole}</p>
+
+              </div>
+            </div>
+          </div>
+          </template>
+         
+</lightning-layout-item>
+
+      </lightning-layout> 
+      <br/>
+   <div>
+      <img src={apexlow} alt="apex low" />
+   </div>
+</lightning-card>
+</template>

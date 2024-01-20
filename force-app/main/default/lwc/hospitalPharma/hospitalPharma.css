@@ -1,0 +1,96 @@
+/*.ImageStaff{
+    height: 60px;
+    width: 50px;
+    }
+
+.ImageStaff{
+    padding-inline-start:80%;
+}*/
+
+
+.mainBlock {
+background-image: 
+url("/resource/scrollShowOne.jpeg");
+
+}
+
+.slds-large-size_8-of-12 {
+    background-color:#6495ED
+}
+.dateTime{
+    color: rgb(0, 255, 76);
+}
+
+.createFormOne {
+    background-color:#191970 
+}
+
+.createFormOne.lightning-input {
+    color: red;
+}
+
+.slds-large-size_1-of-12 {
+    background-color:#acc775
+}
+
+.toggleOne {
+    background-color:white  
+}
+
+.uni{
+    display: flex;
+    align-items: stretch;
+    background-color: aqua;
+   
+    width: 78%;
+    margin: 0;
+    padding: 0;  
+}
+/*ul{
+    display: flex;
+    align-items: stretch;
+    justify-content:space-between;
+   
+    width: 80%;
+    margin: 0;
+    padding: 0;
+}*/
+li {
+    display: block;
+    flex:0 1 auto ;
+    list-style-type: none;
+    background: #fafafa;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: aqua;
+}
+ul:after{
+    content: "";
+    display: table;
+    clear: both;
+   
+}
+ul li{
+    display: block;
+    width: 14.28%;
+    background-color: aqua;
+    background-color:aliceblue;
+    background-repeat:inherit;
+   /*background-clip: border-box;*/
+   
+    background-blend-mode: difference;
+    padding: 0;
+    float: left;
+    text-align: center;
+}
+hr.lineOne{
+    border-top: 1px solid red;
+}
+
+.totalCl{
+    
+    padding-inline-start:60%;
+}

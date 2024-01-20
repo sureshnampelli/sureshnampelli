@@ -1,0 +1,237 @@
+<template>
+    <div class="slds-builder-header_container" style="background-color: white;">
+          <div class="slds-builder-toolbar" role="toolbar">
+        <div class="slds-builder-toolbar__item-group"  aria-label="Canvas Actions">
+       <img src={hospitalRemovebg} class="Removebg" alt="logo" />
+        <div class="slds-button-group" style="padding-top:2rem;">
+       <h1 class="hospitalName">Apex Hospital</h1>
+        </div>
+        </div>
+        <div class="slds-builder-toolbar__item-group" aria-label="Edit actions">
+        <div class="slds-button-group">
+       
+        </div>
+       
+        </div>
+        
+        <div class="slds-builder-toolbar__actions" aria-label="Document actions">
+            <div style="padding-right:10rem;padding-top:2rem;position:relative"
+            class="slds-text-body_small slds-text-color_error">{fileName}
+           </div>
+            <div style="padding-right:8rem;padding-top:1rem;position:relative" >
+                <template if:true={showLoadingSpinner}>
+                    <div style="z-index: 10000 !important;">
+                        <lightning-spinner alternative-text="Uploading......" size="medium" style="z-index: 10000 !important;"></lightning-spinner>
+                    </div>
+                </template>          
+                        <div>
+                            <lightning-input label="" name="file uploader" onchange={handleFilesChange} type="file" multiple></lightning-input>
+                        </div>   
+            </div>
+           
+            <div style="padding-right:6rem;padding-top:2rem;position:relative" >
+               
+                <button class="slds-button slds-button_neutral" label={UploadFile} onclick={handleSave} 
+                variant="base" disabled={isTrue} >
+                    <svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
+                    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#right"></use>
+                    </svg> Upload</button>
+            </div>
+            <div style="padding-right:3rem;padding-top:2rem;position:relative" >
+                <span class="slds-avatar slds-avatar_circle">
+                    <span class="slds-icon_container " title={staffUserName} >
+                    
+                        <img src={staffImage} alt="staff img" class="ImageStaff  " name={toggleIconName}
+                        onclick={handleToggleClick} />
+                
+                    <span class="slds-assistive-text">Description of icon when needed</span>
+                    </span>
+                    </span>
+                    <div class={popvover}>
+                <div class={toggleButtonLabel} role="tooltip"  style="position:absolute;top: -3px;left:10px">
+                <div class="slds-popover__body">{staffUserName} 
+                   {staffJobRole}
+                </div>
+                </div>
+            </div>
+                </div>
+                <div style="padding-right:1rem;padding-top:2rem;position:relative" >
+                    <a href="#" class="slds-button" onclick={navigateToLwcLogin}>Sign Out</a>
+                </div>
+            </div>
+                
+        </div>
+        </div>
+    <lightning-card >
+        <lightning-layout multiple-rows> 
+            <lightning-layout-item size="5" padding="around-small">
+                   <template if:true={progressStatus}>
+                        <div class="slds-box" style="background-color:#91DB8B" >
+                        <div class="slds-publisher slds-is-active">
+<label for="comment-text-input2" class="slds-publisher__toggle-visibility slds-m-bottom_small">
+<span class="slds-assistive-text"></span>Line Graph</label>
+<div class="slds-box  slds-scrollable_y  temprogress" style="height:24.7rem;" tabindex="0">
+<template for:each={objTwo} for:item="ob" for:index="index">
+                        <div class="progressClass" key={ob.NameO}>
+                           <h class="oneName"> {ob.NameO}</h>
+                           <div class="proGro" id={index}><lightning-progress-bar value={ob.percent} id={index} onclick={progressFocus} name={ob.percent} class="proGro"  size="large"></lightning-progress-bar>
+                             <h class={showHide} > {ob.percent}</h></div>
+                              
+                             
+                        </div>
+                        
+                    </template>
+</div>
+<br/>
+<button class="slds-button slds-button_brand" onclick={progressHandler} >Close</button>
+</div>
+                        </div>               
+                    
+                </template>
+                
+                    <div class="chart slds-var-m-around_medium" lwc:dom="manual">
+            
+                    </div>
+                
+            </lightning-layout-item>
+            <lightning-layout-item size="7" padding="around-small">
+                
+                <div class="slds-p-around_medium" style="background-color:#7F8CED">
+                    <lightning-layout>
+                        <lightning-layout-item size="2" padding="around-small">
+                           <lightning-combobox name="filterBy" value={filterBy} label="Filter By"
+                           options={FilterByOptions} onchange={filterbyHandler}></lightning-combobox>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="4" padding="around-small">
+                            <lightning-input type="text" label="Filter" onkeyup={filterHandler}></lightning-input>
+                        </lightning-layout-item>
+                        <!---Sorting dropdown-->
+                        <lightning-layout-item size="2" alignment-bump="left" padding="around-small">
+                            <lightning-combobox name="sortedBy" value={sortedBy} label="Sort By"
+                           options={sortByOptions} onchange={sortHandler}></lightning-combobox>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="2" alignment-bump="left" padding="around-small">
+                            <lightning-combobox name="sortDirection" value={sortDirection} label="ASC/DSEC"
+                           options={sortByDirectionOptions} onchange={sortOrderHandler}></lightning-combobox>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                    <div class="slds-scrollable_y" style="height:25rem;" tabindex="0">
+                 <table  >
+                        <thead>
+                            <tr>
+                                <template for:each={headings} for:item="heading">
+                                    <th key={heading}>{heading}</th>
+                                </template>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={filteredData} for:item="data" for:index="index" >
+                                <tr key={data.Id} id={index}  class="tableRow" onclick={tableRowSelector}>
+                                   
+                                    <td id={data.Name} onclick={tableMedNameHandler} class="tableName">{data.Name}</td>
+                                    <td class={classError} id={data.Cost__c} >{data.Cost__c}</td>
+                                    <td class={classError} >{data.Each_Medicine__c}</td>
+                                    <td  >{data.Ex_Date__c}</td>
+                                    <td >{data.Med_Left__c}</td>
+                                    <td onclick={tableMedLeft} id={data.Medicine_Left__c}   class="tableLeft">{data.Medicine_Left__c}</td>
+                                    <td>{data.Total__c}</td>    
+                                    
+                                </tr>
+                            </template>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </lightning-layout-item>
+        </lightning-layout>
+
+        
+    </lightning-card>
+    <template if:true={promtStatus}>
+        
+    <section aria-describedby="dialog-body-id-208" aria-labelledby="dialog-heading-id-5"  class="slds-popover slds-popover_prompt slds-popover_prompt_top-right" role="dialog">
+        <button class="slds-button slds-button_icon slds-button_icon-small slds-float_right slds-popover__close" title="Close dialog">
+        <svg class="slds-button__icon" aria-hidden="true">
+        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+        </svg>
+        <span class="slds-assistive-text">Close dialog</span>
+        </button>
+        <div class="slds-popover__body" id="dialog-body-id-208">
+        <div class="slds-media">
+        <div class="slds-media__body">
+        <div class="slds-media">
+        <div class="slds-media__figure">
+        <span class="slds-icon_container">
+        <svg class="slds-icon slds-icon_small slds-icon-text-default" aria-hidden="true">
+        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#prompt"></use>
+        </svg>
+        <span class="slds-assistive-text"></span>
+        </span>
+        </div>
+        <div class="slds-media__body"  >
+        <h2 id="dialog-heading-id-5" class="slds-popover_prompt__heading"></h2>
+        <div class="slds-var-p-around_medium">
+            <div class="slds-grid slds-grid_vertical-align-center">
+                <button class="slds-button slds-button_neutral slds-col_bump-right" onclick={dismissHandler}>Dismiss</button>
+               
+                </div>
+            <template if:true={editShow} >
+                <div class="slds-box slds-p-around_medium createFormOne" style="background-color:#01C3B3">
+                    <lightning-record-edit-form object-api-name={objectApiName}
+                    record-id={editrecordId}>
+                    <lightning-input-field field-name={fields.nomedicineField}></lightning-input-field>
+                    <lightning-input-field field-name={fields.costField}></lightning-input-field>
+                    <lightning-button onclick={handleReset}  class="slds-m-around_xx-small" label="cancel"></lightning-button>
+                    <lightning-button type="submit" onclick={editSubmit} variant="brand"  class="slds-m-around_xx-small" label="Save"></lightning-button>
+                </lightning-record-edit-form>
+                </div>
+        
+            </template>
+<br/>
+<div class="slds-box" style="height:18rem">
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                      <th>No</th>
+                      <th>Amount</th>
+<th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={medicalChild} for:item="co">
+                        <tr key={co.Id}>
+
+                            <td>{co.Medicine_Name__c}</td>
+                            <td>{co.No_Of_Medicine__c}</td>
+                            <td>{co.Amount__c}</td>
+                            <td><lightning-button label="Edit" name={co.Id} onclick={editChildHandler}></lightning-button></td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        <footer class="slds-popover__footer">
+            <div class="slds-grid">
+                <div class="slds-m-around_medium">
+                    <lightning-button label="Previous" disabled={disablePrevious} onclick={handlePreviousPageOne}></lightning-button>
+                </div>
+                <div>{countOne}</div>
+                <div class="slds-m-around_medium">
+                    <lightning-button label="Next" disabled={disableNext} onclick={handleNextPgeNone}></lightning-button>
+                </div>
+            </div>
+        
+        </footer>
+        </section>
+    </template>  
+    
+
+</template>

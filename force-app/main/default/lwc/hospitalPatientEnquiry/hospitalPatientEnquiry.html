@@ -1,0 +1,166 @@
+<template>
+    <lightning-card>
+            <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open slds-modal_medium">
+                <div class="slds-modal__container" style="width:780px;height:700px;">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" onclick={closeHandler}>
+                        <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                          <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                        </svg>
+                        <span class="slds-assistive-text">Cancel and close</span>
+                      </button>
+                    <div class="slds-modal__content" id="modal-content-id-1">
+        
+                    <img src={enquiryback} alt="back"  />
+                
+           
+            <div  role="tooltip"  style="position:absolute;top: 220px;right:80px">
+               <div class="slds-popover__body"> 
+                <template if:false={signInShow}>
+                <div class='slds-grid slds-wrap' style="width: 330px; height:220px">
+                    <div class='slds-col slds-size_1-of-1' >
+                        <h1 style="color:blue; font: size 40px; text-align: center; " >
+                            Register as Patient</h1>
+                    </div>
+                    <div class='slds-col slds-size_1-of-2' >
+                <lightning-input  placeholder="First Name" style="width: 160px;" onchange={firstNameHandler}></lightning-input>
+            </div>
+            <div class='slds-col slds-size_1-of-2'>
+                <lightning-input placeholder="Last Name" style="width: 160px;" onchange={lastNameHandler}></lightning-input>
+        </div>
+        <div class='slds-col slds-size_1-of-2'>
+                <lightning-input placeholder="Age" style="width: 160px;" onchange={ageHandler}></lightning-input>
+               </div>
+               <div class='slds-col slds-size_1-of-2'>
+                <lightning-input placeholder="Phone" style="width: 160px;" onchange={phoneHandler}></lightning-input>
+               </div>
+               <div class='slds-col slds-size_1-of-2'>
+                <lightning-input placeholder="Email" style="width: 160px;" type="email" onchange={emailHandler}></lightning-input>
+               </div>
+               <div class='slds-col slds-size_1-of-2'>
+                <lightning-input placeholder="Password" style="width: 160px;" onchange={passwordHandler}></lightning-input>
+            </div>
+           <div class='slds-col slds-size_1-of-4'>
+            <lightning-input
+            type="checkbox"
+            label="Male"
+            value="Male"
+            
+            onchange={handleCheckboxMale}
+        >
+        </lightning-input>
+        </div>
+        <div class='slds-col slds-size_1-of-4'>
+        <lightning-input
+            type="checkbox"
+            label="Female"
+            value="Female"
+        
+            onchange={handleCheckboxFemale}
+        ></lightning-input>
+    </div>
+    <div class='slds-col slds-size_1-of-4'>
+    </div>
+    <div class='slds-col slds-size_1-of-4'>
+    </div>
+            <br/>
+            
+            <div class='slds-col slds-size_2-of-3' style="padding-top: 1rem;">
+                <a href="#" class="slds-button"  onclick={alreadyPatientHandler}>Already have an account?</a>
+            </div>
+            
+            <div class='slds-col slds-size_1-of-3' style="padding-top: 1rem;">
+                <lightning-button label="Register" onclick={patientSignUpHandler}></lightning-button>
+            </div>
+        </div></template>
+               </div>
+               
+               </div>  
+               
+        <div  role="tooltip"  style="position:absolute;top: 164px;left:320px">
+        <div class="slds-popover__body">
+            <template if:true={signInShow} >
+                <div class='slds-grid slds-wrap'>
+                    
+               
+                <div class='slds-col slds-size_1-of-2' >
+                    <div class="flex-container">
+                        <div class="divOne" onclick={patientLoginDiv}>Patient</div>
+                        <div class="divTwo" onclick={doctorLoginDiv}>Doctor</div>  
+                        <div class="divThree" onclick={adminLoginDiv}>Admin</div> 
+                      </div>
+                </div>
+                <div class='slds-col slds-size_1-of-2' ></div>
+            </div>
+           
+            <div class='slds-grid slds-wrap' style="width: 330px; height:220px;padding-top:2rem; "> 
+                
+                <template if:true={patientLoginShow}>
+                   
+                <div class='slds-col slds-size_1-of-1' >
+                    <h1 style="color:blue; font: size 40px; text-align: center; " > Patient Login</h1>
+                </div>
+                <div class='slds-col slds-size_1-of-1' >
+            <lightning-input  placeholder="Enter Email"  class="slds-align_absolute-center" style="width: 160px;" onchange={userNameChangeHandler}></lightning-input>
+        </div>
+        <div class='slds-col slds-size_1-of-1'>
+            <lightning-input placeholder="Password" class="slds-align_absolute-center"  style="width: 160px;" onchange={passwordChangeHandler}></lightning-input>
+    </div>
+    
+    <div class='slds-col slds-size_1-of-1'>
+        <lightning-button label="Login" class="slds-align_absolute-center"  onclick={loginHandler} ></lightning-button>
+    </div></div>
+</template>
+<template if:true={doctorLoginShow}>
+   
+        <div class='slds-col slds-size_1-of-1' >
+            <h1 style="color:blue; font: size 40px; text-align: center; " > Doctor Login</h1>
+        </div>
+        <div class='slds-col slds-size_1-of-1' >
+    <lightning-input  placeholder="Enter Name"  class="slds-align_absolute-center" style="width: 160px;" onchange={doctorUserNameHandler}></lightning-input>
+</div>
+<div class='slds-col slds-size_1-of-1'>
+    <lightning-input placeholder="Password" class="slds-align_absolute-center"  style="width: 160px;" onchange={doctorPasswordHandler}></lightning-input>
+</div>
+
+<div class='slds-col slds-size_1-of-1'>
+<lightning-button label="Login" class="slds-align_absolute-center"  onclick={loginDoctorHandler} ></lightning-button>
+</div>
+
+</template>
+<template if:true={adminLoginShow}>
+   
+    <div class='slds-col slds-size_1-of-1' >
+        <h1 style="color:blue; font: size 40px; text-align: center; " > Admin Login</h1>
+    </div>
+    <div class='slds-col slds-size_1-of-1' >
+<lightning-input  placeholder="Enter User Name"  class="slds-align_absolute-center" style="width: 160px;" onchange={handleUserChange} ></lightning-input>
+</div>
+<div class='slds-col slds-size_1-of-1'>
+<lightning-input placeholder="Password" class="slds-align_absolute-center"  style="width: 160px;" onchange={handlePasswordChange} ></lightning-input>
+</div>
+
+<div class='slds-col slds-size_1-of-1'>
+<lightning-button label="Login" class="slds-align_absolute-center"  onclick={submitHandler} ></lightning-button>
+</div>
+
+</template>
+        </div>
+        
+    </template>
+        </div>
+        
+    </div>
+    
+        </div>
+        
+    </div>
+
+    </section>
+    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div> 
+    
+        <div>
+           
+</div>
+    </lightning-card>
+  
+    </template>

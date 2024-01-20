@@ -1,0 +1,141 @@
+<template>
+ <lightning-card>
+   <div style="height:29rem;">
+   <div class='slds-grid slds-wrap' >
+      <div class='slds-col slds-size_1-of-1' style="text-align: center;" >
+       <div class="textSizeClass">Welcome {patientProfile.Full_Name__c}</div> 
+      </div></div>
+    <div class='slds-grid slds-wrap' style="padding-top: 3rem;">
+      <div class='slds-col slds-size_1-of-12' >
+         
+      </div>
+      <div class='slds-col slds-size_2-of-12' >
+         <div class="dashboardbtn " style="text-align: center;"  onclick={dashboardHandler}>
+         Dashboard
+      </div>
+      <div class="bookappbtn" style="text-align: center;"  onclick={bookAppHandler}>
+         Book Appointment
+      </div>
+      <div class="apphistorybtn" style="text-align: center;"  onclick={appHistoryHandler}>
+         Appointment History
+      </div>
+      </div>
+      <div class='slds-col slds-size_7-of-12' >
+        
+         <template if:true={showAppHistory}>
+            <div  style="padding-left:10px">
+               <template if:true={showLoading}>
+                  <lightning-spinner alternative-text="Loading" size="medium" class="spinnerClass"></lightning-spinner>
+              </template>
+              <div style="height:16rem;">
+              <div class="slds-scrollable_y"  tabindex="0">
+               <template if:true = {patientAppointmentData}>                    
+                  <div >   
+                     
+                      <lightning-datatable key-field="Id"  
+                                           data={patientAppointmentData}  
+                                           columns={columns}  
+                                           hide-checkbox-column="true"  
+                                           show-row-number-column="true"  
+                                           onrowaction={callRowAction}>  
+                      </lightning-datatable>    
+                  </div>  
+              </template> 
+            </div> 
+         </div> 
+            </div>
+            <template if:true={pdfFileShow}>
+               <template for:each={filesList} for:item="file">
+                  <div key={file.value} class="slds-box">
+                      <div class="slds-grid slds-wrap">
+                          <div class="slds-col slds-large-size_4-of-12 slds-medium-size_4-of-12 slds-size_12-of-12">
+                            <p><strong>FileName - </strong>{file.label}</p>
+                          </div>
+                          <div class="slds-col slds-large-size_3-of-12 slds-medium-size_4-of-12 slds-size_12-of-12">
+                            <a href={file.url} download>Download</a>
+                          </div>
+                          <div class="slds-col slds-large-size_3-of-12 slds-medium-size_4-of-12 slds-size_12-of-12">
+                            <lightning-button label="Preview" 
+                            variant="brand"
+                           data-id={file.value}
+                           onclick={previewHandler}
+                            ></lightning-button>
+                          </div>
+                          <div class="slds-col slds-large-size_2-of-12 slds-medium-size_4-of-12 slds-size_12-of-12">
+                           <lightning-icon icon-name='action:close' onclick={closePreviewHandler} alternative-text='close' size='x-small' title='close'></lightning-icon>
+                         </div>
+                        </div>
+                  </div>
+              </template>
+              </template>
+         </template>
+     <template if:true={showBookApp}>
+      <div class='slds-grid slds-wrap' style="padding-left: 30px;" >
+         <div class='slds-col slds-size_1-of-4' >
+          <h1 style="padding: 10px;padding-top:20px;">Doctor</h1>
+          <h1 style="padding: 10px;">Consultancy Fee</h1>
+          <h1 style="padding: 10px;padding-top:20px;">Date</h1>
+ <lightning-button label="Create New Entry" onclick={patientAppointmentHandler} ></lightning-button>
+        
+         </div>
+         <div class='slds-col slds-size_1-of-4' >
+            <lightning-combobox
+            name="type"
+            style="width: 160px;"
+            value={selectedDoctorType}
+            options={typeDoctor}
+            onchange={typeDoctorHandler} ></lightning-combobox>
+            <h1 style="padding: 10px;">{doctorFee}</h1>
+            <lightning-input type="datetime" label="" style="width: 160px;" onchange={appointmentDateHandler}></lightning-input>
+       
+         </div>
+         <div class='slds-col slds-size_2-of-4' ></div>
+      </div>
+     </template>
+     <template if:true={showDashboard}>
+      <div class='slds-grid slds-wrap' >
+         <div class='slds-col slds-size_1-of-2' style="text-align: center;" >
+      
+      <img src={patientappointmentremovebg} alt="apppp" />
+      <h1 onclick={bookAppHandler} class="textClass">Book Appointment</h1>
+         </div>
+         <div class='slds-col slds-size_1-of-2' style="text-align: center;" >
+           
+            <img src={appointmenthistoryremovebg} alt="apppp" />
+            <h1 onclick={appHistoryHandler} class="textClass">View Appointment History</h1>
+               </div></div>
+     </template>
+    
+      </div>
+      
+      <div class='slds-col slds-size_2-of-12' >
+         
+         <div class='slds-grid slds-wrap' >
+            <template lwc:if={particularDoctorShow}>
+              
+  <template for:each={doctorsData} for:item="da">
+   <div key={da.Id}>
+      <div class="card">
+         <img src={da.Image__c} alt="John" style="width:100%">
+         <h1>{da.Name}</h1>
+      <p class="title">{da.Doctor_Type__c}</p>
+     </div> 
+   </div>
+  </template>
+            </template>
+            <template lwc:else>
+            <template if:true={randomcards}> 
+               <div class="card">
+                  <img src={randomImage} alt="John" style="width:100%">
+                  <h1>{randomDocName}</h1>
+                  <p class="title">{randomDocT}</p>
+              </div>
+                                    </template>
+                              </template>
+     </div>
+         
+      </div>
+      
+   </div></div>
+ </lightning-card>   
+</template>

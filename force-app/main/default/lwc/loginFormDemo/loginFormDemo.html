@@ -1,0 +1,144 @@
+<template>
+   <div class="slds-builder-header_container" style="background-color: white;">
+      <div class="slds-builder-toolbar" role="toolbar">
+    <div class="slds-builder-toolbar__item-group"  aria-label="Canvas Actions">
+   <img src={hospitalRemovebg} class="Removebg" alt="logo" />
+    <div class="slds-button-group" style="padding-top:2rem;">
+   <h1 class="hospitalName">Apex Hospital</h1>
+    </div>
+    </div>
+    <div class="slds-builder-toolbar__item-group" aria-label="Edit actions">
+    <div class="slds-button-group">
+
+      <img src={locationlogo} alt="location" class=" locationCss locatonToggle" name={toggleIconLocation} onclick={locationtoggleHandler} />
+      <template lwc:if={showMap}><h1>{DistanceBetween}</h1>K.M</template>
+   </div>
+
+    </div>
+    
+    <div class="slds-builder-toolbar__actions" aria-label="Document actions"> 
+      <div style="padding-right:4rem;padding-top:1rem;position:relative" > 
+         <img src={patientlogin} alt="patient" class="Removebg" onclick={goPatientLogin} />
+      </div>
+      <template if:true={loginForm}>           
+        <div style="padding-right:3rem;padding-top:2.5rem;position:relative" >
+         <span class="slds-icon_container " title="Sign Up" >
+                
+            <img src={signupone} alt="staff img" class="gosign  Imagesing" name={toggleIconSignUp}
+            onclick={handleSignUpClick} />
+            <span class="slds-assistive-text">Description of icon when needed</span>
+          </span>
+            </div>
+            <div style="padding-right:1rem;padding-top:2.5rem;position:relative" >
+               <span class="slds-icon_container " title="Sign In" >
+                 <img src={loginlogo} alt="staff img" class="loginLogos  ImageStaff" name={toggleIconName}
+                 onclick={handleToggleClick} />
+               <span class="slds-assistive-text">Description of icon when needed</span>
+               </span>   
+           <div  role="tooltip"  style="position:absolute;top: -5px;left:-25px">
+           <div class="slds-popover__body"> 
+              <img src={homelogo} alt="staff img" class="HomeLogos  homeone " name={toggleIconHome}
+              onclick={handleToggleHomeClick} />
+           </div>
+           </div>
+       
+           </div>
+         
+         </template>
+        </div>
+      
+    </div>
+    </div>
+   <lightning-card  >
+     
+      <div style="padding-right:1rem;position:relative" >
+         <span class="slds-icon_container " title="Sign In" >
+           <img src={apexMainmiddle} alt="staff img"  />
+         <span class="slds-assistive-text">Description of icon when needed</span>
+         </span> 
+         <div  role="tooltip"  style="position:absolute;top: 20px;left:35px">
+            <div class="slds-popover__body"> 
+                    <template lwc:if={showMap}>
+                     
+                        <div style="height: 500px; width:700px;">
+                     <lightning-map map-markers={lstMarkersOne}
+                           onmarkerselect={handleMarkerSelect}
+                           selected-marker-value={selectedMarkerValue} zoom-level={zoomlevel} ></lightning-map>
+                        </div>
+                        
+              </template>
+            </div>
+            </div>  
+     <div  role="tooltip"  style="position:absolute;top: 20px;right:35px">
+     <div class="slds-popover__body"> 
+             <template lwc:if={randomcards}>
+           <img src={randomcards} alt="img" />  
+       </template>
+     </div>
+     </div>
+ 
+     </div>
+
+
+      <lightning-layout>
+         <lightning-layout-item size="8">
+     
+            <div class="slds-var-m-around_medium">
+               <template if:true={showLogin}> 
+                  <c-login-sign-in-demo  onclose={closeHandler}></c-login-sign-in-demo>
+               </template>
+               <template if:true={showLoginSignUp}> 
+                  <c-login-sign-up-demo  onclosed={closeHandlered}></c-login-sign-up-demo>
+               </template>
+            <template  if:true={showPatientLogin}>
+               <c-hospital-patient-enquiry onpatientclose={closePatientHandler}></c-hospital-patient-enquiry>
+            </template>
+            </div>
+              
+             
+              
+         </lightning-layout-item>
+         <lightning-layout-item size="2">
+           
+         </lightning-layout-item>
+         <lightning-layout-item size="2">
+            
+         </lightning-layout-item>
+      </lightning-layout>
+    
+   
+   
+   <br/>
+   <div>
+      <img src={apexlow} alt="apex low" />
+   </div>
+   
+</lightning-card>
+
+<lightning-layout>
+   <lightning-layout-item size="10">
+      
+      <template if:true={imagesstaffArray}>
+         <template for:each={imagesstaffArraya} for:item="record">
+<div key={key} >
+   <div class="slds-file slds-file_card">
+      <figure>
+         <a href="#" class="slds-file__crop">
+            <span class="slds-assistive-text">preview:</span>
+            <img src={record.url} alt="fghj"/>
+         </a>
+      </figure>
+   </div>
+</div>
+         </template>
+      </template>
+
+     
+   </lightning-layout-item>
+   <lightning-layout-item size="2">
+     
+   </lightning-layout-item>
+</lightning-layout>     
+        
+   
+</template>

@@ -1,0 +1,16 @@
+<template>
+   <lightning-card title="Hospital Admin ">
+    <template if:true={adminHospitalData}>
+        <div style="height: 300px;">
+            <lightning-datatable
+                    key-field="Id"
+                    data={adminHospitalData}
+                    columns={columns}
+                    onrowaction={handleRowActions}>
+            </lightning-datatable>
+        </div>
+       
+    </template>
+
+   </lightning-card> 
+</template>

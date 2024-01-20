@@ -1,0 +1,19 @@
+.Removebg{
+    width: 60px;
+    height: 60px;   
+   }
+   .hospitalName{
+       font-size: 20px;
+       color: blue;
+   }
+.clockTin{
+    font-size: 9.4px;
+   }
+ .attendancelist{
+    padding-left: 15px;
+    width: 100px;;
+    height: 120px;;
+ } 
+ .PatientLogoClass{
+
+ } 

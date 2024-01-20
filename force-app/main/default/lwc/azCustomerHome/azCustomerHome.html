@@ -1,0 +1,578 @@
+<template>
+     <div style="height:31rem;background-color:rgb(255,255,255);">
+            <h1></h1>
+            <div class='slds-grid slds-wrap' >
+               <div class='slds-col slds-size_4-of-12' >
+                <div class='slds-grid ' >
+                    <div class='slds-col slds-size_1-of-2' >
+                <lightning-input label="" type="date" max={selectedToday} value={today} 
+                onchange={changeDateHandler} style="width: 140px; padding-left:20px" ></lightning-input>
+                    </div>
+                    <div class='slds-col slds-size_1-of-2' style="width: 200px;" >
+               <h1 style="padding-top:20px;"><Strong>TIME:</Strong>{currentTime}</h1>
+                    </div>
+                   </div>
+            <div class='slds-grid ' >
+                <div class='slds-col slds-size_1-of-3' style="width:140px;height:100px" >
+                    <span>
+                        <img src={customerEnquiry}   onclick={customerEnquiryHandler} class="zoom patientbtn" style="Padding:10px;width:100px;" alt="Data Logo"/>
+                    </span>
+                </div>
+                <div class='slds-col slds-size_1-of-3' style="width:140px;height:100px" >
+                    <span>
+                        <img src={customerProfile} onclick={customerProfileHandler} class="zoom patientbtn" style="Padding:10px;width:100px;" alt="Enquiry" />
+                    </span>
+                </div>
+                <div class='slds-col slds-size_1-of-3' style="width:140px;height:100px">
+                  <span>
+                      <img src={customerWorkAllot} onclick={customerWorkAllotHandler} class="zoom patientbtn" style="Padding:10px;width:100px;" alt="EnquiryLogo" />
+                  </span>
+              </div>
+            </div>
+                <div class='slds-col slds-size_1-of-1' >
+      <!--<img  src={ThreeDPainterRemovebg} alt="lll"/> -->  
+        <template if:true={adminTodayShiftwise.length} >
+            <c-az-custom-data-table
+            key-field="Id"
+            data={adminTodayShiftwise} columns={columns}
+            onclick={getSelectedRow} 
+            onrowaction={callRowAction}></c-az-custom-data-table>
+</template></div>
+<div  class='slds-col slds-size_1-of-1' >
+  <template lwc:if={hideShow}>
+    
+    <div class='slds-grid '  >
+      
+        
+      <div class='slds-col slds-size_1-of-3'  style="width:160px;">
+        <template for:each={customerAdminWorkerData} for:item="cawd">
+        <div class="card" style="padding:10px;" key={cawd.Id}>
+          <img src={cawd.Worker_Image__c} alt="img" style="width:120px;height:135px;"/>
+          <h1>{cawd.Name}</h1>
+          <h1> {cawd.Worker_Email__c}</h1>
+          <h1> {cawd.Worker_Phone__c}</h1>
+       <p class="title">{cawd.Worker_Role__c}</p>
+      </div> 
+    </template>
+      </div>
+      <div class='slds-col slds-size_1-of-3'  style="width:160px;">
+        <template for:each={customerAdminWorkerData} for:item="cawd">
+        <div class="card" style="padding:10px;" key={cawd.Id}>
+          <img src={cawd.Admin_Image__c} alt="img"  style="width:120px;height:135px;"/>
+          <h1>{cawd.Admin_Name__c}</h1>
+          <h1> {cawd.Admin_Email__c}</h1>
+          <h1>{cawd.Admin_Phone__c}</h1>
+       <p class="title">Admin</p>
+      </div> 
+    </template>
+      </div>
+    
+      <div class='slds-col slds-size_1-of-3'>
+       
+        <template for:each={azWorkerShiftwiseRatingData} for:item="rate">
+          <div key={rate.Id}>
+           <template if:true={rate.Customer_Name__c}> 
+           {rate.Customer_Name__c}
+            <img src={rate.workerRatingIconItem} alt="workerRatingIcon" style="width: 60px;height:30px;" />
+          </template>
+          </div>
+        </template>
+      </div>
+    </div>
+    
+  </template>
+  <template lwc:else>
+  <div style="height: 100px;">
+    <lightning-map map-markers={lstMarkers} zoom-level={zoomlevel}  ></lightning-map>
+</div>
+</template>
+
+</div>
+               </div>
+               <div class='slds-col slds-size_7-of-12'>
+            <h1></h1>
+         
+           
+           
+              <template if:true={iscustomerProfile}>
+              <div style="padding-top:30px;">
+              <article class="slds-card" >
+                <div class="slds-grid slds-einstein-header slds-card__header">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-grid slds-grid_vertical-align-center slds-size_3-of-4 slds-medium-size_2-of-3">
+                <div class="slds-media__figure">
+                <span class="slds-icon_container slds-icon-utility-salesforce1">
+                <svg class="slds-icon slds-icon_small slds-icon-text-default" aria-hidden="true">
+                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#salesforce1"></use>
+                </svg>
+                </span>
+                </div>
+                <div class="slds-media__body">
+                <h2 class="slds-truncate" title="Einstein (10+)">
+                <a href="#" class="slds-card__header-link" title="Einstein (10+)">
+                <span class="slds-text-heading_small">{customerName}</span>
+                </a>
+                </h2>
+                </div>
+              </div>
+                </header>
+                <div class="slds-einstein-header__actions">
+                <div class="slds-button-group" role="group">
+                  <lightning-icon icon-name='action:edit' onclick={editCustomerHandler} alternative-text='edit' size='x-small' title='edit'></lightning-icon>
+                  <lightning-icon icon-name='standard:address' onclick={addressEditCustomerHandler} alternative-text='address' size='small' title='address'></lightning-icon>
+              </div>
+                </div>
+                </div>
+                <div class="slds-card__body slds-card__body_inner"  style="height:300px;"> 
+                  <div class='slds-grid ' >
+                  <div class='slds-col slds-size_1-of-2'>
+                    <div class="slds-m-right_medium slds-m-left_medium" style="width:300px;height:200px;">
+                     <template lwc:if={isEditCustomer}>
+                      <lightning-record-edit-form
+                      record-id={customerID} object-api-name="AZ_Customer__c">
+                    <lightning-input-field field-name="Name"></lightning-input-field>
+                    <lightning-input-field field-name="Last_Name__c"></lightning-input-field>
+                    <lightning-input-field field-name="Phone__c"></lightning-input-field>
+                    <lightning-input-field field-name="Email__c"></lightning-input-field>
+                    <lightning-button label="save" type="submit"></lightning-button> 
+                  </lightning-record-edit-form>
+                     </template>
+                     <template lwc:else>
+                      <template for:each={serachCustomerData} for:item="cus">
+                        <div key={cus.Id}>
+                          <div class='slds-grid ' >
+                            <div class='slds-col slds-size_1-of-2' style="width:120px ;">
+<h1 style="padding: 20px;"><strong>Name:</strong></h1>
+<h1 style="padding: 20px;"><strong>Full Name:</strong></h1>
+<h1 style="padding: 20px;"><strong>Email:</strong></h1>
+<h1 style="padding: 20px;"><strong>Phone:</strong></h1>
+<h1 style="padding: 20px;"><strong>Password:</strong></h1>
+                            </div>
+                            <div class='slds-col slds-size_1-of-2'>
+                              <h1 style="padding: 20px;">{cus.Name}</h1>
+                              <h1 style="padding: 20px;">{cus.Full_Name__c}</h1>
+                              <h1 style="padding: 20px;">{cus.Email__c}</h1>
+                              <h1 style="padding: 20px;">{cus.Phone__c}</h1>
+                              <h1 style="padding: 20px;">{cus.Password__c}</h1>
+                            </div>
+                          </div>
+                        </div>
+                      </template>
+                    </template>
+                    </div>
+                  </div>
+                  <div class='slds-col slds-size_1-of-2'>
+                    <div class="slds-m-right_medium slds-m-left_medium" style="width:300px;height:200px;">                        
+                    <template lwc:if={isAddressEditCustomer}>
+                      <lightning-record-edit-form  record-id={customerID} object-api-name="AZ_Customer__c" >
+                        <lightning-input-field field-name="Street_Long__c"></lightning-input-field>
+                        <div class='slds-grid ' >
+                          <div class='slds-col slds-size_1-of-2'>              
+                            <lightning-input-field field-name="City__c" onchange={branchNameHandler} ></lightning-input-field>
+                            <lightning-input-field value={stateName} field-name="State__c"></lightning-input-field>
+                          </div>
+                          <div class='slds-col slds-size_1-of-2'>
+                           
+                            <lightning-input-field value={countryName} field-name="Country__c"></lightning-input-field>
+                            <lightning-input-field value={pincodeNumber} field-name="Pincode__c"></lightning-input-field>
+                          </div>
+                        </div>
+                        <lightning-button label="save" onclick={saveAddressCustomerHandler} type="submit"></lightning-button>
+                          
+                      </lightning-record-edit-form>
+                    </template>
+                    <template lwc:else>
+                      <template for:each={serachCustomerData} for:item="co">
+                        <div key={co.Id}>
+                          <div class='slds-grid ' >
+                            <div class='slds-col slds-size_1-of-2' style="width:120px ;">
+                              <h1 style="padding-bottom: 30px;padding-top: 10px;padding-left: 20px;padding-right: 20px;"><strong>Street:</strong></h1>
+                            </div>
+                            <div class='slds-col slds-size_1-of-2' >
+                              <h1 style="padding-top: 10px;padding-left: 20px;padding-right: 20px;">{co.Street_Long__c}</h1>
+                            </div>
+                          </div>
+                          <div class='slds-grid ' >
+                            <div class='slds-col slds-size_1-of-2' style="width:120px ;">
+<h1 style="padding: 20px;"><strong>City:</strong></h1>
+<h1 style="padding: 20px;"><strong>State:</strong></h1>
+<h1 style="padding: 20px;"><strong>Country:</strong></h1>
+<h1 style="padding: 20px;"><strong>Pincode:</strong></h1>
+                            </div>
+                            <div class='slds-col slds-size_1-of-2'>
+                              <h1 style="padding: 20px;">{co.City__c}</h1>
+                              <h1 style="padding: 20px;">{co.State__c}</h1>
+                              <h1 style="padding: 20px;">{co.Country__c}</h1>
+                              <h1 style="padding: 20px;">{co.Pincode__c}</h1>
+                            </div>
+                          </div>
+                        </div></template>
+                </template>
+              </div>
+                  </div>
+                </div></div>
+                <footer class="slds-card__footer">
+                  <img src={AZLogo} alt="AZLogo" style="width: 32px;height:32px;" />
+                </footer>
+                </article>
+              </div>
+            </template>
+            <template if:true={iscustomerEnquiry}>
+              <div style="padding-top:10px;">
+              <article class="slds-card" style="background-color:#8f3cee;">
+                <div class="slds-card__header slds-grid" style="background-color:#ECE1F9;">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                <span class="slds-icon_container " title="account">
+                  <img src={AZLogoOne} alt="AZLogoOne" style="width: 20px;height:20px;" />
+                <span class="slds-assistive-text">account</span>
+                </span>
+                </div>
+                <div class="slds-media__body">
+                <h2 class="slds-card__header-title">
+                <a href="#" class="slds-card__header-link slds-truncate" title="Outer Card Header">
+                <span>Enquiry </span>
+                </a>
+                </h2>
+                </div>
+                </header>
+                <div class="slds-einstein-header__actions">
+                  <div class="slds-button-group" role="group">
+                    <lightning-icon  variant={isToggleVariant} icon-name='utility:toggle_panel_right' onclick={togglePickListAddressHandler} alternative-text='toggle_panel_right' size='x-small' title='toggle_panel_right'></lightning-icon>
+                  </div>
+                  </div>
+                </div>
+                <div class="slds-card__body slds-card__body_inner">
+                <article class="slds-card slds-card_boundary">
+                <div class="slds-card__header slds-grid" style="background-color: white;">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                <span class="slds-icon_container " title="account">
+                  <img src={AZLogoOne} alt="AZLogoOne" style="width: 20px;height:20px;" />
+                <span class="slds-assistive-text">account</span>
+                </span>
+                </div>
+                <div class="slds-media__body">
+                <h2 class="slds-card__header-title">
+                <a href="#" class="slds-card__header-link slds-truncate" title="Card Header">
+                <span>{innerCardHeader}</span>
+                </a>
+                </h2>
+                </div>
+                </header>
+                </div>
+                <div class="slds-card__body slds-card__body_inner" style="height:300px;">
+                  <template lwc:if={isToggleAddressPick}>
+                  <div class='slds-grid ' >
+                    <div class='slds-col slds-size_1-of-2' >
+                  <div class="slds-m-right_medium slds-m-left_medium" style="width:300px;height:250px;">
+                  <template for:each={serachCustomerData} for:item="co">
+                    <div key={co.Id}>
+                      <div class='slds-grid ' >
+                        <div class='slds-col slds-size_1-of-2' style="width:120px ;">
+                          <h1 style="padding-bottom: 30px;padding-top: 10px;padding-left: 20px;padding-right: 20px;"><strong>Street:</strong></h1>
+                        </div>
+                        <div class='slds-col slds-size_1-of-2' >
+                          <h1 style="padding-top: 10px;padding-left: 20px;padding-right: 20px;">{co.Street_Long__c}</h1>
+                        </div>
+                      </div>
+                      <div class='slds-grid ' >
+                        <div class='slds-col slds-size_1-of-2' style="width:120px ;">
+
+<h1 style="padding: 20px;"><strong>City:</strong></h1>
+<h1 style="padding: 20px;"><strong>State:</strong></h1>
+<h1 style="padding: 20px;"><strong>Country:</strong></h1>
+<h1 style="padding: 20px;"><strong>Pincode:</strong></h1>
+
+                        </div>
+                        <div class='slds-col slds-size_1-of-2'>
+                         
+                          <h1 style="padding: 20px;">{co.City__c}</h1>
+                          <h1 style="padding: 20px;">{co.State__c}</h1>
+                          <h1 style="padding: 20px;">{co.Country__c}</h1>
+                          <h1 style="padding: 20px;">{co.Pincode__c}</h1>
+                          
+                        </div>
+                      </div>
+                    </div></template>
+</div>
+                    </div>
+                    <div class='slds-col slds-size_1-of-2' >
+                  <div class="slds-m-right_medium slds-m-left_medium" style="width:300px;height:250px;">                        
+                    <lightning-input type="checkbox" onclick={sameAddressHandler} label="Same Address"></lightning-input>
+                     <lightning-input-address  address-label="Address"
+                         street-label="Street"
+                         city-label="City"
+                         country-label="Country"
+                         province-label="Province"
+                         postal-code-label="PostalCode"
+                         street={street}
+                         city={city}
+                         country={country}
+                         province={province}
+                         postal-code={postalcode}
+                         required
+                         field-level-help="Select  Address"
+                         onchange={addressInputChange}>
+                     </lightning-input-address>
+                 </div>
+                  </div>
+                  </div>
+                </template>
+              <template lwc:else>
+                <template if:true={searchedEnquiryData.length}>
+                  <div class="slds-scrollable_y" style="height:18rem;" tabindex="0">
+                  <table   class="slds-table slds-border_left slds-border_right  slds-table_cell-buffer slds-table_bordered slds-table_col-bordered"
+        style="table-layout:fixed"  >
+          <thead>
+              <tr>
+                <th>Enquiry Date</th>
+                <th>{isTableHeaderChange}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <template for:each={searchedEnquiryData} for:item="se" for:index="index">
+              <tr key={se.Id}  id={index} >
+                <td id={se.Id} onclick={tableRowHandler}>
+                  {se.Enquiry_Date__c} 
+                </td>
+                
+                <td>  
+                  <template lwc:if={se.toogleShow}>
+                  <lightning-record-edit-form object-api-name="AZ_Enquiry__c"
+                   record-id={recordToogleId}>
+                    <lightning-input-field field-name="Worker_Role__c"></lightning-input-field>
+                <lightning-button label="Save" type="submit"></lightning-button>
+                  </lightning-record-edit-form>
+                </template>
+                <template lwc:else>
+                  {se.Name}
+                </template>
+            </td>
+              </tr>
+            </template>
+      </tbody>
+  </table>
+</div>
+                </template>
+              </template></div>
+                <footer class="slds-card__footer">
+                  <template lwc:if={isToggleAddressPick}>
+                    <lightning-button onclick={createAzEnquiryHandler} label="Save Address"></lightning-button>
+                  </template>
+            
+                <template lwc:else >
+                  <img src={AZLogo} alt="AZLogo" style="width: 32px;height:32px;" />
+                </template>
+              </footer>
+                </article>
+                </div>
+               
+                </article>
+              </div>
+            </template>
+            <template if:true={iscustomerWorkAllot}>
+              <div style="padding-top: 30px;">
+              <article class="slds-card">
+                <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                <span class="slds-icon_container " title="account">
+                  <img src={AZLogoOne} alt="AZLogoOne" style="width: 35px;height:35px;" />
+                <span class="slds-assistive-text">account</span>
+                </span>
+                </div>
+                <div class="slds-media__body">
+                <h2 class="slds-card__header-title">
+                <a href="#" class="slds-card__header-link slds-truncate" title="Accounts">
+                <span>Work Progress</span>
+                </a>
+                </h2>
+                </div>
+                <div class="slds-no-flex">
+                  <lightning-input label="" type="date" max={selectedToday} value={today} 
+                  onchange={changeShiftDateHandler} style="width: 140px; padding-left:20px" ></lightning-input>
+                </div>
+                </header>
+                </div>
+                <div class="slds-card__body slds-card__body_inner"  style="height:300px;">
+                  <div class="slds-scrollable_y" style="height:18rem;" tabindex="0">
+                  <table   class="slds-table slds-border_left slds-border_right  slds-table_cell-buffer slds-table_bordered slds-table_col-bordered"
+                  style="table-layout:fixed"  >
+                    <thead>
+                        <tr>
+                          <th>Worker Name</th>
+                          <th>Working Date</th>
+                          <th>Role</th>
+                          <th>Progress</th>
+                          <th>Rating</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                  <template for:each={customerwiseAzWorkerShiftwiseData} for:item="caw">
+                    <tr  key={caw.Id} id={index} >
+                      <td onclick={workerShiftwiseHandler} data-name={hideShow} data-id={caw.Id}> 
+                      {caw.Name}
+                </td>
+                <td>{caw.Shift_Date__c}</td>
+                <td>{caw.Worker_Role__c}</td>
+                <td onclick={workProgressToogleHandler} data-id={caw.Id} ><img src={caw.workToogle} alt="workToogle" style="width:60px;height:60px;" /></td>
+              <td onclick={workerRatingToogleHandler} data-id={caw.Id} ><img   src={caw.workerRatingIcon}  alt="workerRatingIcon" style="width:80px;height:60px;" /></td>
+              </tr>
+            </template>
+      </tbody>
+    </table>
+                  </div>
+                </div>
+                <footer class="slds-card__footer">
+                  <img src={AZLogo} alt="AZLogoOne" style="width:35px;height:35px;" />
+                </footer>
+                </article>
+
+              </div>
+            </template>
+               </div>
+                <div class='slds-col slds-size_1-of-12'>
+               <div style="position:relative" >
+                <span class="slds-icon_container "  title="Chat" style="position: absolute;top:310pt; right: 20pt; z-index: 20;" >
+                    <img  src={customerservice} alt="lll" style="width:80px;height:80px;" onclick={chatHandler} />
+                <span class="slds-assistive-text">Description of icon when needed</span>
+                </span> 
+                <div  role="tooltip"  style="position:absolute;top:-10px;right:35px">
+                  <template if:true={isOpen}>
+                   <div class="slds-popover__body">
+                    <article class="slds-card" style="width:370px;background-color: rgb(95, 207, 241);">
+                      <div class="slds-card__body slds-card__body_inner" >
+                        <section role="log" class="slds-chat " >
+                          <ul class="slds-chat-list" style="width:340px;height:380px ;padding:10px" >
+                            <div >
+                            <div  style="background-color: white;height:360px; overflow-y:auto"
+                             class="scrolling" >
+                              <template if:true={adminCustomerSearchData.length}>
+                                <template   for:each={adminCustomerSearchData} for:item="chat">
+                                  <div key={chat.Id}>
+                          <template lwc:if={chat.Customer_Chat__c}>
+                              <li class="slds-chat-listitem slds-chat-listitem_outbound">
+                          <div class="slds-chat-message">
+                          <div class="slds-chat-message__body">
+                          <div class="slds-chat-message__text slds-chat-message__text_outbound">
+                          <span>{chat.Customer_Chat__c}
+                            <template if:true={chat.Customer_Emoji__c}>
+                              <img src={chat.Customer_Emoji__c} alt="ll" style="width: 25px; height:25px" /></template>
+                          </span>
+                          </div>
+                          <div class="slds-chat-message__meta">{customerName}</div>
+                          </div>
+                          </div>
+                          </li>
+                        </template>
+                        <template lwc:elseif={chat.Customer_Emoji__c}>
+                          <li class="slds-chat-listitem slds-chat-listitem_outbound">
+                      <div class="slds-chat-message">
+                      <div class="slds-chat-message__body">
+                      <div class="slds-chat-message__text slds-chat-message__text_outbound">
+                      <span>
+                        <template if:true={chat.Customer_Chat__c}>
+                          {chat.Customer_Chat__c}
+                          </template>
+                          <img src={chat.Customer_Emoji__c} alt="ll" style="width: 25px; height:25px" />
+                      </span>
+                      </div>
+                      <div class="slds-chat-message__meta">{customerName}</div>
+                      </div>
+                      </div>
+                      </li>
+                    </template>
+                        <template lwc:if={chat.Admin_Chat__c} >
+                            <li class="slds-chat-listitem slds-chat-listitem_inbound">
+                                <div class="slds-chat-message">
+                                  <div class="slds-chat-message__body">
+                                    <div class="slds-chat-message__text slds-chat-message__text_inbound">
+                                      <span>
+                                          {chat.Admin_Chat__c}<template if:true={chat.Admin_Emoji__c}>
+                                            <img src={chat.Admin_Emoji__c} alt="ll" style="width: 25px; height:25px" />
+                                          </template>
+                                      </span>
+                                    </div>
+                                    <div class="slds-chat-message__meta" >{adminshiftwiseId.Name}</div>
+                                  </div>
+                                </div>
+                              </li>
+                          </template>
+                          <template lwc:elseif={chat.Admin_Emoji__c}>
+                            <li class="slds-chat-listitem slds-chat-listitem_inbound">
+                              <div class="slds-chat-message">
+                                <div class="slds-chat-message__body">
+                                  <div class="slds-chat-message__text slds-chat-message__text_inbound">
+                                    <span>
+                                        <template if:true={chat.Admin_Emoji__c}>
+                                          {chat.Admin_Chat__c} 
+                                        </template>
+                                        <img src={chat.Admin_Emoji__c} alt="ll" style="width: 25px; height:25px" />
+                                    </span>
+                                  </div>
+                                  <div class="slds-chat-message__meta" >{adminshiftwiseId.Name}</div>
+                                </div>
+                              </div>
+                            </li>
+                          </template>
+                          </div>
+                      </template>
+                              </template>
+                    </div>
+                  </div>
+                  </ul>
+                          </section></div>
+                      <footer class="slds-card__footer">
+                        <div class='slds-grid slds-wrap' >
+                          <div class='slds-col slds-size_1-of-4' >
+                            <img src={partyEmoji} style="width:40px;height:40px" onclick={openEmojiHandler} alt={emojiShow}>
+                          </div><div class='slds-col slds-size_2-of-4' >
+                            <div>
+                              <lightning-icon class="chatSendBtn" icon-name='utility:send' data-id={chatDataSet} onclick={chatOutHandler} alternative-text='send'
+                              variant='success' size='small' title='send'></lightning-icon>
+                            <lightning-input data-name="chat" onchange={chatInputHandler} style="width:200px"></lightning-input>
+                          </div>
+                            <div  role="tooltip"  style="position:absolute;top:40px;right:10px">
+                              <template if:true={isEmojiHide}>
+                               <div class="slds-popover__body">
+
+                                <template for:each={arrEmojiOne} for:item="ar">
+                                  <div class='slds-grid container' key={ar.img}  style="width:320px">
+                                    <div class='slds-col slds-size_1-of-8' style="width:40px;">
+                                      <div data-reset="reset" class="emojiToogle" style="padding: 4px;" onclick={emojiHandleClick} data-id={ar.img}><img src={ar.img} style="width:30px;height:30px" /> </div>
+                                    </div>
+                                    <div class='slds-col slds-size_1-of-8' style="width:40px;">
+                                      <div data-reset="reset" class="emojiToogle" style="padding: 4px;" onclick={emojiHandleClick} data-id={ar.imga}><img src={ar.imga} style="width:30px;height:30px" /></div></div>
+                                    <div class='slds-col slds-size_1-of-8' style="width:40px;">
+                                      <div data-reset="reset" class="emojiToogle" style="padding: 4px;" onclick={emojiHandleClick} data-id={ar.imgb}><img src={ar.imgb} style="width:30px;height:30px" /></div></div>
+                                    <div  class='slds-col slds-size_1-of-8' style="width:40px;">
+                                      <div data-reset="reset" class="emojiToogle" style="padding: 4px;" onclick={emojiHandleClick} data-id={ar.imgc}><img src={ar.imgc} style="width:30px;height:30px" /></div></div>
+                                    <div class='slds-col slds-size_1-of-8' style="width:40px;">
+                                      <div data-reset="reset" class="emojiToogle" style="padding: 4px;" onclick={emojiHandleClick} data-id={ar.imgd}><img src={ar.imgd} style="width:30px;height:30px" /></div></div>
+                                    <div class='slds-col slds-size_1-of-8' style="width:40px;">
+                                      <div data-reset="reset" class="emojiToogle" style="padding: 4px;" onclick={emojiHandleClick} data-id={ar.imge}><img src={ar.imge} style="width:30px;height:30px" /></div></div>
+                                    <div class='slds-col slds-size_1-of-8' style="width:40px;">
+                                      <div data-reset="reset" class="emojiToogle" style="padding: 4px;" onclick={emojiHandleClick} data-id={ar.imgf}><img src={ar.imgf} style="width:30px;height:30px" /></div></div>
+                                    <div class='slds-col slds-size_1-of-8' style="width:40px;">
+                                      <div data-reset="reset" class="emojiToogle" style="padding: 4px;" onclick={emojiHandleClick} data-id={ar.imgg}><img src={ar.imgg} style="width:30px;height:30px" /></div></div>
+                                  </div>
+                                </template>
+                                 
+
+
+                               </div></template></div>
+                          </div>
+                          <div class='slds-col slds-size_1-of-4' >
+                           
+                           
+                          </div>
+                        </div>
+                      </footer>
+                      </article>                
+                        </div>
+                </template>
+                </div>
+              </div>
+            </div></div></div>
+</template>

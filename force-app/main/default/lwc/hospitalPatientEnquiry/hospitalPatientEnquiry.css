@@ -1,0 +1,71 @@
+.flex-container {
+    display: flex;
+    flex-wrap: nowrap;
+    border-radius: 16px;
+   /* background-color: DodgerBlue;*/
+    
+  }
+  
+  .flex-container > .divOne {
+    background-color:white;
+    border-radius: 16px;
+    width: 230px;
+    color: blue;
+    /*margin: 10px;*/
+    text-align: center;
+    line-height: 28px;
+    font-size: 15px;
+  }
+  .flex-container > .divTwo {
+    background-color:black;
+    border-radius: 16px;
+    width: 230px;
+    color: white;
+    /*margin: 10px;*/
+    text-align: center;
+    line-height: 28px;
+    font-size: 15px;
+  }
+  .flex-container > .divThree {
+    background-color:black;
+    border-radius: 16px;
+    width: 230px;
+    color: white;
+    /*margin: 10px;*/
+    text-align: center;
+    line-height: 28px;
+    font-size: 15px;
+  }
+
+  .flex-container > .myPatientLogin {
+   
+
+    background-color:black;
+    border-radius: 16px;
+    width: 230px;
+    color: white;
+    /*margin: 10px;*/
+    text-align: center;
+    line-height: 28px;
+    font-size: 15px;
+  }
+  .flex-container > .myDoctorLogin {
+    background-color:white;
+    border-radius: 16px;
+    width: 230px;
+    color: blue;
+    /*margin: 10px;*/
+    text-align: center;
+    line-height: 28px;
+    font-size: 15px;
+  }
+  .flex-container > .myAdminLogin {
+    background-color:white;
+    border-radius: 16px;
+    width: 230px;
+    color: blue;
+    /*margin: 10px;*/
+    text-align: center;
+    line-height: 28px;
+    font-size: 15px;
+  }

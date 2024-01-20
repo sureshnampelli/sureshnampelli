@@ -1,0 +1,29 @@
+<template>
+    <lightning-card><h1></h1>
+        <div class='slds-grid' >
+            <div class='slds-col slds-size_1-of-3' >
+                <template if:true={logins}>
+                    <c-az-custom-data-table
+                    key-field="Id"
+                    data={logins} columns={columns}
+                    onclick={getSelectedRow} 
+                    
+                    onrowaction={callRowAction}></c-az-custom-data-table>
+                </template>
+            </div>
+            <div class='slds-col slds-size_1-of-3' >
+                <lightning-input onchange={chatInputHandler}></lightning-input>
+                <lightning-button label="chat" onclick={chatOutHandler}></lightning-button>
+                <template if:true={chatData.length}>
+                    <template   for:each={chatData} for:item="chat">
+                      <div key={chat.Id}>
+                        {chat.Id}
+          {chat.Name}            </div>
+                    </template>
+                  </template>
+            </div>
+            <div class='slds-col slds-size_1-of-3' ></div>
+          </div>
+       
+    </lightning-card>
+</template>

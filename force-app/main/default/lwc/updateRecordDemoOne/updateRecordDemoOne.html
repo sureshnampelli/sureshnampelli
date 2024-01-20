@@ -1,0 +1,37 @@
+<template>
+    <lightning-card title="Use updateRecord in LWC Salesforce/ LDS Update Record" icon-name="standard:record">
+        <template if:true={showLoading}>
+            <lightning-spinner alternative-text="Loading" size="medium" class="spinnerClass"></lightning-spinner>
+        </template>
+        <div class="slds-m-around_medium">
+            <template if:true={account.data}>
+                <lightning-input label="Id" disabled value={account.data.Id}></lightning-input>
+                <lightning-input label="Name" value={account.data.Name} data-field="Name" onchange={handleChange}
+                    class="slds-m-bottom_x-small" required></lightning-input>
+                <lightning-input label="Rating" value={account.data.Rating} data-field="Rating" onchange={handleChange}
+                    class="slds-m-bottom_x-small"></lightning-input>
+                <lightning-button label="Update Account" variant="brand" onclick={handleUpdate} disabled={disabled}>
+                </lightning-button>
+            </template>
+            <template if:true={account.error}>
+                <!-- handle Apex error -->
+            </template>
+        </div>
+        <div>
+            <lightning-button variant="brand" label="Del Row"  onclick={selectCheckBoxHandler}></lightning-button>
+            <template if:true={loginRecordsDataOneTwo}>
+                <div style="background-color:#7F8CED; height:29rem;" class="slds-scrollable_y"  tabindex="0">
+                    <lightning-datatable
+                    
+                            key-field="Id"
+                            data={loginRecordsDataOneTwo.data}
+                            columns={columns}
+                            
+                            onrowaction={handleRowAction}>
+                    </lightning-datatable>
+                </div>
+               
+            </template>
+        </div>
+    </lightning-card>  
+</template>

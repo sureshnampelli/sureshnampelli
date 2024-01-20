@@ -1,0 +1,45 @@
+.Removebg{
+    width: 60px;
+    height: 60px;   
+   }
+   .hospitalName{
+       font-size: 20px;
+       color: blue;
+   }
+   .locationCss{
+    width: 30px;
+    height: 30px;
+   }
+   .loginLogos{
+    width: 35px;
+    height: 35px;
+   }
+   .gosign{
+    width: 35px;
+    height: 35px;
+   }
+   .HomeLogos{
+    width: 50px;
+    height: 50px;
+   }
+   
+.colorLogin{
+    background-color: rgb(72, 255, 0);
+}
+.postionLeft{
+    padding-inline-start:85%;
+}
+/*.ImageStaff{
+height: 60px;
+width: 50px;
+}
+
+.ImageStaffChiru{
+    height: 60px;
+
+    }
+ .ImageStaffSree{
+        height: 60px;
+        
+        }*/
+        

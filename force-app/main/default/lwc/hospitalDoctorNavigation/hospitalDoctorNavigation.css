@@ -1,0 +1,57 @@
+.dashboardbtn{
+    width: 220px;
+    height: 50px;
+    background-color: white;
+    color: black;
+   
+}
+.apphistorybtn{
+    width: 220px;
+    height: 50px;
+    background-color: blue;
+    color: white;
+}
+.bookappbtn{
+    width: 220px;
+    height: 50px;
+    background-color: blue;
+    color: white;
+}
+.myDashboard{
+    width: 220px;
+    height: 50px;
+    background-color: blue;
+    color: white;
+}
+
+.myAppHistory{
+    width: 220px;
+    height: 50px;
+    background-color: white;
+    color: black;}
+
+.myBookApp{
+    width: 220px;
+    height: 50px;
+    background-color: white;
+    color: black;
+}
+.textClass{
+    font-size:16px;
+    color: blue;
+}
+.textSizeClass{
+    font-size:20px;
+    color: blue; 
+}
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 100px;
+    margin: auto;
+    text-align: center;
+  }
+  
+  .title {
+    color: grey;
+    font-size: 18px;
+  }

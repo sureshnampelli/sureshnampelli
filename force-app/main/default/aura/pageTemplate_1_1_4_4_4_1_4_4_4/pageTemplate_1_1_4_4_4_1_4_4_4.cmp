@@ -1,0 +1,46 @@
+<aura:component implements="lightning:appHomeTemplate" description="One Row Three Columns layout " access="global">
+    <aura:attribute name="fullOne" type="Aura.Component[]" access="global"/>
+    <aura:attribute name="leftOne" type="Aura.Component[]" access="global"/>
+    <aura:attribute name="rightOne" type="Aura.Component[]" access="global"/>
+    <aura:attribute name="full" type="Aura.Component[]" access="global"/>
+    <aura:attribute name="left" type="Aura.Component[]" access="global"/>
+    <aura:attribute name="center" type="Aura.Component[]" access="global"/>
+    <aura:attribute name="right" type="Aura.Component[]" access="global"/>
+    <div aura:id="containter">
+        <lightning:layout>
+            <lightning:layoutItem aura:id="Row" size="12">
+                {!v.fullOne}
+            </lightning:layoutItem>
+            
+        </lightning:layout>
+    </div>
+    <div aura:id="containter">
+        <lightning:layout>
+            <lightning:layoutItem aura:id="Row" size="12">
+                {!v.full}
+            </lightning:layoutItem>
+            
+        </lightning:layout>
+    </div>
+    <div aura:id="containter">
+        <lightning:layout>
+            <lightning:layoutItem aura:id="leftColumn" size="4">
+                {!v.left}
+                <lightning:layout>
+                <lightning:layoutItem aura:id="leftColumn" size="2">
+                    {!v.leftOne}
+                </lightning:layoutItem>
+                <lightning:layoutItem aura:id="rightColumn" size="2">
+                    {!v.rightOne}
+                </lightning:layoutItem>
+            </lightning:layout>
+            </lightning:layoutItem>
+            <lightning:layoutItem aura:id="centerColumn" size="4">
+                {!v.center}
+            </lightning:layoutItem>
+            <lightning:layoutItem aura:id="rightColumn" size="4">
+                {!v.right}
+            </lightning:layoutItem>
+        </lightning:layout>
+    </div>
+</aura:component>	

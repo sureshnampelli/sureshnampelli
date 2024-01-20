@@ -1,0 +1,66 @@
+<template>
+    <lightning-card class='slds-size_1-of-2' title='Opportunity Stage Wise View'>
+        <lightning-layout>
+            <lightning-layout-item size='12' data-item='inlineblock'>
+
+                <div>
+                    <div class='slds-grid slds-wrap'>
+                        <div class='slds-col slds-size_1-of-3' style='border:1px solid #cacaca;' if:true={oppBarconfig}>
+                            <c-charts-main-one chart-dataset={oppBarconfig}>
+                            </c-charts-main-one>
+                            <div style="display: flex;  justify-content: center;">Bar Chart</div>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3" style="border:1px solid #cacaca;" if:true={oppPieconfig}>
+                            <c-charts-main-one chart-dataset={oppPieconfig}>
+                            </c-charts-main-one>
+                            <div style="display: flex;  justify-content: center;">Pie Chart</div>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3" style="border:1px solid #cacaca;" if:true={oppDoughnutConfig}>
+
+
+                            <c-charts-main-one chart-dataset={oppDoughnutConfig}>
+                            </c-charts-main-one>
+                            <div style="display: flex;  justify-content: center;">Doughnut Chart
+                                </div>
+
+
+                        </div>
+                        <div class="slds-col slds-size_1-of-3" style="border:1px solid #cacaca;" if:true={oppPolarAreaConfig}>
+
+
+                            <c-charts-main-one chart-dataset={oppPolarAreaConfig}>
+                            </c-charts-main-one>
+                            <div style="display: flex;  justify-content: center;">Polar Area Chart
+                                </div>
+
+
+                        </div>
+                         <div class="slds-col slds-size_1-of-3" style="border:1px solid #cacaca;" if:true={oppBubbleConfig}>
+
+
+                            <c-charts-main-one chart-dataset={oppBubbleConfig}>
+                            </c-charts-main-one>
+                            <div style="display: flex;  justify-content: center;">Bubble Chart
+                                </div>
+
+
+                        </div>
+                         <div class="slds-col slds-size_1-of-3" style="border:1px solid #cacaca;" if:true={oppLineConfig}>
+
+
+                            <c-charts-main-one chart-dataset={oppLineConfig}>
+                            </c-charts-main-one>
+                            <div style='display: flex;  justify-content: center;'>Line Chart
+                                </div>
+
+
+                        </div>
+                        
+                    </div>
+                </div>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+
+
+</template>

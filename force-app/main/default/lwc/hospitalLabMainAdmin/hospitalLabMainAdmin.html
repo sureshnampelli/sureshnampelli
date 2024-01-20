@@ -1,0 +1,22 @@
+<template>
+   <lightning-card title="lab main admin">
+    <template  if:true={admin}>
+        <div class="slds-scrollable_y" style="height:10rem;" tabindex="0">
+            <lightning-datatable
+                    key-field="Id"
+                    data={admin}
+                    columns={columns}
+                    hide-checkbox-column="true"
+                    show-row-number-column="true"
+                    onrowaction={handleRowActions}>
+            </lightning-datatable>
+        </div>
+       
+    </template> 
+    <template if:true={lipidShow}>
+        <c-hospital-lipid-test-main lipiddata={lipidData}>
+
+        </c-hospital-lipid-test-main>
+    </template>
+   </lightning-card> 
+</template>

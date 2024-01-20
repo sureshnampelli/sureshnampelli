@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="Hospotal Attendance Register">
+<lightning-input label="" type="date"  onchange={changeDateHandler} style="width: 160px;padding:20px;" ></lightning-input>
+    </lightning-card>
+    <lightning-card>
+        <lightning-datatable
+        key-field="Id"
+        columns={columns}
+        data={updaterecords}>
+
+        </lightning-datatable>
+    </lightning-card>
+</template>

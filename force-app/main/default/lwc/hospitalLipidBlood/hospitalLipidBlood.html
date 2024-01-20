@@ -1,0 +1,51 @@
+<template>
+    <lightning-card title="hospital lipid blood gv">
+        <lightning-button label="Click" variant="brand" onclick={changeHandler}></lightning-button>
+        <template  if:true={lipidPdf}>
+            <div style="height: 300px;">
+                <lightning-datatable
+                        key-field="Id"
+                        data={lipidPdf}
+                        columns={columns}
+                        hide-checkbox-column="true"
+                        show-row-number-column="true"
+                        onrowaction={handleRowActions}>
+                </lightning-datatable>
+            </div>
+           
+        </template> 
+        <template if:true={pdfLipid}>
+            <template for:each={pdfLipid} for:item="lab">
+                <div key={lab.Id} class="slds-grid slds-list_horizontal ">
+                    <div class="slds-grid slds-grid_vertical ">
+                       
+                       <div><strong>Patient Name :</strong>   {lab.Full_Name__c}</div> 
+                       <div><strong>Gender:</strong> {lab.Gender__c}</div> 
+                       <div><strong>Age:</strong>  {lab.Age__c}</div> 
+                       <div><strong>Sample Id:</strong>  {lab.Sample_ID__c}</div> 
+                
+                </div>
+                <div class="slds-grid slds-grid_vertical  slds-p-left_xx-large">
+                <div><strong>Ref Doctor:</strong>{lab.Ref_Doctor__c }</div> 
+                <div><strong>Sample Drawn Date: </strong>{lab.Sample_Drawn_Date__c}</div>
+                <div><strong>Sample Regd Date :</strong>{lab.Sample_Regd_Date__c}</div>
+                <div><strong>Sample Auth Date:</strong>{lab.Sample_Auth_Date__c}</div> 
+
+            
+                <div class="slds-grid slds-grid_vertical slds-border_top slds-p-right_xx-large">
+                    <div><strong>S.Total Cholesterol :</strong>{lab.S_Total_Cholesterol__c}</div>
+                    <div><strong>S.Triglycerides :</strong>{lab.S_Triglycerides__c}</div>
+                    <div><strong>S.HDL :</strong>{lab.S_Hdl__c}</div>
+                    <div><strong>V.LDL:</strong>{lab.VLDL__c}</div>    
+                    <div><strong>S.LDL:</strong>{lab.SLDL__c}</div>
+                    <div><strong>T.Chol:</strong>{lab.TChol__c}</div>
+                    <div><strong>LDL/HDL:</strong>{lab.LDL_HDL__c}</div>
+                </div>
+
+            </div>
+                </div>
+            </template>
+        </template>
+    
+    </lightning-card>
+</template>

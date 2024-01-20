@@ -1,0 +1,78 @@
+.textClass{
+    font-size:16px;
+    color: blue;
+}
+.textSizeClass{
+    font-size:20px;
+    color: blue; 
+}
+lightning-button.Facility {
+    --sds-c-button-brand-color-background: #191970;
+    --sds-c-button-text-color: #f4f7f9;
+}
+
+lightning-button.Clients {
+    --sds-c-button-brand-color-background: #00BFFF;
+    --sds-c-button-text-color: #f4f7f9;
+}
+
+lightning-button.Staff {
+    --sds-c-button-brand-color-background: #B22222;
+    --sds-c-button-text-color: #f4f7f9;
+}
+
+lightning-button.ManageSubscription {
+    --sds-c-button-brand-color-background: #bb00ff;
+    --sds-c-button-text-color: #f4f7f9;
+}
+
+.buttonPosition{
+        padding: 10px;
+        margin: 10px auto;
+        text-align: center;
+        color: white;
+}
+.geeks {
+   
+    overflow: hidden;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.geeks img {
+    width:100px;
+    height: 200px;
+    transition: 0.5s all ease-in-out;
+}
+
+.geeks:hover img {
+    transform: scale(1.5);
+}
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .zoom {
+    padding: 50px;
+   /* background-color: green;*/
+    transition: transform .2s; /* Animation */
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+  }
+  
+  /*.zoom:hover {
+    transform: scale(1.5);
+    
+     (150% zoom - Note: if the zoom is too large, it will go outside of the viewport)
+   } */
+  
+
+  .myAppHistory {
+    /* transform: scale(1.5);*/
+     width: 190px;
+     height: 190px;
+     margin: 0 auto; /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+   }

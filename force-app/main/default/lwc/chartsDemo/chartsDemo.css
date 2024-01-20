@@ -1,0 +1,17 @@
+.redColor {
+    color: red;
+}
+
+.greenBorder {
+    border: 1px solid green;
+}
+.redColor {
+    color: red;
+}
+
+.greenColor {
+    Color: green;
+}
+.modal-container {
+    height : var(--modalHeight, 500px);
+}

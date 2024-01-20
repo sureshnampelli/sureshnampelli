@@ -1,0 +1,42 @@
+<template>
+    <lightning-card  variant="Narrow"  title={title} icon-name="standard:document">
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading" size="small" variant="brand"></lightning-spinner>
+        </template>
+        <lightning-button if:true={showsync} variant="brand" title="Content Sync" icon-name="utility:sync"
+            onclick={handleSync} slot="actions" >
+        </lightning-button>
+        <div class="slds-var-p-around_small" >
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_1-of-4" if:true={showFilters}>
+                    <lightning-input if:true={showFilters} type="search" variant="standard" name="Title" label="Title" onchange={handleSearch} >
+                    </lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-4" if:true={showFilters}>
+                    <lightning-input  if:true={showFilters} type="search" variant="standard" name="Created By" label="Created By" onchange={handleSearch}>\
+                    </lightning-input>
+                </div>
+                <div class="slds-col slds-size_2-of-4 slds-var-p-left_small">
+                    <lightning-file-upload  if:true={showFileUpload}
+                        label="Upload New File"
+                        name="fileUploader"
+                        accept={accept}
+                        record-id={recordId}
+                        onuploadfinished={handleUploadFinished}
+                        multiple>
+                    </lightning-file-upload>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slds-var-p-around_small">
+            <lightning-datatable
+                key-field="id"
+                data={dataList}
+                hide-checkbox-column
+                columns={columnsList}
+                onrowaction={handleRowAction}>
+            </lightning-datatable>
+        </div>
+    </lightning-card> 
+</template>

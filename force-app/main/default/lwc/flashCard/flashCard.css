@@ -1,0 +1,7 @@
+.randomClass{
+    width:40px;
+    height:60px;
+    background: pink;
+    box-sizing: content-box;
+    padding: 40px;
+}

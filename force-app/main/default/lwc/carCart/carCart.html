@@ -1,0 +1,67 @@
+<template>
+    <lightning-card title="Car T" icon-name="standard:account">
+      <lightning-button label="go cart"   onclick={goCartHandler}></lightning-button>
+      <template if:true={showCart}>
+        <c-car-cart-child objtwo={objTwo} onclear={outCartchildHandler} onclose={hideCartHandler}></c-car-cart-child>
+      </template>
+     
+      
+      <div class="slds-p-around_medium">
+        <template for:each={arrOne} for:item="ne"  for:index="index">
+          <div key={ne.car}>
+            <img src={ne.img} alt="car image"/>
+            {ne.car}
+            {ne.cost}
+            {ne.count}
+            <lightning-button label="del cart" name={ne}  onclick={delCartHandler}></lightning-button> 
+          </div>
+        </template>
+      </div>
+
+
+        <div class="slds-p-around_medium wrapper">
+         
+       
+            <template if:true={cars}>
+              <div class="content">
+                <template for:each={cars} for:item="car" for:index="index" >
+                    <div key={car.Id} >
+                    <img src={car.Picture_Url__c} class="slds-align_absolute-center carImage" alt="Car Picture"/>
+                    <div>
+                        <p class="title slds-align_absolute-center">{car.Name}</p>
+                        <p class="title slds-align_absolute-center">{car.Category__c}</p>
+                        <p class="slds-align_absolute-center">
+                            MSRP:
+                            <lightning-formatted-number format-style="currency"
+                            currency-code="USD" value={car.MSRP__c} class="price"
+                            maximum-fraction-digits="0"></lightning-formatted-number>
+                        </p>
+                    </div>
+              
+                   
+                <lightning-button label="Add Cart" name={car}  onclick={showCartHandler}></lightning-button>
+                
+              
+                    
+                </div>
+                </template>
+              </div>
+            </template>
+          
+        </div>
+
+        <div class="slds-p-around_medium">
+          <div class="content">
+          <template for:each={birds} for:item="bi"  >
+            <div key={bi.Id}>
+              <img src={bi.Picture_Url__c} class="slds-align_absolute-center carImage" alt="image"/>
+              <p class="title slds-align_absolute-center"> {bi.Name}</p>
+                <p class="title slds-align_absolute-center"> {bi.MRP__c}</p>
+                  <p class="title slds-align_absolute-center"> {bi.Category__c}</p>
+              
+            </div>
+          </template>
+          </div>
+        </div>
+      </lightning-card>  
+</template>

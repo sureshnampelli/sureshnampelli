@@ -1,7 +1,7 @@
 <template>
     <lightning-card title="Postal AP" icon-name="custom:custom1">
         
-        <a>pin;{pinCodeTin}</a>
+        <a>{pinCodeTin}</a>
        
       
         <div class="slds-p-around_medium">
@@ -12,8 +12,9 @@
               onkeyup={changeHandler}
               value={pincodeNumber}
             ></lightning-input>
+            <lightning-input type="text" label="Branch Name" onchange={changeBranchHandler}></lightning-input>
             <lightning-button variant="base" label="Base" title="Looks like a link" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
-        
+        <lightning-button label="handleClickName" onclick={handleClickName}></lightning-button>
           </div>
 
             <lightning-button variant="base" label="Ur Town" title="Looks like a link" onclick={handleTin} class="slds-m-left_x-small"></lightning-button>

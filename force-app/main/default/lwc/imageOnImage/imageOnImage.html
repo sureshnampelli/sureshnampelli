@@ -1,0 +1,38 @@
+<template>
+  <lightning-card>
+    <lightning-button label="createBBB" onclick={creH}></lightning-button>
+           <div style="padding-right:1rem;position:relative" >
+              <span class="slds-icon_container " title="Sign In" >
+                <img src={apexmain} alt="staff img"  />
+              <span class="slds-assistive-text">Description of icon when needed</span>
+              </span>   
+          <div  role="tooltip"  style="position:absolute;top: 10px;left:900px">
+          <div class="slds-popover__body"> 
+                  <template lwc:if={randomcards}>
+                <img src={randomcards} alt="img" />  
+            </template>
+          </div>
+          </div>
+      
+          </div>
+          <div class="slds-grid ">
+            <div  class="slds-border_left">
+              <template lwc:if={randomcards}>
+                <img src={randomcards} alt="img" />  
+            </template>
+          </div>
+            </div>
+            <div class="slds-align_absolute-center" style="height:5rem">
+              <lightning-button  icon-name="utility:jump_to_left" label="First" class="slds-p-horizontal_x-small" alternative-text="first page" onclick={firstPage}></lightning-button>
+              <lightning-button  icon-name="utility:chevronleft" label="Previous" alternative-text="Previous" onclick={previousPage}></lightning-button>
+              &nbsp;
+              <span class="slds-badge">&nbsp;of&nbsp;  &nbsp;&nbsp;</span>
+              &nbsp;
+              <lightning-button  icon-name="utility:chevronright" label="Next" alternative-text="Next" onclick={nextPage} class="slds-p-horizontal_x-small" icon-position="right"></lightning-button>
+              <lightning-button icon-name="utility:jump_to_right" label="Last" alternative-text="last page" onclick={lastPage} icon-position="right"></lightning-button>
+          </div>
+<span style="border-top-left-radius: 12px; border-top-right-radius: 12px;
+ height:30px;display: block;background-color:#0176d3;border-bottom: 1px black;"></span>
+ 
+  </lightning-card>  
+</template>

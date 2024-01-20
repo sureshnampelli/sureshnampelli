@@ -1,0 +1,52 @@
+<template>
+    <lightning-card >
+        <div class="redColor" data-id="myDiv">Salesforce Learning</div>
+    <lightning-button label="Green" onclick={changeGreen}></lightning-button>
+    <lightning-button label="Default" onclick={noColor}></lightning-button>
+    <div class={customClass}>Salesforce Learn</div>
+    <div style={modalStyling}>
+<h>qwertyuio</h>
+        <!-- Modal -->       
+    
+        </div>
+        <div class="modal-container">
+
+            <!-- Modal -->       
+        
+            </div>
+        <lightning-button onclick={connectedHandler} label="grafh" ></lightning-button>
+        <h>v:{objThree}</h>
+        
+        <template for:each={objTwo} for:item="ob">
+            <div key={ob.NameO}>
+                {ob.NameO}
+                <lightning-progress-bar value={ob.percent} name={} size="large"></lightning-progress-bar>
+            </div>
+        </template>
+    </lightning-card>
+    <lightning-layout multiple-rows>
+        <lightning-layout-item size="6" padding="around-small">
+            <lightning-card title="Total Opportunities">
+                <template if:true={pieChartLabels.length}>
+                    <c-charts-one type="doughnut"
+                    chart-heading="Opportunities"
+                    chart-data={pieChartData} 
+                    chart-labels={pieChartLabels}></c-charts-one>
+                </template>
+                
+            </lightning-card>
+        </lightning-layout-item>
+        <lightning-layout-item size="6" padding="around-small">
+            <lightning-card title="Total Opportunities 2">
+                <template if:true={pieChartLabels.length}>
+                    <c-charts-one 
+                    type="bar"
+                    chart-heading="Zero to hero"
+                    chart-data={pieChartData} 
+                    chart-labels={pieChartLabels}
+                    ></c-charts-one>
+                </template>
+            </lightning-card>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>
